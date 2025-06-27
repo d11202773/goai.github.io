@@ -1,232 +1,456 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi_VN" data-theme="dark-theme">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Văn Tiến Công - Giải Pháp AI</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0a0c15;
-      color: #fff;
-      line-height: 1.6;
-    }
-    a {
-      color: #FFD700;
-      text-decoration: none;
-    }
-    header {
-      background: url('https://via.placeholder.com/1500x500?text=AI+Solutions+by+Van+Tien+Cong') no-repeat center center/cover;
-      padding: 100px 20px 60px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      color: #FFD700;
-      text-shadow: 1px 1px 4px #000;
-    }
-    header p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto;
-      color: #f0f0f0;
-    }
-    .profile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 40px;
-      padding: 0 20px;
-    }
-    .profile img {
-      width: 130px;
-      height: 130px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 3px solid #FFD700;
-      margin-bottom: 15px;
-    }
-    .profile h2 {
-      margin: 10px 0;
-      font-size: 1.8rem;
-      color: #FFD700;
-    }
-    .profile p {
-      text-align: center;
-      max-width: 600px;
-      margin-bottom: 10px;
-    }
-    .cta {
-      margin-top: 10px;
-      background: #FFD700;
-      color: #0a0f24;
-      padding: 10px 25px;
-      border-radius: 25px;
-      font-weight: bold;
-      display: inline-block;
-    }
-    .contact {
-      margin-top: 20px;
-    }
-    .contact a {
-      margin: 0 10px;
-    }
-    .section {
-      padding: 50px 20px;
-      background: #1c1f2f;
-    }
-    .section h2 {
-      text-align: center;
-      color: #FFD700;
-      margin-bottom: 30px;
-    }
-    .feedback .item, .news .item, .services .item {
-      max-width: 800px;
-      margin: 20px auto;
-      background: #2a2f45;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .news .item img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-    .services {
-      background: #10121b;
-    }
-    .services .item {
-      border: 1px solid #FFD700;
-    }
-    /* Đăng ký nhận tài liệu */
-    .signup {
-      padding: 50px 20px;
-      background: #0a0c15;
-      text-align: center;
-    }
-    .signup h2 {
-      color: #FFD700;
-      margin-bottom: 20px;
-    }
-    .signup p {
-      max-width: 600px;
-      margin: 0 auto 20px;
-    }
-    .signup form {
-      max-width: 500px;
-      margin: 0 auto;
-      background: #1c1f2f;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .signup input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #FFD700;
-      border-radius: 5px;
-      background: #0a0c15;
-      color: #fff;
-    }
-    .signup button {
-      width: 100%;
-      padding: 10px;
-      background: #FFD700;
-      color: #0a0f24;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .footer {
-      text-align: center;
-      padding: 30px 20px;
-      background: #0a0c15;
-      color: #aaa;
-      font-size: 0.9rem;
-    }
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      .profile h2 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Adam Công - Giải pháp AI giúp bạn tối ưu hoá công việc online</title>
+    <meta name="description" content="Biến AI thành đồng đội – Giải phóng thời gian – Tăng tốc kinh doanh! Dịch vụ AI Marketing, sản xuất video, đào tạo từ A-Z.">
+    <link rel="shortcut icon" href="assets/images/svg/favicon.svg">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 100px 0 80px;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: #a1a1aa;
+            margin-bottom: 40px;
+        }
+        
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d1d5db;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #3b82f6;
+        }
+        
+        .service-card p {
+            color: #d1d5db;
+            line-height: 1.6;
+        }
+        
+        .testimonials {
+            background: rgba(59, 130, 246, 0.05);
+        }
+        
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+        
+        .testimonial .author {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        
+        .contact-info {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        .contact-info a {
+            color: #3b82f6;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .contact-info a:hover {
+            color: #60a5fa;
+        }
+        
+        .blog-topics {
+            list-style: none;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+        
+        .blog-topics li {
+            background: rgba(255, 255, 255, 0.05);
+            margin: 10px 0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        /* Form Styles */
+        .form-section {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            padding: 80px 0;
+        }
+        
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #3b82f6;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .form-group input::placeholder {
+            color: #9ca3af;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .form-description {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #d1d5db;
+            line-height: 1.6;
+        }
+        
+        .resource-list {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .resource-list h4 {
+            color: #3b82f6;
+            margin-bottom: 15px;
+        }
+        
+        .resource-list ul {
+            list-style: none;
+        }
+        
+        .resource-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #d1d5db;
+        }
+        
+        .resource-list li:before {
+            content: "✓ ";
+            color: #34d399;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0 40px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .form-container {
+                margin: 0 20px;
+                padding: 30px 20px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🎯 Adam Công – Giải pháp AI giúp bạn tối ưu hoá công việc online</h1>
+            <p>"Biến AI thành đồng đội – Giải phóng thời gian – Tăng tốc kinh doanh!"</p>
+        </div>
+    </section>
 
-  <header style="text-align: center;">
-    <img src="2C8CFF36-B753-49C5-81FF-59A405C1464C.JPG" alt="Logo GoAI" style="width: 200px; height: auto;">
-    <h1>Văn Tiến Công - Giải Pháp AI</h1>
-    <p>Biến mọi quy trình lặp lại thành tự động – Đơn giản hoá công việc online với sức mạnh AI.</p>
-  </header>
+    <!-- About Section -->
+    <section class="section">
+        <div class="container">
+            <h2>🧠 Về tôi – Adam Công</h2>
+            <div class="about-content">
+                <p>Xin chào!</p>
+                <p>Mình là Văn Tiến Công, hay còn gọi là Adam Công – người tiên phong trong việc ứng dụng AI vào công việc online, từ bán hàng, marketing, sản xuất video, đến quản lý vận hành.</p>
+                <p>Sứ mệnh của mình là giúp bạn tận dụng AI một cách thông minh và thực tế nhất, dù bạn là cá nhân khởi nghiệp hay doanh nghiệp nhỏ đang cần bứt phá.</p>
+            </div>
+        </div>
+    </section>
 
-  <section class="profile">
-    <img src="https://via.placeholder.com/130" alt="avatar">
-    <h2>Văn Tiến Công</h2>
-    <p>Chuyên gia ứng dụng AI trong giáo dục và kinh doanh online. Với hơn 10 năm kinh nghiệm trong lĩnh vực công nghệ, tôi đã triển khai thành công nhiều dự án AI cho các tổ chức giáo dục và doanh nghiệp trực tuyến. Mục tiêu của tôi là giúp bạn làm việc thông minh hơn, không cần làm nhiều hơn bằng sức mạnh của AI.</p>
-    <a href="https://zalo.me/0966861089" class="cta" target="_blank">Liên hệ Zalo ngay</a>
-    <div class="contact">
-      <a href="https://facebook.com" target="_blank">Facebook</a> |
-      <a href="mailto:contact@goai.edu.vn">Email</a>
-    </div>
-  </section>
+    <!-- Services Section -->
+    <section class="section">
+        <div class="container">
+            <h2>⚙️ Dịch vụ nổi bật</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🎥 Sản xuất video quảng cáo bằng AI</h3>
+                    <p>Tạo video chất lượng cao với Veo 3, Runway, Pika, Sora… chỉ trong vài giờ – tiết kiệm chi phí mà vẫn chuyên nghiệp.</p>
+                </div>
+                <div class="service-card">
+                    <h3>📈 Xây dựng hệ thống bán hàng tự động</h3>
+                    <p>Từ content, chatbot, auto comment trên Facebook, TikTok, Zalo đến landing page – tất cả đều có thể được AI xử lý nhanh chóng.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🧠 Đào tạo & Cố vấn AI Marketing từ A–Z</h3>
+                    <p>Hướng dẫn 1-1 hoặc theo nhóm, phù hợp với người mới bắt đầu, đảm bảo hiểu – làm được – có kết quả thực tế.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🧰 Cung cấp & hướng dẫn bộ công cụ AI</h3>
+                    <p>Truy cập ChatGPT Plus, Gemini Pro, Super Grok, Kling AI, Hailua AI, Leonardo AI, Canva Pro, GitHub Student và nhiều công cụ khác.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Đăng ký nhận tài liệu miễn phí -->
-  <section class="section signup">
-    <h2>Đăng ký nhận tài liệu miễn phí</h2>
-    <p>Nhập tên và địa chỉ Gmail của bạn để nhận ngay bộ tài liệu chuyên sâu hoàn toàn miễn phí:</p>
-    <form>
-      <input type="text" placeholder="Tên của bạn" required>
-      <input type="email" placeholder="Gmail của bạn" required>
-      <button type="submit">Tải Bộ Tài Liệu Miễn Phí Tại Đây</button>
-    </form>
-  </section>
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2>🗣️ Khách hàng nói gì về Adam Công</h2>
+            <div class="testimonial">
+                <p>"Tôi chưa từng nghĩ có thể tự làm video quảng cáo chỉ trong vài giờ. Nhờ Adam Công hướng dẫn dùng AI, giờ tôi có thể tự sản xuất video, tiết kiệm hàng chục triệu mỗi tháng."</p>
+                <div class="author">— Anh Thắng, chủ quán nhậu Thắng Thoa – Nghệ An</div>
+            </div>
+            <div class="testimonial">
+                <p>"AI từng là thứ gì đó rất xa vời với tôi. Nhưng giờ, nhờ Công, tôi dùng AI để viết content, tạo video, quản lý bán hàng – mọi thứ đều đơn giản hơn rất nhiều."</p>
+                <div class="author">— Chị Hạnh, kinh doanh online mỹ phẩm</div>
+            </div>
+        </div>
+    </section>
 
-  <section class="section services">
-    <h2>Dịch vụ nổi bật</h2>
-    <div class="item">
-      ✅ Tư vấn triển khai AI trong giáo dục – đào tạo giáo viên &amp; học sinh
-    </div>
-    <div class="item">
-      ✅ Thiết kế hệ thống video AI cho doanh nghiệp (quảng cáo, kỷ niệm, đào tạo)
-    </div>
-    <div class="item">
-      ✅ Đào tạo Affiliate AI – xây kênh thu nhập từ công cụ AI
-    </div>
-  </section>
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <h2>📞 Liên hệ ngay để được tư vấn miễn phí</h2>
+            <div class="contact-info">
+                <p>
+                    <a href="tel:0966861089">📲 Zalo/Facebook: 0966861089</a>
+                    <a href="mailto:vantiencong1996@gmail.com">📧 Email: vantiencong1996@gmail.com</a>
+                </p>
+            </div>
+        </div>
+    </section>
 
-  <section class="section feedback">
-    <h2>Phản hồi từ khách hàng</h2>
-    <div class="item">
-      "Nhờ anh Công mình tiết kiệm 2-3 giờ mỗi ngày chỉ riêng công việc gõ báo cáo. AI làm hết!"
-    </div>
-    <div class="item">
-      "Học từ video của anh rất dễ hiểu, thực tế. Mình đã tự làm landing page AI chỉ sau 1 ngày."
-    </div>
-  </section>
+    <!-- Blog Section -->
+    <section class="section">
+        <div class="container">
+            <h2>🔄 Blog & Kiến thức AI thực chiến</h2>
+            <p style="text-align: center; color: #d1d5db; margin-bottom: 30px;">
+                Theo dõi những cập nhật mới nhất về AI Marketing, tạo nội dung, xây dựng hệ thống bán hàng thông minh, và những case study thực tế đã thành công cùng Adam Công.
+            </p>
+            <h3 style="text-align: center; margin-bottom: 20px;">📌 Một vài chủ đề nổi bật:</h3>
+            <ul class="blog-topics">
+                <li>"Cách tạo video triệu view bằng Veo 3 trong 2 giờ"</li>
+                <li>"So sánh ChatGPT, Gemini, Grok: Dùng AI nào cho bán hàng?"</li>
+                <li>"5 công cụ AI giúp bạn quản lý comment, inbox hoàn toàn tự động"</li>
+            </ul>
+        </div>
+    </section>
 
-  <section class="section news">
-    <h2>Tin tức AI mới nhất</h2>
-    <div class="item">
-      <img src="https://via.placeholder.com/800x300?text=GPT-5+Launch">
-      <strong>[26/06]</strong> OpenAI chính thức ra mắt GPT-5 với khả năng tạo video thời gian thực.
-    </div>
-    <div class="item">
-      <img src="https://via.placeholder.com/800x300?text=AI+Tools+for+Students">
-      <strong>[20/06]</strong> Top 10 công cụ AI miễn phí giúp sinh viên tiết kiệm thời gian.
-    </div>
-  </section>
+    <!-- Why Choose Section -->
+    <section class="section">
+        <div class="container">
+            <h2>✅ Vì sao nên chọn Adam Công?</h2>
+            <div class="features">
+                <div class="feature">
+                    <p>✅ Làm thật – Kết quả thật – Không lý thuyết suông</p>
+                </div>
+                <div class="feature">
+                    <p>✅ Cập nhật AI mới liên tục – luôn có hướng đi phù hợp thị trường</p>
+                </div>
+                <div class="feature">
+                    <p>✅ Phong cách hướng dẫn đơn giản – trực quan – dễ thực hiện</p>
+                </div>
+                <div class="feature">
+                    <p>✅ Hỗ trợ tận tâm – đồng hành đến khi bạn làm được</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <div class="footer">
-    &copy; 2025 Văn Tiến Công | goai.edu.vn<br>
-    Kết nối Zalo: <a href="https://zalo.me/0966861089">0966861089</a> |
-    Facebook: <a href="https://facebook.com" target="_blank">fb.com</a>
-  </div>
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="form-title">📥 Nhận Bộ Tài Liệu AI Miễn Phí Ngay</h2>
+                
+                <div class="form-description">
+                    <p>Bạn mới bắt đầu tìm hiểu về AI và chưa biết bắt đầu từ đâu?</p>
+                    <p>👉 Hãy để Adam Công gửi cho bạn "Bộ tài liệu AI thực chiến dành riêng cho người Việt" – giúp bạn hiểu nhanh, ứng dụng ngay vào công việc!</p>
+                </div>
+
+                <div class="resource-list">
+                    <h4>📘 Bộ tài liệu bao gồm:</h4>
+                    <ul>
+                        <li>Checklist 10 công cụ AI cần có trong kinh doanh online</li>
+                        <li>Hướng dẫn sử dụng ChatGPT, Gemini, Canva AI, Pika… từ cơ bản đến nâng cao</li>
+                        <li>Mẫu kịch bản content, video, phản hồi comment tự động</li>
+                        <li>Và nhiều tài nguyên hữu ích khác được cập nhật hàng tháng</li>
+                    </ul>
+                </div>
+
+                <form action="https://formsubmit.co/vantiencong1996@gmail.com" method="POST">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="Đăng ký nhận bộ tài liệu AI miễn phí">
+                    <input type="hidden" name="_next" value="https://adamcong.com/thank-you">
+                    
+                    <div class="form-group">
+                        <label for="name">Họ và tên *</label>
+                        <input type="text" id="name" name="name" placeholder="Nhập họ và tên của bạn" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" placeholder="Nhập email để nhận tài liệu" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">📥 Tải Bộ Tài Liệu Miễn Phí Ngay</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
