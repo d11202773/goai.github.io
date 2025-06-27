@@ -1,0 +1,81 @@
+Tiêu đề chính (Hero Title):
+Adam Công – Giải pháp AI giúp bạn tối ưu hoá công việc online
+“Biến AI thành đồng đội – Giải phóng thời gian – Tăng tốc kinh doanh!”
+Về tôi – Adam Công
+Xin chào!
+Mình là Văn Tiến Công, hay còn gọi là Adam Công – người tiên phong trong việc ứng dụng AI vào công việc online, từ bán hàng, marketing, sản xuất video, đến quản lý vận hành.
+Sứ mệnh của mình là giúp bạn tận dụng AI một cách thông minh và thực tế nhất, dù bạn là cá nhân khởi nghiệp hay doanh nghiệp nhỏ đang cần bứt phá.
+
+Dịch vụ nổi bật
+
+1. Sản xuất video quảng cáo bằng AI (Veo 3, Runway, Pika, Sora…)
+
+Tạo video chất lượng cao, đúng nhu cầu khách hàng, chỉ trong vài giờ – tiết kiệm chi phí mà vẫn chuyên nghiệp.
+
+2. Xây dựng hệ thống bán hàng tự động trên Facebook, TikTok, Zalo
+
+Từ content, chatbot, auto comment, đến landing page – tất cả đều có thể được AI xử lý nhanh chóng.
+
+3. Đào tạo & Cố vấn AI Marketing từ A–Z
+
+Hướng dẫn 1-1 hoặc theo nhóm, phù hợp với người mới bắt đầu, đảm bảo hiểu – làm được – có kết quả thực tế.
+
+4. Cung cấp & hướng dẫn sử dụng bộ công cụ AI mạnh mẽ
+
+Bạn sẽ được truy cập hoặc hỗ trợ sử dụng các công cụ như:
+ChatGPT Plus, Gemini Pro, Super Grok, Kling AI, Hailua AI, Leonardo AI, Canva Pro, GitHub Student, và nhiều công cụ khác.
+
+Khách hàng nói gì về Adam Công
+
+“Tôi chưa từng nghĩ có thể tự làm video quảng cáo chỉ trong vài giờ. Nhờ Adam Công hướng dẫn dùng AI, giờ tôi có thể tự sản xuất video, tiết kiệm hàng chục triệu mỗi tháng.”
+— Anh Thắng, chủ quán nhậu Thắng Thoa – Nghệ An
+
+“AI từng là thứ gì đó rất xa vời với tôi. Nhưng giờ, nhờ Công, tôi dùng AI để viết content, tạo video, quản lý bán hàng – mọi thứ đều đơn giản hơn rất nhiều.”
+— Chị Hạnh, kinh doanh online mỹ phẩm
+
+⸻
+
+📞 Liên hệ ngay để được tư vấn miễn phí
+	•	📲 Zalo/Facebook: 0966861089
+	•	📧 Email: vantiencong1996@gmail.com
+
+⸻
+
+🔄 Blog & Kiến thức AI thực chiến
+
+Theo dõi những cập nhật mới nhất về AI Marketing, tạo nội dung, xây dựng hệ thống bán hàng thông minh, và những case study thực tế đã thành công cùng Adam Công.
+
+📌 Một vài chủ đề nổi bật:
+	•	“Cách tạo video triệu view bằng Veo 3 trong 2 giờ”
+	•	“So sánh ChatGPT, Gemini, Grok: Dùng AI nào cho bán hàng?”
+	•	“5 công cụ AI giúp bạn quản lý comment, inbox hoàn toàn tự động”
+
+⸻
+
+✅ Vì sao nên chọn Adam Công?
+	•	✅ Làm thật – Kết quả thật – Không lý thuyết suông
+	•	✅ Cập nhật AI mới liên tục – luôn có hướng đi phù hợp thị trường
+	•	✅ Phong cách hướng dẫn đơn giản – trực quan – dễ thực hiện
+	•	✅ Hỗ trợ tận tâm – đồng hành đến khi bạn làm được
+
+📥 Nhận ngay bộ tài liệu AI Marketing miễn phí
+
+Bạn mới bắt đầu tìm hiểu về AI và chưa biết bắt đầu từ đâu?
+👉 Hãy để Adam Công gửi cho bạn “Bộ tài liệu AI thực chiến dành riêng cho người Việt” – giúp bạn hiểu nhanh, ứng dụng ngay vào công việc!
+
+📘 Bộ tài liệu bao gồm:
+	•	Checklist 10 công cụ AI cần có trong kinh doanh online
+	•	Hướng dẫn sử dụng ChatGPT, Gemini, Canva AI, Pika… từ cơ bản đến nâng cao
+	•	Mẫu kịch bản content, video, phản hồi comment tự động
+	•	Và nhiều tài nguyên hữu ích khác được cập nhật hàng tháng
+
+Hãy tạo cho tôi một form đăng ký HTML đẹp, hiện đại, đơn giản, hiển thị tốt trên cả điện thoại và máy tính. Mục tiêu là để người dùng điền thông tin và nhận bộ tài liệu AI miễn phí do tôi cung cấp.
+
+Yêu cầu cụ thể:
+- Tiêu đề form: “📥 Nhận Bộ Tài Liệu AI Miễn Phí Ngay”
+- Có 2 trường bắt buộc: Họ và tên, Email
+- Nút gửi có nội dung: “📥 Tải Bộ Tài Liệu Miễn Phí Ngay”
+- Gửi dữ liệu qua email bằng FormSubmit.co (Email nhận là: vantiencong1996@gmail.com)
+- Ẩn captcha bằng input hidden: `_captcha = false`
+- Giao diện hiện đại, bo góc, có padding, căn giữa nội dung, dễ đọc
+- Toàn bộ form nên nằm gọn trong một khung nhỏ có đổ bóng nhẹ

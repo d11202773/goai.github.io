@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Văn Tiến Công | Tối Ưu Hóa Công Việc Với AI</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+    header, section, footer { padding: 40px 20px; max-width: 1100px; margin: auto; }
+    h1, h2, h3 { color: #222; }
+    .hero { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; }
+    .hero img { max-width: 300px; border-radius: 16px; }
+    .cta-button { background: #ff5722; color: #fff; padding: 15px 30px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; }
+    .benefits { display: flex; flex-wrap: wrap; gap: 20px; text-align: center; }
+    .benefit { flex: 1; min-width: 200px; background: #f5f5f5; padding: 20px; border-radius: 12px; }
+    .testimonials { display: flex; flex-direction: column; gap: 20px; }
+    .testimonial { background: #f9f9f9; padding: 20px; border-left: 4px solid #ff5722; border-radius: 8px; }
+    .final-cta { background: #ffe9e0; text-align: center; padding: 50px 20px; border-radius: 12px; }
+    form { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: auto; }
+    input[type="text"], input[type="email"] { padding: 10px; border-radius: 6px; border: 1px solid #ccc; }
+    .note { font-size: 0.85em; color: #666; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <h1>Văn Tiến Công: Giải Pháp AI Giúp Bạn Tối Ưu Hóa Công Việc Online</h1>
+      <p>Khám phá cách các công cụ AI có thể tự động hóa những công việc nhàm chán, giải phóng thời gian và giúp bạn tập trung vào những gì thực sự quan trọng để bứt phá trong sự nghiệp.</p>
+      <button class="cta-button">TẢI BỘ TÀI LIỆU MIỄN PHÍ NGAY</button>
+    </div>
+    <img src="portrait.jpg" alt="Văn Tiến Công">
+  </header>
+
+  <section>
+    <div class="hero">
+      <div>
+        <h2>Chào bạn, tôi là Văn Tiến Công.</h2>
+        <p>Với nhiều năm nghiên cứu và ứng dụng Trí tuệ nhân tạo (AI), tôi nhận ra một rào cản lớn: Rất nhiều người tài năng đang lãng phí hàng giờ mỗi ngày cho những công việc lặp đi lặp lại mà máy móc có thể làm tốt hơn.</p>
+        <p>Niềm đam mê của tôi không chỉ dừng lại ở những dòng code hay thuật toán phức tạp. Tôi có sứ mệnh "dịch" những công nghệ AI tiên tiến thành các giải pháp đơn giản, dễ tiếp cận, giúp bất kỳ ai cũng có thể làm chủ và ứng dụng chúng để làm việc thông minh hơn, nhanh hơn và sáng tạo hơn.</p>
+      </div>
+      <img src="activity.jpg" alt="Chuyên gia ứng dụng AI - Văn Tiến Công">
+    </div>
+  </section>
+
+  <section>
+    <h2>Bên Trong Bộ Tài Liệu "Bí Mật Tối Ưu Hóa Công Việc Với AI" Có Gì Dành Cho Bạn?</h2>
+    <div class="benefits">
+      <div class="benefit">
+        <h3>🔀 Bộ Công Cụ AI Chọn Lọc</h3>
+        <p>50+ công cụ AI mạnh mẽ cho Marketing, Sáng tạo nội dung, Quản lý và Phân tích dữ liệu.</p>
+      </div>
+      <div class="benefit">
+        <h3>🚀 Lộ Trình Ứng Dụng Thực Tế</h3>
+        <p>Từng bước tích hợp AI để tiết kiệm 5-10 giờ mỗi tuần.</p>
+      </div>
+      <div class="benefit">
+        <h3>🔑 Các "Câu Lệnh Vàng"</h3>
+        <p>Những mẫu prompt hiệu quả nhất để tối ưu ChatGPT và các công cụ AI.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Những Người Đã Áp Dụng Giải Pháp AI Nói Gì?</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>"Tài liệu của anh Công thực sự là mỏ vàng. Tôi đã áp dụng ngay một vài tool và tiết kiệm gần một ngày công mỗi tuần cho team marketing của mình. Cảm ơn anh rất nhiều!"</p>
+        <strong>- Nguyễn Thu Trang, Marketing Manager</strong>
+      </div>
+      <div class="testimonial">
+        <p>"Là một freelancer, thời gian là tiền bạc. Bộ tài liệu này giúp tôi tự động hóa 80% công việc tìm ý tưởng và nội dung. Tôi có thể nhận thêm dự án và tăng thu nhập đáng kể."</p>
+        <strong>- Trần Minh Đức, Freelancer Content</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <h2>Đừng Để Bị Tụt Hậu Trong Kỷ Nguyên AI!</h2>
+    <p>Hãy để AI làm trợ lý cho bạn. Để lại thông tin bên dưới, tôi sẽ gửi bộ tài liệu vào email của bạn sau 30 giây. Hoàn toàn miễn phí!</p>
+    <form>
+      <input type="text" placeholder="Họ và tên của bạn" required>
+      <input type="email" placeholder="Địa chỉ email của bạn" required>
+      <button class="cta-button" type="submit">TẢI NGAY (HOÀN TOÀN MIỄN PHÍ)</button>
+      <p class="note">Chúng tôi cam kết tôn trọng sự riêng tư của bạn và không gửi email spam.</p>
+    </form>
+  </section>
+</body>
+</html>
