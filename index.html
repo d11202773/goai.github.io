@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Learning Platform - Khóa học trực tuyến hiện đại</title>
+    <title>Adam Công - Giải pháp AI giúp bạn tối ưu hoá công việc online</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -65,13 +65,28 @@
             text-shadow: 0 0 30px rgba(249, 200, 70, 0.3);
         }
 
-        .hero p {
+        .hero .subtitle-hero {
             font-size: 1.3rem;
             color: #e0e0e0;
             margin-bottom: 2.5rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            font-style: italic;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(249, 200, 70, 0.1);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: #f9c846;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
         }
 
         /* Content Card */
@@ -85,135 +100,296 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Features Grid */
-        .features {
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
 
-        .feature-item {
+        .service-card {
             background: rgba(25, 25, 25, 0.8);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 15px;
-            text-align: center;
             transition: all 0.3s ease;
             border: 1px solid rgba(249, 200, 70, 0.1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .feature-item:hover {
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #f9c846 0%, #ffd700 100%);
+        }
+
+        .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(249, 200, 70, 0.2);
             border-color: rgba(249, 200, 70, 0.3);
         }
 
-        .feature-icon {
-            font-size: 3rem;
+        .service-card h3 {
             color: #f9c846;
-            margin-bottom: 1rem;
-        }
-
-        .feature-item h3 {
-            color: #f9c846;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 1rem;
             font-weight: 600;
         }
 
-        .feature-item p {
+        .service-card p {
             color: #cccccc;
             line-height: 1.6;
+            font-size: 1rem;
         }
 
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, #f9c846 0%, #ffd700 100%);
-            color: #0d0d0d;
-            text-decoration: none;
-            border-radius: 50px;
+        /* Testimonials */
+        .testimonials {
+            background: rgba(249, 200, 70, 0.03);
+        }
+
+        .testimonial {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #f9c846;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: #f9c846;
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            opacity: 0.3;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            padding-left: 2rem;
+        }
+
+        .testimonial .author {
+            color: #f9c846;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(249, 200, 70, 0.3);
+            padding-left: 2rem;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(249, 200, 70, 0.4);
-            filter: brightness(1.1);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: #f9c846;
-            border: 2px solid #f9c846;
-            box-shadow: none;
-        }
-
-        .btn-secondary:hover {
-            background: #f9c846;
-            color: #0d0d0d;
-        }
-
-        /* Stats Section */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+        /* Contact Section */
+        .contact-info {
             text-align: center;
+            font-size: 1.3rem;
         }
 
-        .stat-item {
-            padding: 2rem 1rem;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
+        .contact-info a {
             color: #f9c846;
-            display: block;
+            text-decoration: none;
+            margin: 0 1rem;
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(249, 200, 70, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(249, 200, 70, 0.3);
         }
 
-        .stat-label {
-            color: #cccccc;
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
+        .contact-info a:hover {
+            background: rgba(249, 200, 70, 0.2);
+            transform: translateY(-2px);
         }
 
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, rgba(249, 200, 70, 0.1) 0%, rgba(249, 200, 70, 0.05) 100%);
+        /* Blog Topics */
+        .blog-topics {
+            list-style: none;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .blog-topics li {
+            background: rgba(30, 30, 30, 0.8);
+            margin: 1rem 0;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            border-left: 3px solid #f9c846;
+            transition: all 0.3s ease;
+        }
+
+        .blog-topics li:hover {
+            background: rgba(249, 200, 70, 0.1);
+            transform: translateX(10px);
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: rgba(34, 197, 94, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .feature p {
+            color: #e0e0e0;
+            font-weight: 500;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: linear-gradient(135deg, rgba(249, 200, 70, 0.1), rgba(249, 200, 70, 0.05));
+            padding: 4rem 0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid rgba(249, 200, 70, 0.2);
             border-radius: 20px;
             padding: 3rem;
-            text-align: center;
-            margin: 3rem 0;
-            border: 1px solid rgba(249, 200, 70, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
         }
 
-        .cta-section h2 {
+        .form-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
             color: #f9c846;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
             font-weight: 700;
         }
 
-        .cta-section p {
-            font-size: 1.2rem;
+        .form-description {
+            text-align: center;
+            margin-bottom: 2rem;
             color: #e0e0e0;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .resource-list {
+            background: rgba(15, 15, 15, 0.8);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(249, 200, 70, 0.1);
+        }
+
+        .resource-list h4 {
+            color: #f9c846;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .resource-list ul {
+            list-style: none;
+        }
+
+        .resource-list li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .resource-list li:before {
+            content: "✓";
+            color: #f9c846;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+        }
+
+        .form-group {
             margin-bottom: 2rem;
         }
 
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #f9c846;
+            font-size: 1.1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(249, 200, 70, 0.3);
+            border-radius: 10px;
+            background: rgba(15, 15, 15, 0.8);
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #f9c846;
+            background: rgba(15, 15, 15, 0.9);
+            box-shadow: 0 0 10px rgba(249, 200, 70, 0.3);
+        }
+
+        .form-group input::placeholder {
+            color: #888888;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #f9c846 0%, #ffd700 100%);
+            border: none;
+            border-radius: 10px;
+            color: #0d0d0d;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(249, 200, 70, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(249, 200, 70, 0.4);
+            filter: brightness(1.1);
         }
 
         /* Footer */
@@ -222,7 +398,6 @@
             padding: 2rem 0;
             text-align: center;
             border-top: 1px solid rgba(249, 200, 70, 0.2);
-            margin-top: 4rem;
         }
 
         footer p {
@@ -236,7 +411,7 @@
                 font-size: 2.5rem;
             }
 
-            .hero p {
+            .hero .subtitle-hero {
                 font-size: 1.1rem;
             }
 
@@ -245,27 +420,27 @@
                 margin: 1rem 0;
             }
 
-            .features {
+            .services-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
 
-            .btn-group {
-                flex-direction: column;
-                align-items: center;
+            .form-container {
+                margin: 0 1rem;
+                padding: 2rem;
             }
 
             .logo {
                 font-size: 2rem;
             }
 
-            .cta-section h2 {
+            .section h2 {
                 font-size: 2rem;
             }
 
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
+            .contact-info a {
+                display: block;
+                margin: 0.5rem 0;
             }
         }
 
@@ -282,12 +457,16 @@
                 font-size: 2rem;
             }
 
-            .content-card {
+            .section {
+                padding: 3rem 0;
+            }
+
+            .form-container {
                 padding: 1.5rem;
             }
 
-            .stats {
-                grid-template-columns: 1fr;
+            .service-card {
+                padding: 2rem;
             }
         }
 
@@ -303,7 +482,7 @@
             }
         }
 
-        .hero, .content-card, .feature-item {
+        .hero, .content-card, .service-card, .testimonial {
             animation: fadeInUp 0.8s ease-out;
         }
 
@@ -329,74 +508,160 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">AI Learning</div>
-            <div class="subtitle">Nền tảng học trực tuyến thông minh</div>
+            <div class="logo">Adam Công</div>
+            <div class="subtitle">Chuyên gia AI & Marketing Online</div>
         </div>
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section class="hero">
             <div class="container">
-                <h1>Khóa Học AI Chuyên Nghiệp</h1>
-                <p>Học tập cùng trí tuệ nhân tạo, nâng cao kỹ năng và thành công trong thời đại số. Trải nghiệm phương pháp học hiện đại nhất.</p>
-                <a href="#" class="btn">Bắt Đầu Ngay</a>
+                <h1>🎯 Adam Công – Giải pháp AI giúp bạn tối ưu hoá công việc online</h1>
+                <p class="subtitle-hero">"Biến AI thành đồng đội – Giải phóng thời gian – Tăng tốc kinh doanh!"</p>
             </div>
         </section>
 
         <div class="container">
-            <div class="content-card">
-                <div class="stats">
-                    <div class="stat-item">
-                        <span class="stat-number">10K+</span>
-                        <div class="stat-label">Học viên</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">95%</span>
-                        <div class="stat-label">Hài lòng</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">50+</span>
-                        <div class="stat-label">Khóa học</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">24/7</span>
-                        <div class="stat-label">Hỗ trợ</div>
+            <!-- About Section -->
+            <section class="section">
+                <h2>🧠 Về tôi – Adam Công</h2>
+                <div class="content-card">
+                    <div class="about-content">
+                        <p><strong>Xin chào!</strong></p>
+                        <p>Mình là Văn Tiến Công, hay còn gọi là Adam Công – người tiên phong trong việc ứng dụng AI vào công việc online, từ bán hàng, marketing, sản xuất video, đến quản lý vận hành.</p>
+                        <p>Sứ mệnh của mình là giúp bạn tận dụng AI một cách thông minh và thực tế nhất, dù bạn là cá nhân khởi nghiệp hay doanh nghiệp nhỏ đang cần bứt phá.</p>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="features">
-                <div class="feature-item">
-                    <div class="feature-icon">🤖</div>
-                    <h3>AI Cá Nhân Hóa</h3>
-                    <p>Hệ thống AI thông minh phân tích và tùy chỉnh lộ trình học tập phù hợp với từng cá nhân.</p>
+            <!-- Services Section -->
+            <section class="section">
+                <h2>⚙️ Dịch vụ nổi bật</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>🎥 1. Sản xuất video quảng cáo bằng AI (Veo 3, Runway, Pika, Sora…)</h3>
+                        <p>Tạo video chất lượng cao, đúng nhu cầu khách hàng, chỉ trong vài giờ – tiết kiệm chi phí mà vẫn chuyên nghiệp.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>📈 2. Xây dựng hệ thống bán hàng tự động trên Facebook, TikTok, Zalo</h3>
+                        <p>Từ content, chatbot, auto comment, đến landing page – tất cả đều có thể được AI xử lý nhanh chóng.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>🧠 3. Đào tạo & Cố vấn AI Marketing từ A–Z</h3>
+                        <p>Hướng dẫn 1-1 hoặc theo nhóm, phù hợp với người mới bắt đầu, đảm bảo hiểu – làm được – có kết quả thực tế.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>🧰 4. Cung cấp & hướng dẫn sử dụng bộ công cụ AI mạnh mẽ</h3>
+                        <p>Bạn sẽ được truy cập hoặc hỗ trợ sử dụng các công cụ như: ChatGPT Plus, Gemini Pro, Super Grok, Kling AI, Hailua AI, Leonardo AI, Canva Pro, GitHub Student, và nhiều công cụ khác.</p>
+                    </div>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Học Tập Thông Minh</h3>
-                    <p>Phương pháp học hiện đại kết hợp công nghệ để tối ưu hóa hiệu quả học tập.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🏆</div>
-                    <h3>Chứng Chỉ Uy Tín</h3>
-                    <p>Nhận chứng chỉ được công nhận quốc tế sau khi hoàn thành khóa học.</p>
-                </div>
-            </div>
+            </section>
 
-            <div class="cta-section">
-                <h2>Sẵn Sàng Bắt Đầu?</h2>
-                <p>Tham gia cùng hàng nghìn học viên đã thành công với nền tảng AI Learning của chúng tôi.</p>
-                <div class="btn-group">
-                    <a href="#" class="btn">Đăng Ký Ngay</a>
-                    <a href="#" class="btn btn-secondary">Tìm Hiểu Thêm</a>
+            <!-- Testimonials Section -->
+            <section class="section testimonials">
+                <h2>🗣️ Khách hàng nói gì về Adam Công</h2>
+                <div class="testimonial">
+                    <p>Tôi chưa từng nghĩ có thể tự làm video quảng cáo chỉ trong vài giờ. Nhờ Adam Công hướng dẫn dùng AI, giờ tôi có thể tự sản xuất video, tiết kiệm hàng chục triệu mỗi tháng.</p>
+                    <div class="author">— Anh Thắng, chủ quán nhậu Thắng Thoa – Nghệ An</div>
                 </div>
-            </div>
+                <div class="testimonial">
+                    <p>AI từng là thứ gì đó rất xa vời với tôi. Nhưng giờ, nhờ Công, tôi dùng AI để viết content, tạo video, quản lý bán hàng – mọi thứ đều đơn giản hơn rất nhiều.</p>
+                    <div class="author">— Chị Hạnh, kinh doanh online mỹ phẩm</div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="section">
+                <h2>📞 Liên hệ ngay để được tư vấn miễn phí</h2>
+                <div class="contact-info">
+                    <a href="tel:0966861089">📲 Zalo/Facebook: 0966861089</a>
+                    <a href="mailto:vantiencong1996@gmail.com">📧 Email: vantiencong1996@gmail.com</a>
+                </div>
+            </section>
+
+            <!-- Blog Section -->
+            <section class="section">
+                <h2>🔄 Blog & Kiến thức AI thực chiến</h2>
+                <div class="content-card">
+                    <p style="text-align: center; color: #e0e0e0; margin-bottom: 2rem; font-size: 1.1rem;">
+                        Theo dõi những cập nhật mới nhất về AI Marketing, tạo nội dung, xây dựng hệ thống bán hàng thông minh, và những case study thực tế đã thành công cùng Adam Công.
+                    </p>
+                    <h3 style="text-align: center; margin-bottom: 1.5rem; color: #f9c846;">📌 Một vài chủ đề nổi bật:</h3>
+                    <ul class="blog-topics">
+                        <li>"Cách tạo video triệu view bằng Veo 3 trong 2 giờ"</li>
+                        <li>"So sánh ChatGPT, Gemini, Grok: Dùng AI nào cho bán hàng?"</li>
+                        <li>"5 công cụ AI giúp bạn quản lý comment, inbox hoàn toàn tự động"</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Why Choose Section -->
+            <section class="section">
+                <h2>✅ Vì sao nên chọn Adam Công?</h2>
+                <div class="features">
+                    <div class="feature">
+                        <p>✅ Làm thật – Kết quả thật – Không lý thuyết suông</p>
+                    </div>
+                    <div class="feature">
+                        <p>✅ Cập nhật AI mới liên tục – luôn có hướng đi phù hợp thị trường</p>
+                    </div>
+                    <div class="feature">
+                        <p>✅ Phong cách hướng dẫn đơn giản – trực quan – dễ thực hiện</p>
+                    </div>
+                    <div class="feature">
+                        <p>✅ Hỗ trợ tận tâm – đồng hành đến khi bạn làm được</p>
+                    </div>
+                </div>
+            </section>
         </div>
+
+        <!-- Form Section -->
+        <section class="form-section">
+            <div class="container">
+                <div class="form-container">
+                    <h2 class="form-title">📥 Nhận Bộ Tài Liệu AI Miễn Phí Ngay</h2>
+                    
+                    <div class="form-description">
+                        <p>Bạn mới bắt đầu tìm hiểu về AI và chưa biết bắt đầu từ đâu?</p>
+                        <p>👉 Hãy để Adam Công gửi cho bạn "Bộ tài liệu AI thực chiến dành riêng cho người Việt" – giúp bạn hiểu nhanh, ứng dụng ngay vào công việc!</p>
+                    </div>
+
+                    <div class="resource-list">
+                        <h4>📘 Bộ tài liệu bao gồm:</h4>
+                        <ul>
+                            <li>Checklist 10 công cụ AI cần có trong kinh doanh online</li>
+                            <li>Hướng dẫn sử dụng ChatGPT, Gemini, Canva AI, Pika… từ cơ bản đến nâng cao</li>
+                            <li>Mẫu kịch bản content, video, phản hồi comment tự động</li>
+                            <li>Và nhiều tài nguyên hữu ích khác được cập nhật hàng tháng</li>
+                        </ul>
+                    </div>
+
+                    <form action="https://formsubmit.co/vantiencong1996@gmail.com" method="POST">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="Đăng ký nhận bộ tài liệu AI miễn phí">
+                        <input type="hidden" name="_next" value="https://adamcong.com/thank-you">
+                        
+                        <div class="form-group">
+                            <label for="name">Họ và tên *</label>
+                            <input type="text" id="name" name="name" placeholder="Nhập họ và tên của bạn" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="Nhập email để nhận tài liệu" required>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">📥 Tải Bộ Tài Liệu Miễn Phí Ngay</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 AI Learning Platform. Tất cả quyền được bảo lưu.</p>
+            <p>&copy; 2024 Adam Công - Chuyên gia AI & Marketing Online. Tất cả quyền được bảo lưu.</p>
         </div>
     </footer>
 </body>
