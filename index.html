@@ -239,45 +239,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            position: relative;
-            display: inline-block;
-            animation: titleGlow 3s ease-in-out infinite;
-        }
-
-        .main-title .highlight::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #f9c846 0%, #ffd700 100%);
-            filter: blur(8px);
-            opacity: 0.3;
-            z-index: -1;
-            animation: titlePulse 3s ease-in-out infinite;
-        }
-
-        @keyframes titleGlow {
-            0%, 100% {
-                filter: brightness(1) drop-shadow(0 0 5px rgba(249, 200, 70, 0.3));
-                transform: scale(1);
-            }
-            50% {
-                filter: brightness(1.1) drop-shadow(0 0 10px rgba(249, 200, 70, 0.5));
-                transform: scale(1.01);
-            }
-        }
-
-        @keyframes titlePulse {
-            0%, 100% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(1.03);
-            }
         }
 
         .subtitle {
