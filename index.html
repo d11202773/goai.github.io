@@ -173,6 +173,15 @@
             margin-bottom: 2rem;
         }
 
+        /* Desktop/Mobile visibility control */
+        .desktop-only {
+            display: grid;
+        }
+
+        .mobile-only {
+            display: none;
+        }
+
         .stat-item {
             background: rgba(25, 25, 25, 0.8);
             border: 1px solid rgba(249, 200, 70, 0.2);
@@ -630,6 +639,8 @@
             .landing-container {
                 padding: 1rem;
                 gap: 2rem;
+                display: flex;
+                flex-direction: column;
             }
 
             .left-section,
@@ -637,29 +648,52 @@
                 padding: 1.5rem;
             }
 
+            /* Control desktop/mobile visibility */
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-only {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+                margin-top: 2rem;
+                margin-bottom: 0;
+            }
+
+            /* Mobile Layout Order: Title → Profile → Form → Stats */
+            .left-section {
+                display: flex;
+                flex-direction: column;
+                order: 1;
+            }
+
+            .right-section {
+                order: 2;
+            }
+
+            /* Reorder elements within left-section */
             .main-title {
                 font-size: 2.2rem;
+                margin-bottom: 1rem;
             }
 
             .subtitle {
                 font-size: 1.2rem;
-            }
-
-            .stats-row {
-                grid-template-columns: 1fr;
-                gap: 1rem;
                 margin-bottom: 2rem;
             }
 
             .profile-section {
                 flex-direction: column;
                 text-align: center;
-                gap: 2rem;
+                gap: 1.5rem;
+                margin-top: 0;
+                margin-bottom: 0;
             }
 
             .profile-image {
-                width: 200px;
-                height: 200px;
+                width: 180px;
+                height: 180px;
             }
 
             .profile-title {
@@ -667,12 +701,26 @@
                 max-width: 100%;
             }
 
+            /* Form styling for mobile */
             .form-title {
                 font-size: 1.6rem;
             }
 
             .benefit-item {
                 padding: 0.8rem;
+            }
+
+            /* Stats styling for mobile */
+            .stat-item {
+                padding: 0.8rem 0.6rem;
+            }
+
+            .stat-number {
+                font-size: 1.4rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
             }
 
             .ticker-container {
@@ -698,14 +746,6 @@
                 font-size: 1rem;
             }
 
-            .stat-number {
-                font-size: 1.5rem;
-            }
-
-            .stat-label {
-                font-size: 0.8rem;
-            }
-
             .profile-image {
                 width: 160px;
                 height: 160px;
@@ -715,8 +755,30 @@
                 font-size: 0.9rem;
             }
 
+            .stat-number {
+                font-size: 1.3rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
             .ticker-container {
                 display: none;
+            }
+
+            /* Make form more prominent on small screens */
+            .form-title {
+                font-size: 1.4rem;
+            }
+
+            .benefit-item {
+                padding: 0.7rem;
+                margin-bottom: 1rem;
+            }
+
+            .benefit-text {
+                font-size: 0.9rem;
             }
         }
 
@@ -742,22 +804,6 @@
     <div class="landing-container">
         <!-- Left Section -->
         <div class="left-section">
-            <!-- Stats Row -->
-            <div class="stats-row">
-                <div class="stat-item">
-                    <div class="stat-number">495+</div>
-                    <div class="stat-label">Dự án</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">97%</div>
-                    <div class="stat-label">Thành công</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">9h</div>
-                    <div class="stat-label">Tiết kiệm mỗi ngày</div>
-                </div>
-            </div>
-
             <!-- Main Title -->
             <h1 class="main-title">
                 <span class="highlight">GO AI</span> – Giải pháp AI giúp bạn tối ưu hoá công việc online
@@ -772,6 +818,22 @@
                 <div class="profile-info">
                     <div class="profile-name">Tiến Công</div>
                     <div class="profile-title">"Nhà sáng lập học viện GO AI, một trong những người tiên phong trong việc ứng dụng AI vào công việc online, từ bán hàng, marketing, sản xuất video, đến quản lý vận hành"</div>
+                </div>
+            </div>
+
+            <!-- Stats Row - Only visible on desktop -->
+            <div class="stats-row desktop-only">
+                <div class="stat-item">
+                    <div class="stat-number">495+</div>
+                    <div class="stat-label">Dự án</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">97%</div>
+                    <div class="stat-label">Thành công</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">9h</div>
+                    <div class="stat-label">Tiết kiệm mỗi ngày</div>
                 </div>
             </div>
         </div>
@@ -818,6 +880,22 @@
                     📥 Nhận Bộ Tài Liệu Miễn Phí Ngay
                 </button>
             </form>
+        </div>
+
+        <!-- Stats Row - Mobile version (appears after form) -->
+        <div class="stats-row mobile-only">
+            <div class="stat-item">
+                <div class="stat-number">495+</div>
+                <div class="stat-label">Dự án</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">97%</div>
+                <div class="stat-label">Thành công</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">9h</div>
+                <div class="stat-label">Tiết kiệm mỗi ngày</div>
+            </div>
         </div>
     </div>
 
