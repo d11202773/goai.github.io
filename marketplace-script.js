@@ -112,8 +112,8 @@ function renderProducts() {
             <div class="product-info">
                 <h3 class="product-name">${product.name}</h3>
                 <div class="product-pricing">
-                    <span class="price-original">${formatPrice(product.priceOriginal)}</span>
                     <span class="price-current">${formatPrice(product.priceCurrent)}</span>
+                    <span class="price-original">${formatPrice(product.priceOriginal)}</span>
                 </div>
                 <div class="product-sales">
                     <span class="sales-icon">🔥</span>
