@@ -21,14 +21,14 @@ const products = [
         sold: '6.4k+'
     },
     {
-        id: 'canva-pro',
-        name: 'Canva Pro',
-        icon: '🖌️',
-        image: 'images/CANVA.JPG',
-        tag: 'PRO',
-        priceOriginal: 1300000,
-        priceCurrent: 50000,
-        sold: '5.7k+'
+        id: 'capcut-pro',
+        name: 'CAPCUT PRO',
+        icon: '🎬',
+        image: 'images/CAPCUT.jpg',
+        tag: 'HOT',
+        priceOriginal: 650000,
+        priceCurrent: 70000,
+        sold: '3.2k+'
     },
     {
         id: 'chatgpt-plus-business',
@@ -71,14 +71,14 @@ const products = [
         sold: '1.2k+'
     },
     {
-        id: 'capcut-pro',
-        name: 'CAPCUT PRO',
-        icon: '🎬',
-        image: 'images/CAPCUT.jpg',
-        tag: 'HOT',
-        priceOriginal: 650000,
-        priceCurrent: 70000,
-        sold: '3.2k+'
+        id: 'canva-pro',
+        name: 'Canva Pro',
+        icon: '🖌️',
+        image: 'images/CANVA.JPG',
+        tag: 'PRO',
+        priceOriginal: 1300000,
+        priceCurrent: 50000,
+        sold: '5.7k+'
     },
     {
         id: 'github-pro',
