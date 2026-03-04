@@ -40,24 +40,41 @@
     height: 28px;
 }
 
-/* Nút Zalo - Màu xanh Zalo */
+/* Icon Image size - for logo images */
+.contact-btn img.contact-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.contact-btn:hover img.contact-icon {
+    filter: brightness(1.1);
+}
+
+/* Nút Zalo - Background xanh nhạt */
 .zalo-btn {
-    background: #0068FF;
+    background: #ffffff;
+    border: 2px solid transparent;
 }
 
 .zalo-btn:hover {
-    background: #0052CC;
-    box-shadow: 0 6px 20px rgba(0, 104, 255, 0.5);
+    background: #f0f8ff;
+    border-color: #0068FF;
+    box-shadow: 0 6px 20px rgba(0, 104, 255, 0.4);
 }
 
-/* Nút Telegram - Màu xanh Telegram */
+/* Nút Telegram - Background trắng */
 .telegram-btn {
-    background: #229ED9;
+    background: #ffffff;
+    border: 2px solid transparent;
 }
 
 .telegram-btn:hover {
-    background: #1B7FB5;
-    box-shadow: 0 6px 20px rgba(34, 158, 217, 0.5);
+    background: #e6f7ff;
+    border-color: #229ED9;
+    box-shadow: 0 6px 20px rgba(34, 158, 217, 0.4);
 }
 
 /* ================================
