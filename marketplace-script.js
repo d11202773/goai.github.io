@@ -52,7 +52,7 @@ const products = [
     },
     {
         id: 'google-ai-pro',
-        name: 'Google AI Pro (Gemini + Veo)',
+        name: 'GEMINI PRO+ NOTEBOOK LM+ 2TB',
         icon: '🔵',
         image: 'images/Google AI PRO.jpg',
         tag: 'HOT',
