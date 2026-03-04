@@ -119,7 +119,7 @@ function renderProducts() {
                     <span class="sales-icon">🔥</span>
                     <span>${product.sold} đã mua</span>
                 </div>
-                <a class="buy-now" href="marketplace-product.html?id=${product.id}" onclick="event.stopPropagation();">
+                <a class="buy-now" href="${product.id === 'youtube-premium' ? 'product-youtube.html' : 'marketplace-product.html?id=' + product.id}" onclick="event.stopPropagation();">
                     <span>⚡</span>
                     <span>MUA NGAY</span>
                 </a>
@@ -130,7 +130,11 @@ function renderProducts() {
 
 // Chuyển đến trang chi tiết
 function goToProduct(productId) {
-    window.location.href = `marketplace-product.html?id=${productId}`;
+    if (productId === 'youtube-premium') {
+        window.location.href = 'product-youtube.html';
+    } else {
+        window.location.href = `marketplace-product.html?id=${productId}`;
+    }
 }
 
 // Animation kim cương
