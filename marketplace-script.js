@@ -2,7 +2,7 @@
 const products = [
     {
         id: 'chatgpt-plus-personal',
-        name: 'ChatGPT Plus Cá Nhân - 220.000đ/tháng',
+        name: 'ChatGPT Plus Cá Nhân',
         icon: '💬',
         image: 'images/CHATGPT PLUS CÁ NHÂN.JPG',
         tag: 'SALE',
@@ -12,7 +12,7 @@ const products = [
     },
     {
         id: 'youtube-premium',
-        name: 'YouTube Premium - 60.000đ/tháng',
+        name: 'YouTube Premium',
         icon: '▶️',
         image: 'images/YOUTOBE PREMIUM.jpg',
         tag: 'BEST',
@@ -22,7 +22,7 @@ const products = [
     },
     {
         id: 'canva-pro',
-        name: 'Canva Pro - 250.000đ/năm',
+        name: 'Canva Pro',
         icon: '🖌️',
         image: 'images/CANVA.JPG',
         tag: 'PRO',
@@ -32,7 +32,7 @@ const products = [
     },
     {
         id: 'chatgpt-plus-business',
-        name: 'ChatGPT Plus Business - 129.000đ/tháng',
+        name: 'ChatGPT Plus Business',
         icon: '🤖',
         image: 'images/CHATGPT PLUS BUSINESS.PNG',
         tag: 'HOT',
@@ -42,7 +42,7 @@ const products = [
     },
     {
         id: 'chatgpt-go',
-        name: 'ChatGPT GO - 700.000đ/năm',
+        name: 'ChatGPT GO',
         icon: '⚡',
         image: 'images/CHATGPT GO.jpg',
         tag: 'NEW',
@@ -52,7 +52,7 @@ const products = [
     },
     {
         id: 'google-ai-pro',
-        name: 'Google AI Pro - 499.000đ/năm',
+        name: 'Google AI Pro (Gemini + Veo)',
         icon: '🔵',
         image: 'images/Google AI PRO.jpg',
         tag: 'HOT',
@@ -62,7 +62,7 @@ const products = [
     },
     {
         id: 'gemini-ultra',
-        name: 'Gemini Ultra - 450.000đ/tháng',
+        name: 'Gemini Ultra 45.000 Credit',
         icon: '💎',
         image: 'images/ULTRA.jpg',
         tag: 'VIP',
@@ -72,7 +72,7 @@ const products = [
     },
     {
         id: 'capcut-pro',
-        name: 'CapCut Pro - 70.000đ/tháng',
+        name: 'CAPCUT PRO',
         icon: '🎬',
         image: 'images/CAPCUT.jpg',
         tag: 'HOT',
@@ -82,7 +82,7 @@ const products = [
     },
     {
         id: 'github-pro',
-        name: 'GitHub Pro - 800.000đ/năm',
+        name: 'GITHUB PRO',
         icon: '💻',
         image: 'images/GITHUB.jpg',
         tag: 'DEV',
