@@ -27,7 +27,7 @@ const products = [
         image: 'images/CANVA.JPG',
         tag: 'PRO',
         priceOriginal: 1300000,
-        priceCurrent: 250000,
+        priceCurrent: 50000,
         sold: '5.7k+'
     },
     {
