@@ -47,7 +47,7 @@ const products = [
         image: 'images/CHATGPT GO.jpg',
         tag: 'NEW',
         priceOriginal: 1584000,
-        priceCurrent: 700000,
+        priceCurrent: 80000,
         sold: '1.6k+'
     },
     {
@@ -57,7 +57,7 @@ const products = [
         image: 'images/Google AI PRO.jpg',
         tag: 'HOT',
         priceOriginal: 499000,
-        priceCurrent: 499000,
+        priceCurrent: 80000,
         sold: '3.3k+'
     },
     {
@@ -87,7 +87,7 @@ const products = [
         image: 'images/GITHUB.jpg',
         tag: 'DEV',
         priceOriginal: 800000,
-        priceCurrent: 800000,
+        priceCurrent: 120000,
         sold: '740+'
     }
 ];
