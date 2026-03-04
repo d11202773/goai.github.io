@@ -119,7 +119,7 @@ function renderProducts() {
                     <span class="sales-icon">🔥</span>
                     <span>${product.sold} đã mua</span>
                 </div>
-                <a class="buy-now" href="${product.id === 'youtube-premium' ? 'product-youtube.html' : product.id === 'chatgpt-plus-personal' ? 'product-chatgpt-plus.html' : product.id === 'capcut-pro' ? 'product-capcut-pro.html' : product.id === 'chatgpt-plus-business' ? 'product-chatgpt-business.html' : product.id === 'chatgpt-go' ? 'product-chatgpt-go.html' : product.id === 'gemini-ultra' ? 'product-gemini-ultra.html' : product.id === 'canva-pro' ? 'product-canva-pro.html' : product.id === 'github-pro' ? 'product-github-pro.html' : 'marketplace-product.html?id=' + product.id}" onclick="event.stopPropagation();">
+                <a class="buy-now" href="${product.id === 'youtube-premium' ? 'product-youtube.html' : product.id === 'chatgpt-plus-personal' ? 'product-chatgpt-plus.html' : product.id === 'capcut-pro' ? 'product-capcut-pro.html' : product.id === 'chatgpt-plus-business' ? 'product-chatgpt-business.html' : product.id === 'chatgpt-go' ? 'product-chatgpt-go.html' : product.id === 'gemini-ultra' ? 'product-gemini-ultra.html' : product.id === 'canva-pro' ? 'product-canva-pro.html' : product.id === 'github-pro' ? 'product-github-pro.html' : product.id === 'google-ai-pro' ? 'product-google-ai-pro.html' : 'marketplace-product.html?id=' + product.id}" onclick="event.stopPropagation();">
                     <span>⚡</span>
                     <span>MUA NGAY</span>
                 </a>
@@ -146,6 +146,8 @@ function goToProduct(productId) {
         window.location.href = 'product-canva-pro.html';
     } else if (productId === 'github-pro') {
         window.location.href = 'product-github-pro.html';
+    } else if (productId === 'google-ai-pro') {
+        window.location.href = 'product-google-ai-pro.html';
     } else {
         window.location.href = `marketplace-product.html?id=${productId}`;
     }
