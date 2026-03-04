@@ -2,7 +2,7 @@
 const products = [
     {
         id: 'chatgpt-plus-personal',
-        name: 'ChatGPT Plus Cá Nhân',
+        name: 'ChatGPT Plus Cá Nhân - 220.000đ/tháng',
         icon: '💬',
         image: 'images/CHATGPT PLUS CÁ NHÂN.JPG',
         tag: 'SALE',
@@ -12,7 +12,7 @@ const products = [
     },
     {
         id: 'youtube-premium',
-        name: 'YouTube Premium',
+        name: 'YouTube Premium - 60.000đ/tháng',
         icon: '▶️',
         image: 'images/YOUTOBE PREMIUM.jpg',
         tag: 'BEST',
@@ -22,17 +22,17 @@ const products = [
     },
     {
         id: 'canva-pro',
-        name: 'Canva Pro',
+        name: 'Canva Pro - 250.000đ/năm',
         icon: '🖌️',
         image: 'images/CANVA.JPG',
         tag: 'PRO',
         priceOriginal: 1300000,
-        priceCurrent: 400000,
+        priceCurrent: 250000,
         sold: '5.7k+'
     },
     {
         id: 'chatgpt-plus-business',
-        name: 'ChatGPT Plus Business',
+        name: 'ChatGPT Plus Business - 129.000đ/tháng',
         icon: '🤖',
         image: 'images/CHATGPT PLUS BUSINESS.PNG',
         tag: 'HOT',
@@ -42,7 +42,7 @@ const products = [
     },
     {
         id: 'chatgpt-go',
-        name: 'ChatGPT GO',
+        name: 'ChatGPT GO - 700.000đ/năm',
         icon: '⚡',
         image: 'images/CHATGPT GO.jpg',
         tag: 'NEW',
@@ -52,27 +52,27 @@ const products = [
     },
     {
         id: 'google-ai-pro',
-        name: 'Google AI Pro (Gemini + Veo)',
+        name: 'Google AI Pro - 499.000đ/năm',
         icon: '🔵',
         image: 'images/Google AI PRO.jpg',
         tag: 'HOT',
         priceOriginal: 499000,
-        priceCurrent: 90000,
+        priceCurrent: 499000,
         sold: '3.3k+'
     },
     {
         id: 'gemini-ultra',
-        name: 'Gemini Ultra 45.000 Credit',
+        name: 'Gemini Ultra - 450.000đ/tháng',
         icon: '💎',
         image: 'images/ULTRA.jpg',
         tag: 'VIP',
         priceOriginal: 6000000,
-        priceCurrent: 150000,
+        priceCurrent: 450000,
         sold: '1.2k+'
     },
     {
         id: 'capcut-pro',
-        name: 'CAPCUT PRO',
+        name: 'CapCut Pro - 70.000đ/tháng',
         icon: '🎬',
         image: 'images/CAPCUT.jpg',
         tag: 'HOT',
@@ -82,7 +82,7 @@ const products = [
     },
     {
         id: 'github-pro',
-        name: 'GITHUB PRO',
+        name: 'GitHub Pro - 800.000đ/năm',
         icon: '💻',
         image: 'images/GITHUB.jpg',
         tag: 'DEV',
