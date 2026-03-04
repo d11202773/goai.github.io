@@ -17,7 +17,7 @@ const products = [
         image: 'images/YOUTOBE PREMIUM.jpg',
         tag: 'BEST',
         priceOriginal: 105000,
-        priceCurrent: 60000,
+        priceCurrent: 70000,
         sold: '6.4k+'
     },
     {
