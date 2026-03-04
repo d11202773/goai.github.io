@@ -2,7 +2,7 @@
 const products = [
     {
         id: 'chatgpt-plus-personal',
-        name: 'ChatGPT Plus Cá Nhân',
+        name: 'CHATGPT PLUS',
         icon: '💬',
         image: 'images/CHATGPT PLUS CÁ NHÂN.JPG',
         tag: 'SALE',
