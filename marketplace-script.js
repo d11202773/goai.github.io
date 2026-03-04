@@ -8,6 +8,7 @@ const products = [
         tag: 'SALE',
         priceOriginal: 550000,
         priceCurrent: 220000,
+        period: 'tháng',
         sold: '4.1k+'
     },
     {
@@ -18,6 +19,7 @@ const products = [
         tag: 'BEST',
         priceOriginal: 105000,
         priceCurrent: 60000,
+        period: 'tháng',
         sold: '6.4k+'
     },
     {
@@ -28,6 +30,7 @@ const products = [
         tag: 'PRO',
         priceOriginal: 1300000,
         priceCurrent: 250000,
+        period: 'năm',
         sold: '5.7k+'
     },
     {
@@ -38,6 +41,7 @@ const products = [
         tag: 'HOT',
         priceOriginal: 655000,
         priceCurrent: 129000,
+        period: 'tháng',
         sold: '2.8k+'
     },
     {
@@ -48,6 +52,7 @@ const products = [
         tag: 'NEW',
         priceOriginal: 1584000,
         priceCurrent: 700000,
+        period: 'năm',
         sold: '1.6k+'
     },
     {
@@ -58,6 +63,7 @@ const products = [
         tag: 'HOT',
         priceOriginal: 499000,
         priceCurrent: 499000,
+        period: 'năm',
         sold: '3.3k+'
     },
     {
@@ -68,6 +74,7 @@ const products = [
         tag: 'VIP',
         priceOriginal: 6000000,
         priceCurrent: 450000,
+        period: 'tháng',
         sold: '1.2k+'
     },
     {
@@ -78,6 +85,7 @@ const products = [
         tag: 'HOT',
         priceOriginal: 650000,
         priceCurrent: 70000,
+        period: 'tháng',
         sold: '3.2k+'
     },
     {
@@ -88,6 +96,7 @@ const products = [
         tag: 'DEV',
         priceOriginal: 800000,
         priceCurrent: 800000,
+        period: 'năm',
         sold: '740+'
     }
 ];
@@ -113,7 +122,7 @@ function renderProducts() {
                 <h3 class="product-name">${product.name}</h3>
                 <div class="product-pricing">
                     <span class="price-original">${formatPrice(product.priceOriginal)}</span>
-                    <span class="price-current">${formatPrice(product.priceCurrent)}</span>
+                    <span class="price-current">${formatPrice(product.priceCurrent)}/${product.period}</span>
                 </div>
                 <div class="product-sales">
                     <span class="sales-icon">🔥</span>
