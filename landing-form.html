@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GO AI - Nhận Bộ Tài Liệu PROMPT Miễn Phí</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Diamond Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(249, 200, 70, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.10) 0%, transparent 40%),
+                radial-gradient(circle at 40% 40%, rgba(249, 200, 70, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 60% 80%, rgba(255, 235, 59, 0.06) 0%, transparent 40%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 30%, #0f0f0f 60%, #1a1a1a 100%);
+            animation: diamondShift 8s ease-in-out infinite;
+            z-index: -3;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(45deg, transparent 40%, rgba(249, 200, 70, 0.03) 50%, transparent 60%),
+                linear-gradient(-45deg, transparent 40%, rgba(255, 215, 0, 0.02) 50%, transparent 60%),
+                linear-gradient(90deg, transparent 40%, rgba(249, 200, 70, 0.02) 50%, transparent 60%);
+            background-size: 200px 200px, 150px 150px, 300px 300px;
+            animation: diamondPattern 12s linear infinite;
+            z-index: -2;
+        }
+
+        /* Floating Diamond Particles */
+        .diamond-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .diamond-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, #f9c846, #ffd700);
+            transform: rotate(45deg);
+            animation: float 20s linear infinite;
+            opacity: 0;
+        }
+
+        .diamond-particle:nth-child(odd) {
+            background: linear-gradient(45deg, #ffecb3, #f9c846);
+            animation-duration: 25s;
+        }
+
+        .diamond-particle:nth-child(3n) {
+            background: linear-gradient(45deg, #fff176, #ffeb3b);
+            animation-duration: 15s;
+        }
+
+        @keyframes diamondShift {
+            0%, 100% {
+                background: 
+                    radial-gradient(circle at 20% 80%, rgba(249, 200, 70, 0.12) 0%, transparent 40%),
+                    radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.10) 0%, transparent 40%),
+                    radial-gradient(circle at 40% 40%, rgba(249, 200, 70, 0.08) 0%, transparent 40%),
+                    radial-gradient(circle at 60% 80%, rgba(255, 235, 59, 0.06) 0%, transparent 40%),
+                    linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 30%, #0f0f0f 60%, #1a1a1a 100%);
+            }
+            25% {
+                background: 
+                    radial-gradient(circle at 80% 20%, rgba(249, 200, 70, 0.14) 0%, transparent 40%),
+                    radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.12) 0%, transparent 40%),
+                    radial-gradient(circle at 60% 60%, rgba(249, 200, 70, 0.10) 0%, transparent 40%),
+                    radial-gradient(circle at 40% 20%, rgba(255, 235, 59, 0.08) 0%, transparent 40%),
+                    linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 30%, #0a0a0a 60%, #1a1a1a 100%);
+            }
+            50% {
+                background: 
+                    radial-gradient(circle at 60% 40%, rgba(249, 200, 70, 0.16) 0%, transparent 40%),
+                    radial-gradient(circle at 40% 60%, rgba(255, 215, 0, 0.14) 0%, transparent 40%),
+                    radial-gradient(circle at 80% 80%, rgba(249, 200, 70, 0.12) 0%, transparent 40%),
+                    radial-gradient(circle at 20% 40%, rgba(255, 235, 59, 0.10) 0%, transparent 40%),
+                    linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 30%, #0a0a0a 60%, #1a1a1a 100%);
+            }
+            75% {
+                background: 
+                    radial-gradient(circle at 40% 80%, rgba(249, 200, 70, 0.14) 0%, transparent 40%),
+                    radial-gradient(circle at 60% 20%, rgba(255, 215, 0, 0.12) 0%, transparent 40%),
+                    radial-gradient(circle at 20% 60%, rgba(249, 200, 70, 0.10) 0%, transparent 40%),
+                    radial-gradient(circle at 80% 40%, rgba(255, 235, 59, 0.08) 0%, transparent 40%),
+                    linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 30%, #1a1a1a 60%, #0f0f0f 100%);
+            }
+        }
+
+        @keyframes diamondPattern {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            100% {
+                transform: translateX(-200px) translateY(-200px);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(405deg);
+                opacity: 0;
+            }
+        }
+
+        /* Container */
+        .landing-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 4rem;
+            padding: 2rem;
+            align-items: center;
+        }
+
+        /* Left Section - Main Content */
+        .left-section {
+            padding: 2rem;
+        }
+
+        /* Stats Section */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Desktop/Mobile visibility control */
+        .desktop-only {
+            display: grid;
+        }
+
+        .mobile-only {
+            display: none;
+        }
+
+        .stat-item {
+            background: rgba(25, 25, 25, 0.8);
+            border: 1px solid rgba(249, 200, 70, 0.2);
+            border-radius: 8px;
+            padding: 0.8rem 0.6rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #f9c846, #ffd700);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .stat-item:hover {
+            border-color: rgba(249, 200, 70, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f9c846 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #cccccc;
+            font-weight: 500;
+        }
+
+        /* Main Title */
+        .main-title {
+            font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-title .highlight {
+            background: linear-gradient(135deg, #f9c846 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            text-shadow: none;
+            filter: drop-shadow(0 2px 4px rgba(249, 200, 70, 0.3));
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #f9c846;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        /* Profile Image */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .profile-image-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile-image {
+            width: 280px;
+            height: 280px;
+            border-radius: 24px;
+            border: 4px solid rgba(249, 200, 70, 0.4);
+            object-fit: cover;
+            transition: all 0.4s ease;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(249, 200, 70, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-image:hover {
+            border-color: rgba(249, 200, 70, 0.8);
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(249, 200, 70, 0.3),
+                0 0 50px rgba(249, 200, 70, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-image-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(135deg, 
+                rgba(249, 200, 70, 0.3) 0%, 
+                rgba(255, 215, 0, 0.2) 25%,
+                rgba(249, 200, 70, 0.1) 50%,
+                rgba(255, 215, 0, 0.2) 75%,
+                rgba(249, 200, 70, 0.3) 100%
+            );
+            border-radius: 32px;
+            animation: profileGlow 3s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .profile-image-container::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(249, 200, 70, 0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: profilePulse 4s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes profileGlow {
+            0%, 100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes profilePulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f9c846;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-title {
+            font-size: 1rem;
+            color: #cccccc;
+            font-weight: 500;
+            line-height: 1.5;
+            max-width: 350px;
+            font-style: italic;
+        }
+
+        /* Right Section - Form */
+        .right-section {
+            background: rgba(15, 15, 15, 0.9);
+            border: 1px solid rgba(249, 200, 70, 0.2);
+            border-radius: 24px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .right-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f9c846, #ffd700);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .form-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #f9c846;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        .benefits-list {
+            margin-bottom: 1.8rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: rgba(25, 25, 25, 0.6);
+            border-radius: 10px;
+            border-left: 3px solid #f9c846;
+        }
+
+        .benefit-icon {
+            font-size: 1.2rem;
+            color: #f9c846;
+            margin-top: 0.1rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-text {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            line-height: 1.4;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #f9c846;
+            margin-bottom: 0.4rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 2px solid rgba(249, 200, 70, 0.2);
+            border-radius: 10px;
+            background: rgba(25, 25, 25, 0.8);
+            color: #ffffff;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #f9c846;
+            background: rgba(25, 25, 25, 0.9);
+            box-shadow: 0 0 0 3px rgba(249, 200, 70, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #888888;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f9c846 0%, #ffd700 50%, #fff176 100%);
+            background-size: 200% 200%;
+            border: none;
+            border-radius: 10px;
+            color: #0a0a0a;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Inter', sans-serif;
+            margin-top: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            animation: buttonGlow 2.5s ease-in-out infinite, buttonPulse 3s ease-in-out infinite;
+            box-shadow: 
+                0 4px 15px rgba(249, 200, 70, 0.4),
+                0 0 20px rgba(249, 200, 70, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transition: left 0.5s;
+            animation: buttonShine 3s ease-in-out infinite;
+        }
+
+        .submit-button::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #f9c846, #ffd700, #fff176, #f9c846);
+            background-size: 300% 300%;
+            border-radius: 12px;
+            z-index: -1;
+            animation: buttonBorder 4s ease-in-out infinite;
+            filter: blur(3px);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 
+                0 15px 30px rgba(249, 200, 70, 0.6),
+                0 0 40px rgba(249, 200, 70, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            filter: brightness(1.2);
+            animation: buttonHoverGlow 1s ease-in-out infinite, buttonPulse 1.5s ease-in-out infinite;
+        }
+
+        .submit-button:hover::before {
+            left: 100%;
+        }
+
+        .submit-button:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        @keyframes buttonGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 4px 15px rgba(249, 200, 70, 0.4),
+                    0 0 20px rgba(249, 200, 70, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 
+                    0 6px 25px rgba(249, 200, 70, 0.7),
+                    0 0 35px rgba(249, 200, 70, 0.6),
+                    0 0 50px rgba(255, 215, 0, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                background-position: 0% 50%;
+                transform: scale(1);
+            }
+            50% {
+                background-position: 100% 50%;
+                transform: scale(1.01);
+            }
+        }
+
+        @keyframes buttonBorder {
+            0%, 100% {
+                background-position: 0% 50%;
+                opacity: 0.6;
+            }
+            50% {
+                background-position: 100% 50%;
+                opacity: 1;
+            }
+        }
+
+        @keyframes buttonShine {
+            0%, 60% {
+                left: -100%;
+                opacity: 0;
+            }
+            70%, 90% {
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+
+        @keyframes buttonHoverGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 15px 30px rgba(249, 200, 70, 0.6),
+                    0 0 40px rgba(249, 200, 70, 0.5),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                box-shadow: 
+                    0 20px 40px rgba(249, 200, 70, 0.8),
+                    0 0 60px rgba(249, 200, 70, 0.7),
+                    0 0 80px rgba(255, 215, 0, 0.5),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        /* Ticker Animation */
+        .ticker-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(25, 25, 25, 0.95) 100%);
+            border-top: 1px solid rgba(249, 200, 70, 0.3);
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            animation: tickerScroll 45s linear infinite;
+            white-space: nowrap;
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-right: 4rem;
+            padding: 0 1rem;
+            position: relative;
+            background: linear-gradient(
+                90deg,
+                #ffffff 0%,
+                #f9c846 25%,
+                #ffd700 50%,
+                #f9c846 75%,
+                #ffffff 100%
+            );
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .ticker-icon {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #f9c846 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes tickerScroll {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Floating Tech Icons */
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(249, 200, 70, 0.3);
+            animation: floatIcon 20s linear infinite;
+            opacity: 0;
+        }
+
+        .floating-icon:nth-child(odd) {
+            animation-duration: 25s;
+            color: rgba(255, 215, 0, 0.25);
+        }
+
+        .floating-icon:nth-child(3n) {
+            animation-duration: 15s;
+            color: rgba(249, 200, 70, 0.35);
+        }
+
+        @keyframes floatIcon {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #10b981;
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .landing-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                padding: 1.5rem;
+            }
+
+            .main-title {
+                font-size: 2.6rem;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .profile-image {
+                width: 220px;
+                height: 220px;
+            }
+
+            .right-section {
+                padding: 1.8rem;
+            }
+
+            .form-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .landing-container {
+                padding: 1rem;
+                gap: 2rem;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .left-section,
+            .right-section {
+                padding: 1.5rem;
+            }
+
+            /* Control desktop/mobile visibility */
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-only {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+                margin-top: 2rem;
+                margin-bottom: 0;
+            }
+
+            /* Mobile Layout Order: Title → Profile → Form → Stats */
+            .left-section {
+                display: flex;
+                flex-direction: column;
+                order: 1;
+            }
+
+            .right-section {
+                order: 2;
+            }
+
+            /* Reorder elements within left-section */
+            .main-title {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+                letter-spacing: -0.015em;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            .profile-image {
+                width: 180px;
+                height: 180px;
+            }
+
+            .profile-title {
+                font-size: 0.95rem;
+                max-width: 100%;
+            }
+
+            /* Form styling for mobile */
+            .form-title {
+                font-size: 1.4rem;
+            }
+
+            .benefit-item {
+                padding: 0.7rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .benefit-text {
+                font-size: 0.85rem;
+            }
+
+            .form-group {
+                margin-bottom: 1rem;
+            }
+
+            .form-input {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .submit-button {
+                padding: 0.9rem;
+                font-size: 0.95rem;
+            }
+
+            /* Stats styling for mobile */
+            .stat-item {
+                padding: 0.8rem 0.6rem;
+            }
+
+            .stat-number {
+                font-size: 1.4rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            .ticker-container {
+                height: 50px;
+            }
+
+            .ticker-item {
+                font-size: 0.9rem;
+                margin-right: 3rem;
+            }
+
+            .ticker-icon {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 1.8rem;
+                letter-spacing: -0.01em;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .profile-image {
+                width: 160px;
+                height: 160px;
+            }
+
+            .profile-title {
+                font-size: 0.9rem;
+            }
+
+            .stat-number {
+                font-size: 1.3rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            .ticker-container {
+                display: none;
+            }
+
+            /* Make form more prominent on small screens */
+            .form-title {
+                font-size: 1.2rem;
+            }
+
+            .benefit-item {
+                padding: 0.6rem;
+                margin-bottom: 0.7rem;
+            }
+
+            .benefit-text {
+                font-size: 0.8rem;
+            }
+
+            .form-input {
+                padding: 0.7rem;
+                font-size: 0.85rem;
+            }
+
+            .submit-button {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading .submit-button {
+            background: #666;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- Diamond Particles Background -->
+    <div class="diamond-particles" id="diamondParticles"></div>
+    
+    <!-- Floating Tech Icons -->
+    <div class="floating-icons" id="floatingIcons"></div>
+    
+    <div class="landing-container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <!-- Main Title -->
+            <h1 class="main-title">
+                <span class="highlight">GO AI</span> – Giải pháp AI giúp bạn tối ưu hoá công việc online
+            </h1>
+            <p class="subtitle">"Biến AI thành đồng đội – Giải phóng thời gian – Tăng tốc kinh doanh!"</p>
+
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <div class="profile-image-container">
+                    <img src="tien-cong-profile.png" alt="Tiến Công - Nhà sáng lập học viện GO AI" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <div class="profile-name">Tiến Công</div>
+                    <div class="profile-title">"Nhà sáng lập học viện GO AI, một trong những người tiên phong trong việc ứng dụng AI vào công việc online, từ bán hàng, marketing, sản xuất video, đến quản lý vận hành"</div>
+                </div>
+            </div>
+
+            <!-- Stats Row - Only visible on desktop -->
+            <div class="stats-row desktop-only">
+                <div class="stat-item">
+                    <div class="stat-number">495+</div>
+                    <div class="stat-label">Dự án</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">97%</div>
+                    <div class="stat-label">Thành công</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">9h</div>
+                    <div class="stat-label">Tiết kiệm mỗi ngày</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <h2 class="form-title">📘 Bộ tài liệu PROMPT mẫu giúp bạn:</h2>
+            
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔓</div>
+                    <div class="benefit-text">Hiểu rõ cách viết prompt đúng cách</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚙️</div>
+                    <div class="benefit-text">Ứng dụng ngay vào các công cụ AI hot nhất như ChatGPT, Veo, Midjourney, D-ID…</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚀</div>
+                    <div class="benefit-text">Tiết kiệm hàng giờ loay hoay với câu hỏi "Viết gì cho đúng?"</div>
+                </div>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                ✅ Cảm ơn bạn! Bộ tài liệu đã được gửi đến email của bạn.
+            </div>
+
+            <form id="leadForm" action="https://formsubmit.co/vantiencong1996@gmail.com" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="Đăng ký nhận bộ tài liệu PROMPT miễn phí">
+                <input type="hidden" name="_next" value="https://goai.edu.vn/thank-you">
+                
+                <div class="form-group">
+                    <label for="name" class="form-label">Họ và tên</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Nhập họ và tên của bạn" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Gmail</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="your.email@gmail.com" required>
+                </div>
+                
+                <button type="submit" class="submit-button">
+                    📥 Nhận Bộ Tài Liệu Miễn Phí Ngay
+                </button>
+            </form>
+        </div>
+
+        <!-- Stats Row - Mobile version (appears after form) -->
+        <div class="stats-row mobile-only">
+            <div class="stat-item">
+                <div class="stat-number">495+</div>
+                <div class="stat-label">Dự án</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">97%</div>
+                <div class="stat-label">Thành công</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">9h</div>
+                <div class="stat-label">Tiết kiệm mỗi ngày</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ticker -->
+    <div class="ticker-container">
+        <div class="ticker-wrapper">
+            <div class="ticker-item">
+                <span class="ticker-icon">🤖</span>
+                Tự động hóa 80% công việc với AI
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">⚡</span>
+                Tăng năng suất làm việc lên 10x
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">💰</span>
+                Kiếm tiền online hiệu quả với AI
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">🎯</span>
+                AI Marketing & Content Creator
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">🚀</span>
+                Dẫn đầu xu hướng công nghệ AI
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">📈</span>
+                Tối ưu hóa quy trình kinh doanh
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">🔥</span>
+                Khóa học AI #1 tại Việt Nam
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">💡</span>
+                Ứng dụng AI vào mọi lĩnh vực
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating diamond particles
+        function createDiamondParticles() {
+            const container = document.getElementById('diamondParticles');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'diamond-particle';
+                
+                // Random positioning and timing
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                
+                // Random size variation
+                const size = 2 + Math.random() * 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Generate floating tech icons
+        function createFloatingIcons() {
+            const iconsContainer = document.getElementById('floatingIcons');
+            const techIcons = ['💻', '🤖', '⚡', '🚀', '💡', '📱', '🎯', '⭐', '🔥', '💰'];
+            
+            function addIcon() {
+                const icon = document.createElement('div');
+                icon.className = 'floating-icon';
+                icon.textContent = techIcons[Math.floor(Math.random() * techIcons.length)];
+                icon.style.left = Math.random() * 100 + '%';
+                icon.style.animationDelay = Math.random() * 20 + 's';
+                iconsContainer.appendChild(icon);
+                
+                // Remove icon after animation
+                setTimeout(() => {
+                    if (icon.parentNode) {
+                        icon.parentNode.removeChild(icon);
+                    }
+                }, 25000);
+            }
+            
+            // Create initial icons
+            for (let i = 0; i < 8; i++) {
+                setTimeout(addIcon, i * 3000);
+            }
+            
+            // Continue adding icons
+            setInterval(addIcon, 4000);
+        }
+
+        // Form submission handling
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            const submitButton = document.querySelector('.submit-button');
+            const form = this;
+            
+            // Show loading state
+            submitButton.textContent = '⏳ Đang gửi...';
+            form.classList.add('loading');
+            
+            // Note: The actual form submission will be handled by FormSubmit
+            // This is just for UX improvement
+        });
+
+        // Add some interactive animations
+        document.querySelectorAll('.stat-item, .benefit-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Initialize animations when page loads
+        window.addEventListener('load', function() {
+            createDiamondParticles();
+            createFloatingIcons();
+            
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+/* ================================
+   FLOATING CONTACT BUTTONS
+   ================================ */
+
+/* Container chính */
+.floating-contact {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 1000;
+}
+
+/* Style chung cho các nút */
+.contact-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover effect */
+.contact-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Icon SVG size */
+.contact-btn svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Nút Zalo - Màu xanh Zalo */
+.zalo-btn {
+    background: #0068FF;
+}
+
+.zalo-btn:hover {
+    background: #0052CC;
+    box-shadow: 0 6px 20px rgba(0, 104, 255, 0.5);
+}
+
+/* Nút Telegram - Màu xanh Telegram */
+.telegram-btn {
+    background: #229ED9;
+}
+
+.telegram-btn:hover {
+    background: #1B7FB5;
+    box-shadow: 0 6px 20px rgba(34, 158, 217, 0.5);
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .floating-contact {
+        right: 15px;
+    }
+
+    .contact-btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    .contact-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .floating-contact {
+        right: 10px;
+        gap: 10px;
+    }
+
+    .contact-btn {
+        width: 44px;
+        height: 44px;
+    }
+
+    .contact-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* ================================
+   CUSTOMIZATION
+   ================================ */
+
+/* 
+Để thêm nút mới, copy code này:
+
+.facebook-btn {
+    background: #1877F2;
+}
+
+.facebook-btn:hover {
+    background: #145DBF;
+    box-shadow: 0 6px 20px rgba(24, 119, 242, 0.5);
+}
+
+Thêm vào HTML:
+<a href="link" target="_blank" class="contact-btn facebook-btn" title="Facebook">
+    <svg>...</svg>
+</a>
+*/

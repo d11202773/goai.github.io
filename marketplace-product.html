@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm - GO AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="marketplace-style.css">
+    <style>
+        .product-detail {
+            max-width: 900px;
+            margin: 3rem auto;
+            background: rgba(25, 25, 25, 0.9);
+            border: 1px solid rgba(249, 200, 70, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #f9c846;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #ffd700;
+            transform: translateX(-5px);
+        }
+
+        .detail-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(249, 200, 70, 0.1);
+        }
+
+        .detail-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f9c846 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .detail-pricing {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-price-original {
+            font-size: 1.3rem;
+            color: #666;
+            text-decoration: line-through;
+        }
+
+        .detail-price-current {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f9c846 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .detail-sales {
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        .detail-sales span {
+            color: #f9c846;
+            font-weight: 600;
+        }
+
+        .btn-contact {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 2rem auto 0;
+            padding: 1.3rem;
+            background: linear-gradient(135deg, #f9c846 0%, #ffd700 50%, #fff176 100%);
+            background-size: 200% 200%;
+            border: none;
+            border-radius: 12px;
+            color: #0a0a0a;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(249, 200, 70, 0.4);
+        }
+
+        .btn-contact:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(249, 200, 70, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Diamond Particles Background -->
+    <div class="diamond-particles" id="diamondParticles"></div>
+    
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contact">
+        <a href="https://zalo.me/84966861089" target="_blank" class="contact-btn zalo-btn" title="Chat Zalo">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 2.237.738 4.304 1.985 5.97L2.05 21.95l4.028-1.935C7.696 21.262 9.763 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm3.5 13.5h-7a.5.5 0 010-1h7a.5.5 0 010 1zm0-2.5h-7a.5.5 0 010-1h7a.5.5 0 010 1zm0-2.5h-7a.5.5 0 010-1h7a.5.5 0 010 1z"/>
+            </svg>
+        </a>
+        <a href="https://t.me/Victory68686" target="_blank" class="contact-btn telegram-btn" title="Chat Telegram">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+            </svg>
+        </a>
+    </div>
+    
+    <!-- Header -->
+    <header class="header" style="display: none;">
+        <div class="container">
+            <div class="logo">
+                <a href="marketplace.html" style="text-decoration: none; color: inherit;">
+                    <h1><span class="highlight">GO AI</span></h1>
+                    <p>Shop Công Cụ AI Premium</p>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="product-detail" id="productDetail">
+                <a href="marketplace.html" class="back-link">← Quay lại</a>
+                <!-- Product detail will be loaded by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 GoAI.edu.vn - All rights reserved.</p>
+            <p>Liên hệ: <a href="https://zalo.me/0966861089" target="_blank">Zalo: 0966.861.089</a></p>
+        </div>
+    </footer>
+
+    <!-- Ticker -->
+    <div class="ticker-container">
+        <div class="ticker-wrapper">
+            <div class="ticker-item">
+                <span class="ticker-icon">🤖</span>
+                Tự động hóa 80% công việc với AI
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">⚡</span>
+                Tăng năng suất làm việc lên 10x
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">💰</span>
+                Kiếm tiền online hiệu quả với AI
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">🎯</span>
+                AI Marketing & Content Creator
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">🚀</span>
+                Dẫn đầu xu hướng công nghệ AI
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">📈</span>
+                Tối ưu hóa quy trình kinh doanh
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">🔥</span>
+                Khóa học AI #1 tại Việt Nam
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-icon">💡</span>
+                Ứng dụng AI vào mọi lĩnh vực
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dữ liệu sản phẩm
+        const products = [
+            { id: 'chatgpt-plus-business', name: 'ChatGPT Plus Business', icon: '🤖', priceOriginal: 655000, priceCurrent: 129000, sold: '2.8k+' },
+            { id: 'chatgpt-go', name: 'ChatGPT GO', icon: '⚡', priceOriginal: 1584000, priceCurrent: 700000, sold: '1.6k+' },
+            { id: 'chatgpt-plus-personal', name: 'ChatGPT Plus Cá Nhân', icon: '💬', priceOriginal: 550000, priceCurrent: 220000, sold: '4.1k+' },
+            { id: 'google-ai-pro', name: 'Google AI Pro (Gemini + Veo)', icon: '🔵', priceOriginal: 499000, priceCurrent: 90000, sold: '3.3k+' },
+            { id: 'canva-edu', name: 'Canva EDU', icon: '🎨', priceOriginal: 1300000, priceCurrent: 200000, sold: '2.1k+' },
+            { id: 'canva-pro', name: 'Canva Pro', icon: '🖌️', priceOriginal: 1300000, priceCurrent: 400000, sold: '5.7k+' },
+            { id: 'gemini-ultra', name: 'Gemini Ultra 45.000 Credit', icon: '💎', priceOriginal: 6000000, priceCurrent: 150000, sold: '1.2k+' },
+            { id: 'copilot-pro', name: 'Copilot Pro', icon: '🧑‍💻', priceOriginal: 230000, priceCurrent: 100000, sold: '1.9k+' },
+            { id: 'youtube-premium', name: 'YouTube Premium', icon: '▶️', priceOriginal: 105000, priceCurrent: 60000, sold: '6.4k+' },
+            { id: 'cursor-pro', name: 'Cursor Pro', icon: '⚡', priceOriginal: 520000, priceCurrent: 300000, sold: '860+' }
+        ];
+
+        function formatPrice(price) {
+            return price.toLocaleString('vi-VN') + 'đ';
+        }
+
+        function renderProductDetail() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const container = document.getElementById('productDetail');
+
+            if (!productId || !container) return;
+
+            const product = products.find(p => p.id === productId);
+            if (!product) {
+                container.innerHTML = '<p style="text-align:center;color:#f9c846;">Không tìm thấy sản phẩm</p>';
+                return;
+            }
+
+            container.innerHTML = `
+                <a href="marketplace.html" class="back-link">← Quay lại</a>
+                <div class="detail-header">
+                    <div class="detail-icon">${product.icon}</div>
+                    <h1 class="detail-title">${product.name}</h1>
+                    <div class="detail-pricing">
+                        <span class="detail-price-original">${formatPrice(product.priceOriginal)}</span>
+                        <span class="detail-price-current">${formatPrice(product.priceCurrent)}</span>
+                    </div>
+                    <p class="detail-sales">🔥 <span>${product.sold}</span> người đã mua</p>
+                    <a href="https://zalo.me/0966861089" target="_blank" class="btn-contact">
+                        💬 Liên hệ Zalo: 0966.861.089 để đăng ký
+                    </a>
+                </div>
+            `;
+        }
+
+        function createDiamondParticles() {
+            const container = document.getElementById('diamondParticles');
+            if (!container) return;
+            
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'diamond-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                const size = 2 + Math.random() * 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                container.appendChild(particle);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProductDetail();
+            createDiamondParticles();
+        });
+    </script>
+</body>
+</html>
