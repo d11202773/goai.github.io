@@ -32,7 +32,7 @@ const products = [
     },
     {
         id: 'chatgpt-plus-business',
-        name: 'ChatGPT Plus Business',
+        name: 'CHATGPT BUSINESS',
         icon: '🤖',
         image: 'images/CHATGPT PLUS BUSINESS.PNG',
         tag: 'HOT',
