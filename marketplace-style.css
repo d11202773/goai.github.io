@@ -380,6 +380,41 @@ body::after {
     color: #f9c846;
 }
 
+/* Buy Now Button */
+.buy-now {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    color: #1a1406;
+    background: linear-gradient(180deg, #FFD77A, #F6C453);
+    box-shadow: 0 10px 30px rgba(246, 196, 83, 0.18), 0 0 22px rgba(246, 196, 83, 0.18);
+    border: 1px solid rgba(255, 215, 122, 0.35);
+    transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+}
+
+.buy-now:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow: 0 14px 40px rgba(246, 196, 83, 0.28), 0 0 28px rgba(246, 196, 83, 0.30);
+}
+
+.buy-now:active {
+    transform: translateY(0px) scale(0.99);
+}
+
+.buy-now span:first-child {
+    font-size: 1.1rem;
+}
+
 /* Footer */
 .footer {
     background: rgba(15, 15, 15, 0.9);

@@ -119,6 +119,10 @@ function renderProducts() {
                     <span class="sales-icon">🔥</span>
                     <span>${product.sold} đã mua</span>
                 </div>
+                <a class="buy-now" href="marketplace-product.html?id=${product.id}" onclick="event.stopPropagation();">
+                    <span>⚡</span>
+                    <span>MUA NGAY</span>
+                </a>
             </div>
         </div>
     `).join('');
