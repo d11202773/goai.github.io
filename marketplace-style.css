@@ -346,26 +346,24 @@ body::after {
     min-height: 50px;
 }
 
-.product-pricing {
+.price-box {
     display: flex;
-    align-items: center;
-    gap: 0.8rem;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
     margin-bottom: 1rem;
 }
 
-.price-original {
-    font-size: 0.9rem;
-    color: #666;
-    text-decoration: line-through;
+.new-price {
+    color: #F6C453;
+    font-size: 28px;
+    font-weight: 700;
 }
 
-.price-current {
-    font-size: 1.4rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #f9c846 0%, #ffd700 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.old-price {
+    color: #888;
+    text-decoration: line-through;
+    font-size: 16px;
 }
 
 .product-sales {
@@ -619,8 +617,12 @@ body::after {
         min-height: 45px;
     }
 
-    .price-current {
-        font-size: 1.2rem;
+    .new-price {
+        font-size: 24px;
+    }
+    
+    .old-price {
+        font-size: 14px;
     }
 
     .floating-contact {

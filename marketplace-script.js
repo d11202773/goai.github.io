@@ -111,9 +111,9 @@ function renderProducts() {
             </div>
             <div class="product-info">
                 <h3 class="product-name">${product.name}</h3>
-                <div class="product-pricing">
-                    <span class="price-current">${formatPrice(product.priceCurrent)}</span>
-                    <span class="price-original">${formatPrice(product.priceOriginal)}</span>
+                <div class="price-box">
+                    <span class="new-price">${formatPrice(product.priceCurrent)}</span>
+                    <span class="old-price">${formatPrice(product.priceOriginal)}</span>
                 </div>
                 <div class="product-sales">
                     <span class="sales-icon">🔥</span>
