@@ -198,10 +198,10 @@ body::after {
 .stats-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 800px;
+    gap: 1.5rem;
+    max-width: 550px;
     margin: 0 auto 3rem;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
 }
 
 .stats-top {
@@ -216,7 +216,7 @@ body::after {
     background: rgba(25, 25, 25, 0.8);
     border: 1px solid rgba(249, 200, 70, 0.2);
     border-radius: 16px;
-    padding: 2rem 1rem;
+    padding: 1.5rem 0.8rem;
     text-align: center;
     position: relative;
     transition: all 0.3s ease;
@@ -240,7 +240,7 @@ body::after {
 }
 
 .stat-number {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 900;
     background: linear-gradient(135deg, #f9c846 0%, #ffd700 100%);
     -webkit-background-clip: text;
