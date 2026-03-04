@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pro - GO AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0B0B0F;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #F6C453;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: #12131A;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(246, 196, 83, 0.2);
+        }
+
+        .product-layout:hover {
+            box-shadow: 0 8px 30px rgba(246, 196, 83, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .description {
+            background: rgba(246, 196, 83, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #F6C453;
+        }
+
+        .description ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .description li {
+            padding: 0.5rem 0;
+            color: #ddd;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .description li:before {
+            content: "•";
+            color: #F6C453;
+            font-weight: bold;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .duration-section {
+            margin-top: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .duration-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .duration-btn {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #F6C453;
+            background: transparent;
+            color: #F6C453;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .duration-btn:hover {
+            background: rgba(246, 196, 83, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .duration-btn.active {
+            background: #F6C453;
+            color: #000;
+            border-color: #F6C453;
+        }
+
+        .price-display {
+            margin: 1.5rem 0;
+        }
+
+        .price-label {
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 0.5rem;
+        }
+
+        .current-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #F6C453;
+            text-shadow: 0 0 20px rgba(246, 196, 83, 0.5);
+        }
+
+        .buy-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #F6C453 0%, #FFD77A 100%);
+            color: #000;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(246, 196, 83, 0.6);
+            filter: brightness(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .current-price {
+                font-size: 2rem;
+            }
+
+            .duration-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="logo">GO AI</a>
+        </div>
+
+        <div class="product-layout">
+            <div class="product-image">
+                <img src="images/GITHUB.jpg" alt="GitHub Pro">
+            </div>
+
+            <div class="product-details">
+                <div>
+                    <h1 class="product-title">Tài khoản GitHub Pro</h1>
+                </div>
+
+                <div class="description">
+                    <ul>
+                        <li>Tài khoản GitHub Pro cấp sẵn – đăng nhập sử dụng ngay</li>
+                        <li>Mở khóa toàn bộ tính năng GitHub Pro</li>
+                        <li>Hỗ trợ lưu trữ và quản lý code chuyên nghiệp</li>
+                        <li>Truy cập các công cụ phát triển và cộng tác mạnh mẽ</li>
+                        <li>Phù hợp cho lập trình viên, developer và dự án phần mềm</li>
+                        <li>Hỗ trợ làm việc nhóm và quản lý repository hiệu quả</li>
+                        <li>Bảo hành 100% trong quá trình sử dụng</li>
+                        <li>Dữ liệu code và project lưu trữ an toàn</li>
+                    </ul>
+                </div>
+
+                <div class="duration-section">
+                    <h3 class="section-title">Thời hạn</h3>
+                    <div class="duration-options">
+                        <button class="duration-btn active" data-duration="1-thang" data-price="120000">1 tháng</button>
+                        <button class="duration-btn" data-duration="1-nam" data-price="700000">1 năm</button>
+                    </div>
+
+                    <div class="price-display">
+                        <p class="price-label">Giá:</p>
+                        <p class="current-price" id="currentPrice">120.000đ</p>
+                    </div>
+
+                    <a href="#" class="buy-button" id="buyButton">
+                        <span>⚡</span>
+                        <span>MUA NGAY</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const durationButtons = document.querySelectorAll('.duration-btn');
+        const currentPriceEl = document.getElementById('currentPrice');
+        const buyButton = document.getElementById('buyButton');
+
+        let selectedDuration = '1 tháng';
+        let selectedPrice = '120.000đ';
+
+        function formatPrice(price) {
+            return price.toLocaleString('vi-VN') + 'đ';
+        }
+
+        durationButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                durationButtons.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get selected duration and price
+                const duration = this.dataset.duration;
+                const price = parseInt(this.dataset.price);
+                
+                // Update duration text
+                selectedDuration = this.textContent;
+                selectedPrice = formatPrice(price);
+                
+                // Update price display
+                currentPriceEl.textContent = selectedPrice;
+                
+                // Update buy button link
+                updateBuyLink();
+            });
+        });
+
+        function updateBuyLink() {
+            const message = `Đăng ký GitHub Pro\nThời hạn: ${selectedDuration}\nGiá: ${selectedPrice}`;
+            const encodedMessage = encodeURIComponent(message);
+            const zaloLink = `https://zalo.me/84966861089?text=${encodedMessage}`;
+            buyButton.href = zaloLink;
+        }
+
+        // Initialize buy link
+        updateBuyLink();
+    </script>
+</body>
+</html>
