@@ -119,7 +119,7 @@ function renderProducts() {
                     <span class="sales-icon">🔥</span>
                     <span>${product.sold} đã mua</span>
                 </div>
-                <a class="buy-now" href="${product.id === 'youtube-premium' ? 'product-youtube.html' : 'marketplace-product.html?id=' + product.id}" onclick="event.stopPropagation();">
+                <a class="buy-now" href="${product.id === 'youtube-premium' ? 'product-youtube.html' : product.id === 'chatgpt-plus-personal' ? 'product-chatgpt-plus.html' : 'marketplace-product.html?id=' + product.id}" onclick="event.stopPropagation();">
                     <span>⚡</span>
                     <span>MUA NGAY</span>
                 </a>
@@ -132,6 +132,8 @@ function renderProducts() {
 function goToProduct(productId) {
     if (productId === 'youtube-premium') {
         window.location.href = 'product-youtube.html';
+    } else if (productId === 'chatgpt-plus-personal') {
+        window.location.href = 'product-chatgpt-plus.html';
     } else {
         window.location.href = `marketplace-product.html?id=${productId}`;
     }
