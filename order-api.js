@@ -81,15 +81,17 @@ async function confirmPaidAndNotify(order) {
         formData.append('phone', order.phone || '');
         formData.append('emailUpgrade', order.emailUpgrade || '');
 
-        console.log('Confirming paid order:', {
+        console.log('📤 Confirming paid order:', {
             action: 'PAID_CONFIRM',
             orderCode: order.orderCode,
             product: order.product,
             plan: order.plan,
             price: order.price,
+            fullname: order.fullname,
             phone: order.phone,
             emailUpgrade: order.emailUpgrade
         });
+        console.log('🔗 API Endpoint:', API_ENDPOINT);
 
         // Send POST request to Google Apps Script
         const response = await fetch(API_ENDPOINT, {
@@ -100,29 +102,42 @@ async function confirmPaidAndNotify(order) {
             body: formData.toString()
         });
 
-        console.log('Response status:', response.status);
+        console.log('📡 Response status:', response.status);
 
-        // Check if HTTP 200 (success)
-        if (response.status === 200) {
-            console.log('Confirmation successful');
+        // Parse JSON response
+        const responseData = await response.json();
+        console.log('📥 Response data:', responseData);
+
+        // Check if request was successful
+        if (response.status === 200 && responseData.ok === true) {
+            console.log('✅ Confirmation successful');
             return {
                 success: true
             };
         } else {
-            const errorText = await response.text();
-            console.error('HTTP error:', response.status, errorText);
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const errorMsg = responseData.error || 'Unknown error';
+            console.error('❌ API error:', errorMsg);
+            throw new Error(errorMsg);
         }
 
     } catch (error) {
-        console.error('Error confirming paid order:', error);
+        console.error('❌ Error confirming paid order:', error);
         console.error('Error details:', {
             message: error.message,
             stack: error.stack
         });
+        
+        // Return user-friendly error message
+        let errorMessage = error.message;
+        if (errorMessage.includes('Failed to fetch')) {
+            errorMessage = 'Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng.';
+        } else if (errorMessage.includes('JSON')) {
+            errorMessage = 'Lỗi xử lý dữ liệu từ server. Vui lòng thử lại.';
+        }
+        
         return {
             success: false,
-            error: error.message
+            error: errorMessage
         };
     }
 }
