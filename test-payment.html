@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Payment Confirmation - GO AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0B0B0F;
+            color: #ffffff;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #12131A;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            color: #F6C453;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .info {
+            background: rgba(246, 196, 83, 0.1);
+            border: 2px solid rgba(246, 196, 83, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            color: #F6C453;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            background: #1A1B23;
+            border: 2px solid #2A2B33;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #F6C453;
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 2rem;
+            padding: 1rem;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .result.success {
+            display: block;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid rgba(16, 185, 129, 0.5);
+            color: #10B981;
+        }
+
+        .result.error {
+            display: block;
+            background: rgba(220, 38, 38, 0.1);
+            border: 2px solid rgba(220, 38, 38, 0.5);
+            color: #ff6b6b;
+        }
+
+        .log {
+            background: #1A1B23;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #F6C453 0%, #E5A800 100%);
+            color: #0B0B0F;
+        }
+
+        .step {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: #1A1B23;
+            border-radius: 8px;
+            border-left: 4px solid #F6C453;
+        }
+
+        .step-title {
+            color: #F6C453;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-desc {
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test Payment Confirmation</h1>
+        
+        <div class="info">
+            <strong>📋 Hướng dẫn test:</strong><br>
+            1. Điền thông tin test vào form bên dưới<br>
+            2. Click "GỬI TEST" để gửi dữ liệu lên Google Apps Script<br>
+            3. Kiểm tra kết quả bên dưới<br>
+            4. Kiểm tra Google Sheet và Telegram xem có nhận được dữ liệu không
+        </div>
+
+        <div class="form-group">
+            <label>Mã đơn hàng</label>
+            <input type="text" id="orderCode" value="TEST-20260305-123456">
+        </div>
+
+        <div class="form-group">
+            <label>Sản phẩm</label>
+            <input type="text" id="product" value="ChatGPT Plus">
+        </div>
+
+        <div class="form-group">
+            <label>Gói</label>
+            <input type="text" id="plan" value="1 tháng">
+        </div>
+
+        <div class="form-group">
+            <label>Giá</label>
+            <input type="text" id="price" value="220.000đ">
+        </div>
+
+        <div class="form-group">
+            <label>Họ tên</label>
+            <input type="text" id="fullname" value="Nguyễn Văn Test">
+        </div>
+
+        <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="text" id="phone" value="0123456789">
+        </div>
+
+        <div class="form-group">
+            <label>Email nâng cấp</label>
+            <input type="email" id="email" value="test@gmail.com">
+        </div>
+
+        <button onclick="testPaymentConfirmation()" id="btnTest">
+            🚀 GỬI TEST
+        </button>
+
+        <button onclick="openGoogleSheet()" class="btn-secondary">
+            📊 MỞ GOOGLE SHEET
+        </button>
+
+        <div id="result" class="result"></div>
+
+        <div class="log" id="log"></div>
+
+        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #2A2B33;">
+            <h2 style="color: #F6C453; margin-bottom: 1rem;">✅ Checklist sau khi test:</h2>
+            
+            <div class="step">
+                <div class="step-title">1. Kiểm tra Console log</div>
+                <div class="step-desc">Mở Developer Tools (F12) > Console tab để xem request/response</div>
+            </div>
+
+            <div class="step">
+                <div class="step-title">2. Kiểm tra Google Sheet</div>
+                <div class="step-desc">Mở Google Sheet và xem có row mới được thêm không</div>
+            </div>
+
+            <div class="step">
+                <div class="step-title">3. Kiểm tra Telegram</div>
+                <div class="step-desc">Mở Telegram bot và xem có nhận được thông báo không</div>
+            </div>
+
+            <div class="step">
+                <div class="step-title">4. Kiểm tra Apps Script Logs</div>
+                <div class="step-desc">Vào Google Apps Script > View > Executions để xem logs</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="order-api.js"></script>
+    <script>
+        const logDiv = document.getElementById('log');
+        const resultDiv = document.getElementById('result');
+
+        function addLog(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const icon = type === 'error' ? '❌' : type === 'success' ? '✅' : '🔵';
+            logDiv.textContent += `[${timestamp}] ${icon} ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        async function testPaymentConfirmation() {
+            const btnTest = document.getElementById('btnTest');
+            btnTest.disabled = true;
+            btnTest.textContent = '⏳ ĐANG GỬI...';
+
+            // Clear previous results
+            logDiv.textContent = '';
+            resultDiv.className = 'result';
+            resultDiv.textContent = '';
+
+            try {
+                // Get form data
+                const orderData = {
+                    orderCode: document.getElementById('orderCode').value,
+                    product: document.getElementById('product').value,
+                    plan: document.getElementById('plan').value,
+                    price: document.getElementById('price').value,
+                    fullname: document.getElementById('fullname').value,
+                    phone: document.getElementById('phone').value,
+                    emailUpgrade: document.getElementById('email').value
+                };
+
+                addLog('Chuẩn bị gửi dữ liệu test...');
+                addLog('Order Code: ' + orderData.orderCode);
+                addLog('Product: ' + orderData.product);
+                addLog('Phone: ' + orderData.phone);
+                addLog('Email: ' + orderData.emailUpgrade);
+
+                // Call API
+                addLog('Gọi confirmPaidAndNotify()...');
+                const result = await confirmPaidAndNotify(orderData);
+
+                if (result.success) {
+                    addLog('✅ GỬI THÀNH CÔNG!', 'success');
+                    addLog('Response status: 200 OK', 'success');
+                    
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        <strong>✅ TEST THÀNH CÔNG!</strong><br><br>
+                        Dữ liệu đã được gửi lên Google Apps Script.<br>
+                        Vui lòng kiểm tra:<br>
+                        1. Google Sheet có row mới không<br>
+                        2. Telegram có nhận thông báo không
+                    `;
+                } else {
+                    throw new Error(result.error || 'Unknown error');
+                }
+
+            } catch (error) {
+                addLog('❌ LỖI: ' + error.message, 'error');
+                
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <strong>❌ TEST THẤT BẠI!</strong><br><br>
+                    Lỗi: ${error.message}<br><br>
+                    Vui lòng kiểm tra:<br>
+                    1. API endpoint trong order-api.js có đúng không<br>
+                    2. Google Apps Script đã deploy chưa<br>
+                    3. Script Properties đã cấu hình đủ chưa (TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, SHEET_ID)
+                `;
+            } finally {
+                btnTest.disabled = false;
+                btnTest.textContent = '🚀 GỬI TEST';
+            }
+        }
+
+        function openGoogleSheet() {
+            alert('Vui lòng nhập SHEET_ID của bạn vào URL:\nhttps://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit');
+        }
+
+        // Initial log
+        addLog('Test page loaded. Ready to test!');
+        addLog('API Endpoint: ' + (typeof API_ENDPOINT !== 'undefined' ? API_ENDPOINT : 'Not found'));
+    </script>
+</body>
+</html>
