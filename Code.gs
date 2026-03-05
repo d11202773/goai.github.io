@@ -34,8 +34,8 @@ function doPost(e) {
     if (data.action !== 'PAID_CONFIRM') {
       return ContentService
         .createTextOutput(JSON.stringify({
-          status: 'ignored',
-          message: 'Action not recognized'
+          ok: false,
+          error: 'Action not recognized'
         }))
         .setMimeType(ContentService.MimeType.JSON);
     }
@@ -78,9 +78,7 @@ function doPost(e) {
     // Return success response
     return ContentService
       .createTextOutput(JSON.stringify({
-        status: 'success',
-        message: 'Order confirmed and notification sent',
-        timestamp: timestamp
+        ok: true
       }))
       .setMimeType(ContentService.MimeType.JSON);
       
@@ -89,8 +87,8 @@ function doPost(e) {
     
     return ContentService
       .createTextOutput(JSON.stringify({
-        status: 'error',
-        message: error.message
+        ok: false,
+        error: error.message
       }))
       .setMimeType(ContentService.MimeType.JSON);
   }
