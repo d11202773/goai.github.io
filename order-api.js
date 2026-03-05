@@ -25,7 +25,11 @@ async function confirmPaidAndNotify(order) {
             emailUpgrade: order.emailUpgrade || ''
         });
 
-        console.log('📤 Confirming paid order:', {
+        console.log('==================== PAYMENT CONFIRMATION ====================');
+        console.log('📤 URL:', API_ENDPOINT);
+        console.log('📤 Method: POST');
+        console.log('📤 Content-Type: application/x-www-form-urlencoded');
+        console.log('📤 Payload:', {
             action: 'PAID_CONFIRM',
             orderCode: order.orderCode,
             product: order.product,
@@ -35,61 +39,60 @@ async function confirmPaidAndNotify(order) {
             phone: order.phone,
             emailUpgrade: order.emailUpgrade
         });
-        console.log('🔗 API Endpoint:', API_ENDPOINT);
 
         // Send POST request to Google Apps Script
         const response = await fetch(API_ENDPOINT, {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData.toString()
         });
 
-        console.log('📡 Response status:', response.status);
+        console.log('📡 Response Status:', response.status);
+        console.log('📡 Response OK:', response.ok);
 
-        // Parse response as text
+        // Parse response as text first
         const responseText = await response.text();
-        console.log('📥 Response text:', responseText);
+        console.log('📥 Response Body (raw):', responseText);
 
-        // Check if request was successful
-        if (response.status === 200) {
-            // Try to parse as JSON first (for {ok: true} format)
-            try {
-                const jsonData = JSON.parse(responseText);
-                if (jsonData.ok === true) {
-                    console.log('✅ Confirmation successful (JSON format)');
-                    return { success: true };
-                } else if (jsonData.ok === false) {
-                    throw new Error(jsonData.error || 'Unknown error');
-                }
-            } catch (e) {
-                // Not JSON, check for text "success"
-                if (responseText.trim() === 'success') {
-                    console.log('✅ Confirmation successful (text format)');
-                    return { success: true };
-                }
-            }
-            
-            // If neither format matched, throw error
-            throw new Error('Invalid response format: ' + responseText);
+        // Check HTTP status
+        if (response.status !== 200) {
+            console.error('❌ HTTP Error: Status code is not 200');
+            throw new Error(`HTTP ${response.status}: ${responseText}`);
+        }
+
+        // Try to parse as JSON
+        let jsonData;
+        try {
+            jsonData = JSON.parse(responseText);
+            console.log('📥 Response Body (JSON):', jsonData);
+        } catch (e) {
+            console.error('❌ Invalid JSON response:', e.message);
+            throw new Error('Server returned invalid JSON: ' + responseText);
+        }
+
+        // Check if ok field is true
+        if (jsonData.ok === true) {
+            console.log('✅ Payment confirmation successful!');
+            console.log('==============================================================');
+            return { success: true };
         } else {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const errorMsg = jsonData.error || 'Unknown error from server';
+            console.error('❌ Server returned error:', errorMsg);
+            throw new Error(errorMsg);
         }
 
     } catch (error) {
-        console.error('❌ Error confirming paid order:', error);
-        console.error('Error details:', {
-            message: error.message,
-            stack: error.stack
-        });
+        console.error('❌ PAYMENT CONFIRMATION FAILED');
+        console.error('❌ Error message:', error.message);
+        console.error('❌ Error stack:', error.stack);
+        console.log('==============================================================');
         
-        // Return user-friendly error message
-        let errorMessage = error.message;
-        if (errorMessage.includes('Failed to fetch')) {
-            errorMessage = 'Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng.';
-        }
-        
+        // Return structured error
         return {
             success: false,
-            error: errorMessage
+            error: error.message
         };
     }
 }

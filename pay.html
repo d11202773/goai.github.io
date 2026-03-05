@@ -491,10 +491,17 @@
                     emailUpgrade: email
                 };
 
+                console.log('🔔 User clicked "TÔI ĐÃ CHUYỂN KHOẢN" button');
+                console.log('📋 Order data:', orderData);
+
                 // Confirm paid order and notify via Telegram
                 const result = await confirmPaidAndNotify(orderData);
 
-                if (result.success) {
+                console.log('📬 API Result:', result);
+
+                if (result.success === true) {
+                    console.log('🎉 Success! Showing modal...');
+                    
                     // Show success modal
                     successModal.classList.add('active');
 
@@ -518,11 +525,14 @@
                         window.open(zaloLink, '_blank');
                     };
                 } else {
-                    throw new Error(result.error || 'Failed to confirm payment');
+                    // API returned success: false
+                    console.error('❌ API returned error:', result.error);
+                    throw new Error(result.error || 'Unknown error from API');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('Gửi xác nhận thất bại, vui lòng thử lại!');
+                console.error('❌ Payment confirmation failed:', error);
+                console.error('❌ Error details:', error.message, error.stack);
+                alert('Gửi xác nhận thất bại, vui lòng thử lại!\n\nLỗi: ' + error.message);
             } finally {
                 // Re-enable button
                 this.disabled = false;
