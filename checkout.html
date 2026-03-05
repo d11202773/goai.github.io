@@ -196,6 +196,116 @@
             transform: none;
         }
 
+        /* QR Payment Box */
+        .qr-box {
+            background: #1A1B23;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 2px solid #2A2B33;
+            margin-bottom: 1.5rem;
+        }
+
+        .qr-box h3 {
+            color: #F6C453;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .qr-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            background: #fff;
+            padding: 10px;
+        }
+
+        .qr-note {
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-top: 0.75rem;
+        }
+
+        .btn-create-qr {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #4F46E5 0%, #3730A3 100%);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-create-qr:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(79, 70, 229, 0.5);
+        }
+
+        .btn-create-qr:active {
+            transform: translateY(0);
+        }
+
+        .btn-paid {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-paid:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-paid:active {
+            transform: translateY(0);
+        }
+
+        .btn-paid:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .qr-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .qr-divider::before,
+        .qr-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #2A2B33;
+        }
+
+        .qr-divider span {
+            padding: 0 1rem;
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
         /* Modal */
         .modal {
             display: none;
@@ -465,8 +575,27 @@
                         </div>
                     </div>
 
+                    <!-- QR Payment Box -->
+                    <div class="qr-box" id="qrBox" style="display: none;">
+                        <h3>💳 QR THANH TOÁN</h3>
+                        <img id="qrImg" alt="QR thanh toán" style="display: none;">
+                        <p class="qr-note" id="qrNote"></p>
+                    </div>
+
+                    <button type="button" class="btn-create-qr" id="btnCreateQR">
+                        📱 TẠO QR THANH TOÁN
+                    </button>
+
+                    <button type="button" class="btn-paid" id="btnPaid" disabled>
+                        ✅ TÔI ĐÃ CHUYỂN KHOẢN
+                    </button>
+
+                    <div class="qr-divider">
+                        <span>HOẶC</span>
+                    </div>
+
                     <button type="submit" class="submit-btn" id="submitBtn" form="checkoutForm">
-                        ⚡ MUA NGAY
+                        ⚡ ĐẶT HÀNG VÀ LIÊN HỆ ZALO
                     </button>
                 </div>
             </div>
@@ -493,6 +622,12 @@
     <script src="navbar.js"></script>
     <script src="order-api.js"></script>
     <script>
+        // VietQR Payment Configuration
+        const BANK_CODE = "TCB";
+        const ACCOUNT_NO = "19037360970029";
+        const ACCOUNT_NAME = "VAN TIEN CONG";
+        const TRANSFER_CONTENT = "GOAIEDU";
+
         // Get order data from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const productName = urlParams.get('product') || 'Sản phẩm AI';
@@ -583,6 +718,97 @@
             showError('Thông tin sản phẩm không hợp lệ. Vui lòng quay lại trang sản phẩm!');
             submitBtn.disabled = true;
         }
+
+        // QR Payment Functions
+        function createQR(amount) {
+            const qrUrl = "https://img.vietqr.io/image/" +
+                BANK_CODE + "-" + ACCOUNT_NO +
+                "-compact2.png?amount=" +
+                amount +
+                "&addInfo=" + encodeURIComponent(TRANSFER_CONTENT) +
+                "&accountName=" + encodeURIComponent(ACCOUNT_NAME);
+
+            document.getElementById("qrImg").src = qrUrl;
+            document.getElementById("qrImg").style.display = "block";
+            document.getElementById("qrNote").innerText =
+                "Chuyển khoản đúng số tiền và ghi nội dung: GOAIEDU";
+            document.getElementById("btnPaid").disabled = false;
+            document.getElementById("qrBox").style.display = "block";
+        }
+
+        // Create QR Button Click
+        document.getElementById("btnCreateQR").onclick = function() {
+            const price = document.getElementById("totalPrice").innerText;
+            const amount = price.replace(/\D/g, '');
+            
+            if (!amount || amount === '0') {
+                showError('Không thể tạo QR. Vui lòng kiểm tra lại giá sản phẩm!');
+                return;
+            }
+
+            createQR(amount);
+            this.disabled = true;
+            this.innerHTML = '✓ QR ĐÃ TẠO';
+        };
+
+        // I Have Paid Button Click
+        document.getElementById("btnPaid").onclick = async function() {
+            // Get form data
+            const fullname = document.getElementById('fullname').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            // Validation
+            if (!fullname || !phone) {
+                showError('Vui lòng điền đầy đủ thông tin trước khi xác nhận!');
+                return;
+            }
+
+            if (phone.length < 10) {
+                showError('Số điện thoại không hợp lệ!');
+                return;
+            }
+
+            // Disable button and show loading
+            this.disabled = true;
+            this.innerHTML = '<span class="spinner"></span> Đang xử lý...';
+
+            try {
+                // Send order using order-api.js
+                const result = await sendOrder(productName, productPlan, productPrice, fullname, phone);
+
+                if (!result.success) {
+                    throw new Error(result.error || 'Failed to send order');
+                }
+
+                // Show success modal with order code
+                document.getElementById('displayOrderCode').textContent = result.orderCode;
+                successModal.classList.add('active');
+
+                // Create Zalo message
+                const zaloMessage = `🛒 Đơn hàng đã thanh toán\n\n` +
+                    `📋 Mã đơn: ${result.orderCode}\n` +
+                    `👤 Khách hàng: ${fullname}\n` +
+                    `📱 SĐT: ${phone}\n` +
+                    `📦 Sản phẩm: ${productName}\n` +
+                    `⏰ Gói: ${productPlan}\n` +
+                    `💰 Giá: ${productPrice}\n` +
+                    `✅ Đã chuyển khoản qua VietQR`;
+                
+                const encodedMessage = encodeURIComponent(zaloMessage);
+                const zaloLink = `https://zalo.me/84966861089?text=${encodedMessage}`;
+
+                // Redirect to Zalo after 3 seconds
+                setTimeout(() => {
+                    window.location.href = zaloLink;
+                }, 3000);
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Có lỗi xảy ra. Vui lòng thử lại!');
+                this.disabled = false;
+                this.innerHTML = '✅ TÔI ĐÃ CHUYỂN KHOẢN';
+            }
+        };
     </script>
 </body>
 </html>
