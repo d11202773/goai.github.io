@@ -408,8 +408,8 @@
             <div class="success-icon">🎉</div>
             <h2 class="modal-title">Chúc Mừng!</h2>
             <p class="modal-message">
-                Bạn đã tạo yêu cầu thanh toán thành công.<br>
-                Vui lòng <strong>gửi bill chuyển khoản qua Zalo</strong> để GO AI xác nhận và kích hoạt nhanh nhất.
+                🎉 GO AI đã ghi nhận bạn đã chuyển khoản!<br>
+                Vui lòng <strong>gửi BILL qua Zalo</strong> để xác nhận và kích hoạt nhanh.
             </p>
             <button class="btn-zalo" id="btnZalo">
                 💬 GỬI BILL QUA ZALO
@@ -463,13 +463,35 @@
         const copyMessage = document.getElementById('copyMessage');
 
         btnPaid.addEventListener('click', async function() {
+            // Validate required fields
+            if (!phone || phone === '-') {
+                alert('Thông tin số điện thoại không hợp lệ!');
+                return;
+            }
+
+            if (!email || email === '-') {
+                alert('Thông tin email nâng cấp không hợp lệ!');
+                return;
+            }
+
             // Disable button
             this.disabled = true;
-            this.innerHTML = '⏳ Đang xử lý...';
+            this.innerHTML = '⏳ ĐANG GỬI...';
 
             try {
-                // Send order to Google Apps Script
-                const result = await sendOrder(product, plan, price, phone, email);
+                // Prepare order data for confirmation
+                const orderData = {
+                    orderCode: orderCode,
+                    product: product,
+                    plan: plan,
+                    price: price,
+                    fullname: '', // Not collected in pay.html
+                    phone: phone,
+                    emailUpgrade: email
+                };
+
+                // Confirm paid order and notify via Telegram
+                const result = await confirmPaidAndNotify(orderData);
 
                 if (result.success) {
                     // Show success modal
@@ -477,29 +499,31 @@
 
                     // Prepare Zalo message
                     const zaloMessage = 
-                        `GOAI - Xác nhận thanh toán\n` +
-                        `\nSản phẩm: ${product}` +
-                        `\nGói: ${plan}` +
-                        `\nGiá: ${price}` +
-                        `\nSĐT: ${phone}` +
-                        `\nEmail: ${email}` +
-                        `\nMã đơn: ${orderCode}` +
-                        `\nNội dung CK: GOAIEDU`;
+                        `GOAI - Xác nhận chuyển khoản\n` +
+                        `Mã đơn: ${orderCode}\n` +
+                        `Sản phẩm: ${product}\n` +
+                        `Gói: ${plan}\n` +
+                        `Giá: ${price}\n` +
+                        `Email nâng cấp: ${email}\n` +
+                        `SĐT: ${phone}`;
 
                     // Display copy message
                     copyMessage.textContent = `📋 Tin nhắn mẫu (copy và gửi kèm bill):\n\n${zaloMessage}`;
 
                     // Setup Zalo button
                     btnZalo.onclick = function() {
-                        const zaloLink = `https://zalo.me/84966861089`;
+                        const encodedMessage = encodeURIComponent(zaloMessage);
+                        const zaloLink = `https://zalo.me/84966861089?text=${encodedMessage}`;
                         window.open(zaloLink, '_blank');
                     };
                 } else {
-                    throw new Error(result.error || 'Failed to send order');
+                    throw new Error(result.error || 'Failed to confirm payment');
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('Có lỗi xảy ra khi gửi đơn hàng. Vui lòng thử lại!');
+                alert('Gửi xác nhận thất bại, vui lòng thử lại!');
+            } finally {
+                // Re-enable button
                 this.disabled = false;
                 this.innerHTML = '✅ TÔI ĐÃ CHUYỂN KHOẢN';
             }
