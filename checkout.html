@@ -491,6 +491,7 @@
     </div>
 
     <script src="navbar.js"></script>
+    <script src="order-api.js"></script>
     <script>
         // Get order data from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
@@ -528,41 +529,25 @@
                 return;
             }
 
-            // Generate order code
-            const orderCode = 'GO' + Date.now();
-
-            // Prepare data
-            const orderData = {
-                orderCode: orderCode,
-                product: productName,
-                plan: productPlan,
-                price: productPrice,
-                fullname: fullname,
-                phone: phone
-            };
-
             // Disable button and show loading
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner"></span> Đang xử lý...';
 
             try {
-                // Send to Google Sheets API
-                const response = await fetch('https://script.google.com/macros/s/AKfycbwgk0pBNlmypZUzqCxilsEpDcc9khM3xwFCKUtnCLhVq5nalM89YECEhAFhGsKz410z/exec', {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(orderData)
-                });
+                // Send order using order-api.js
+                const result = await sendOrder(productName, productPlan, productPrice, fullname, phone);
+
+                if (!result.success) {
+                    throw new Error(result.error || 'Failed to send order');
+                }
 
                 // Show success modal with order code
-                document.getElementById('displayOrderCode').textContent = orderCode;
+                document.getElementById('displayOrderCode').textContent = result.orderCode;
                 successModal.classList.add('active');
 
                 // Create Zalo message
                 const zaloMessage = `🛒 Đơn hàng mới\n\n` +
-                    `📋 Mã đơn: ${orderCode}\n` +
+                    `📋 Mã đơn: ${result.orderCode}\n` +
                     `👤 Khách hàng: ${fullname}\n` +
                     `📱 SĐT: ${phone}\n` +
                     `📦 Sản phẩm: ${productName}\n` +
