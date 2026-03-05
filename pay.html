@@ -432,6 +432,7 @@
         const product = urlParams.get('product') || 'Sản phẩm AI';
         const plan = urlParams.get('plan') || '1 tháng';
         const price = urlParams.get('price') || '0đ';
+        const fullname = urlParams.get('fullname') || '-';
         const phone = urlParams.get('phone') || '-';
         const email = urlParams.get('email') || '-';
         const orderCode = urlParams.get('orderCode') || '-';
@@ -485,7 +486,7 @@
                     product: product,
                     plan: plan,
                     price: price,
-                    fullname: '', // Not collected in pay.html
+                    fullname: fullname,
                     phone: phone,
                     emailUpgrade: email
                 };

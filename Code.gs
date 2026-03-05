@@ -5,7 +5,7 @@
  * SETUP INSTRUCTIONS:
  * 1. Copy this code to your Google Apps Script project
  * 2. Create a Google Sheet with columns:
- *    Time | OrderCode | Product | Plan | Price | Fullname | Phone | EmailUpgrade | Status | Page | UserAgent
+ *    Time | OrderCode | Product | Plan | Price | Fullname | Phone | EmailUpgrade | Status
  * 3. Set Script Properties (File > Project properties > Script properties):
  *    - TELEGRAM_BOT_TOKEN: 8793516171:AAFznxROzZrRnSI6vDZfAmcegz4LzqL4Js8
  *    - TELEGRAM_CHAT_ID: 695944248
@@ -25,8 +25,8 @@ function getScriptProperty(key) {
 // doPost handler - receives POST requests from website
 function doPost(e) {
   try {
-    // Parse JSON payload
-    const data = JSON.parse(e.postData.contents);
+    // Parse form-urlencoded data
+    const data = e.parameter || {};
     
     Logger.log('Received data: ' + JSON.stringify(data));
     
@@ -60,9 +60,7 @@ function doPost(e) {
       data.fullname || '',            // Fullname
       data.phone || '',               // Phone
       data.emailUpgrade || '',        // EmailUpgrade
-      'PAID_CONFIRM',                 // Status
-      data.page || '',                // Page URL
-      data.userAgent || ''            // UserAgent
+      'PAID_CONFIRM'                  // Status
     ];
     
     // Append to sheet
@@ -115,9 +113,9 @@ function sendTelegramNotification(data) {
     'Sản phẩm: ' + (data.product || 'N/A') + '\n' +
     'Gói: ' + (data.plan || 'N/A') + '\n' +
     'Giá: ' + (data.price || 'N/A') + '\n' +
+    'Họ tên: ' + (data.fullname || 'N/A') + '\n' +
     'Email nâng cấp: ' + (data.emailUpgrade || 'N/A') + '\n' +
-    'SĐT: ' + (data.phone || 'N/A') + '\n' +
-    'Link: ' + (data.page || 'N/A');
+    'SĐT: ' + (data.phone || 'N/A');
   
   // Telegram API URL
   const telegramUrl = 'https://api.telegram.org/bot' + botToken + '/sendMessage';
@@ -167,10 +165,9 @@ function testSetup() {
         product: 'Test Product',
         plan: 'Test Plan',
         price: '100.000đ',
+        fullname: 'Test User',
         emailUpgrade: 'test@example.com',
-        phone: '0123456789',
-        page: 'https://test.com',
-        userAgent: 'Test Browser'
+        phone: '0123456789'
       };
       sendTelegramNotification(testData);
       Logger.log('✓ Telegram test message sent!');
