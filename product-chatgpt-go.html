@@ -341,10 +341,9 @@
         });
 
         function updateBuyLink() {
-            const message = `Đăng ký ChatGPT GO\nThời hạn: ${selectedDuration}\nGiá: ${selectedPrice}`;
-            const encodedMessage = encodeURIComponent(message);
-            const zaloLink = `https://zalo.me/84966861089?text=${encodedMessage}`;
-            buyButton.href = zaloLink;
+            const productName = 'ChatGPT GO';
+            const checkoutUrl = `checkout.html?product=${encodeURIComponent(productName)}&plan=${encodeURIComponent(selectedDuration)}&price=${encodeURIComponent(selectedPrice)}`;
+            buyButton.href = checkoutUrl;
         }
 
         // Initialize buy link
