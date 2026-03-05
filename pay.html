@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Thanh Toán - GO AI</title>
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0B0B0F;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #F6C453;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .payment-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .payment-card {
+            background: #12131A;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(246, 196, 83, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #F6C453;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .qr-container {
+            text-align: center;
+        }
+
+        .qr-image {
+            max-width: 100%;
+            width: 350px;
+            height: auto;
+            border-radius: 15px;
+            margin: 0 auto 1.5rem;
+            background: #fff;
+            padding: 15px;
+            display: block;
+        }
+
+        .qr-note {
+            background: rgba(246, 196, 83, 0.1);
+            border: 2px solid rgba(246, 196, 83, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            color: #F6C453;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .order-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            background: #1A1B23;
+            border-radius: 12px;
+            border: 1px solid #2A2B33;
+        }
+
+        .info-label {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .info-value {
+            color: #fff;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .info-value.highlight {
+            color: #F6C453;
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .btn-paid {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            border: none;
+            border-radius: 15px;
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-paid:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-paid:active {
+            transform: translateY(0);
+        }
+
+        /* Success Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #12131A;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+            animation: modalSlideIn 0.3s ease;
+            border: 2px solid rgba(246, 196, 83, 0.3);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 3rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #F6C453;
+            margin-bottom: 1rem;
+        }
+
+        .modal-message {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .btn-zalo {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #F6C453 0%, #E5A800 100%);
+            border: none;
+            border-radius: 15px;
+            color: #0B0B0F;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(246, 196, 83, 0.3);
+        }
+
+        .btn-zalo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(246, 196, 83, 0.5);
+        }
+
+        .btn-zalo:active {
+            transform: translateY(0);
+        }
+
+        .copy-message {
+            background: rgba(246, 196, 83, 0.1);
+            border: 1px solid rgba(246, 196, 83, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.6;
+            text-align: left;
+            white-space: pre-line;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .payment-layout {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .payment-card {
+                padding: 1.5rem;
+            }
+
+            .card-title {
+                font-size: 1.3rem;
+            }
+
+            .qr-image {
+                width: 280px;
+            }
+
+            .modal-content {
+                padding: 2rem;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <span class="logo-text">GO <span class="logo-highlight">AI</span></span>
+            </a>
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item has-dropdown">
+                    <a href="#" class="navbar-link">
+                        Sản Phẩm
+                        <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="product-chatgpt-plus.html" class="dropdown-link">ChatGPT Plus</a></li>
+                        <li><a href="product-chatgpt-business.html" class="dropdown-link">ChatGPT Business</a></li>
+                        <li><a href="product-chatgpt-go.html" class="dropdown-link">ChatGPT GO</a></li>
+                        <li><a href="product-google-ai-pro.html" class="dropdown-link">Google AI Pro 2TB</a></li>
+                        <li><a href="product-gemini-ultra.html" class="dropdown-link">Gemini Ultra 45.000 Credit</a></li>
+                        <li><a href="product-canva-pro.html" class="dropdown-link">Canva Pro</a></li>
+                        <li><a href="product-capcut-pro.html" class="dropdown-link">CapCut Pro</a></li>
+                        <li><a href="product-github-pro.html" class="dropdown-link">GitHub Pro</a></li>
+                        <li><a href="product-youtube.html" class="dropdown-link">YouTube Premium</a></li>
+                    </ul>
+                </li>
+                <li class="navbar-item">
+                    <a href="hoc-nghe-ai.html" class="navbar-link">Học Nghề AI</a>
+                </li>
+                <li class="navbar-item has-dropdown">
+                    <a href="#" class="navbar-link">
+                        Liên Hệ
+                        <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://zalo.me/84966861089" class="dropdown-link" target="_blank">Zalo</a></li>
+                        <li><a href="https://t.me/Victory68686" class="dropdown-link" target="_blank">Telegram</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">💳 QR Thanh Toán</h1>
+            <p class="page-subtitle">Quét mã QR để hoàn tất thanh toán</p>
+        </div>
+
+        <div class="payment-layout">
+            <!-- Left Column: QR Code -->
+            <div class="payment-card">
+                <h2 class="card-title">📱 QR THANH TOÁN</h2>
+                <div class="qr-container">
+                    <img id="qrImg" class="qr-image" alt="QR thanh toán">
+                    <p class="qr-note">
+                        💰 Chuyển khoản đúng số tiền<br>
+                        📝 Ghi nội dung: <strong>GOAIEDU</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column: Order Information -->
+            <div class="payment-card">
+                <h2 class="card-title">📋 THÔNG TIN ĐỐN HÀNG</h2>
+                <div class="order-info">
+                    <div class="info-row">
+                        <span class="info-label">Sản phẩm:</span>
+                        <span class="info-value" id="displayProduct">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Gói:</span>
+                        <span class="info-value" id="displayPlan">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Giá:</span>
+                        <span class="info-value highlight" id="displayPrice">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Số điện thoại:</span>
+                        <span class="info-value" id="displayPhone">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Email cần nâng cấp:</span>
+                        <span class="info-value" id="displayEmail">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Mã đơn hàng:</span>
+                        <span class="info-value" id="displayOrderCode">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-paid" id="btnPaid">
+            ✅ TÔI ĐÃ CHUYỂN KHOẢN
+        </button>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="success-icon">🎉</div>
+            <h2 class="modal-title">Chúc Mừng!</h2>
+            <p class="modal-message">
+                Bạn đã tạo yêu cầu thanh toán thành công.<br>
+                Vui lòng <strong>gửi bill chuyển khoản qua Zalo</strong> để GO AI xác nhận và kích hoạt nhanh nhất.
+            </p>
+            <button class="btn-zalo" id="btnZalo">
+                💬 GỬI BILL QUA ZALO
+            </button>
+            <div class="copy-message" id="copyMessage"></div>
+        </div>
+    </div>
+
+    <script src="navbar.js"></script>
+    <script src="order-api.js"></script>
+    <script>
+        // VietQR Configuration
+        const BANK_CODE = "TCB";
+        const ACCOUNT_NO = "19037360970029";
+        const ACCOUNT_NAME = "VAN TIEN CONG";
+        const TRANSFER_CONTENT = "GOAIEDU";
+
+        // Get data from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const product = urlParams.get('product') || 'Sản phẩm AI';
+        const plan = urlParams.get('plan') || '1 tháng';
+        const price = urlParams.get('price') || '0đ';
+        const phone = urlParams.get('phone') || '-';
+        const email = urlParams.get('email') || '-';
+        const orderCode = urlParams.get('orderCode') || '-';
+
+        // Display order information
+        document.getElementById('displayProduct').textContent = product;
+        document.getElementById('displayPlan').textContent = plan;
+        document.getElementById('displayPrice').textContent = price;
+        document.getElementById('displayPhone').textContent = phone;
+        document.getElementById('displayEmail').textContent = email;
+        document.getElementById('displayOrderCode').textContent = orderCode;
+
+        // Generate QR Code
+        function createQR(amount) {
+            const qrUrl = `https://img.vietqr.io/image/${BANK_CODE}-${ACCOUNT_NO}-compact2.png?amount=${amount}&addInfo=${encodeURIComponent(TRANSFER_CONTENT)}&accountName=${encodeURIComponent(ACCOUNT_NAME)}`;
+            document.getElementById('qrImg').src = qrUrl;
+        }
+
+        // Extract amount from price and create QR
+        const amount = price.replace(/\D/g, '');
+        if (amount && amount !== '0') {
+            createQR(amount);
+        }
+
+        // Handle "I Have Paid" button
+        const btnPaid = document.getElementById('btnPaid');
+        const successModal = document.getElementById('successModal');
+        const btnZalo = document.getElementById('btnZalo');
+        const copyMessage = document.getElementById('copyMessage');
+
+        btnPaid.addEventListener('click', async function() {
+            // Disable button
+            this.disabled = true;
+            this.innerHTML = '⏳ Đang xử lý...';
+
+            try {
+                // Send order to Google Apps Script
+                const result = await sendOrder(product, plan, price, phone, email);
+
+                if (result.success) {
+                    // Show success modal
+                    successModal.classList.add('active');
+
+                    // Prepare Zalo message
+                    const zaloMessage = 
+                        `GOAI - Xác nhận thanh toán\n` +
+                        `\nSản phẩm: ${product}` +
+                        `\nGói: ${plan}` +
+                        `\nGiá: ${price}` +
+                        `\nSĐT: ${phone}` +
+                        `\nEmail: ${email}` +
+                        `\nMã đơn: ${orderCode}` +
+                        `\nNội dung CK: GOAIEDU`;
+
+                    // Display copy message
+                    copyMessage.textContent = `📋 Tin nhắn mẫu (copy và gửi kèm bill):\n\n${zaloMessage}`;
+
+                    // Setup Zalo button
+                    btnZalo.onclick = function() {
+                        const zaloLink = `https://zalo.me/84966861089`;
+                        window.open(zaloLink, '_blank');
+                    };
+                } else {
+                    throw new Error(result.error || 'Failed to send order');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra khi gửi đơn hàng. Vui lòng thử lại!');
+                this.disabled = false;
+                this.innerHTML = '✅ TÔI ĐÃ CHUYỂN KHOẢN';
+            }
+        });
+
+        // Validate URL parameters
+        if (!product || !price || !phone || !email || !orderCode) {
+            alert('Thông tin đơn hàng không đầy đủ. Vui lòng quay lại trang checkout!');
+            window.location.href = 'checkout.html';
+        }
+    </script>
+</body>
+</html>

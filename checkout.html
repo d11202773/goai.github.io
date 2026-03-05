@@ -550,6 +550,17 @@
                             required
                         >
                     </div>
+                    <div class="form-group">
+                        <label class="form-label" for="upgradeEmail">Email cần nâng cấp *</label>
+                        <input 
+                            type="email" 
+                            id="upgradeEmail" 
+                            name="upgradeEmail" 
+                            class="form-input" 
+                            placeholder="vd: yourmail@gmail.com"
+                            required
+                        >
+                    </div>
                 </form>
             </div>
 
@@ -575,59 +586,16 @@
                         </div>
                     </div>
 
-                    <!-- QR Payment Box -->
-                    <div class="qr-box" id="qrBox" style="display: none;">
-                        <h3>💳 QR THANH TOÁN</h3>
-                        <img id="qrImg" alt="QR thanh toán" style="display: none;">
-                        <p class="qr-note" id="qrNote"></p>
-                    </div>
-
-                    <button type="button" class="btn-create-qr" id="btnCreateQR">
-                        📱 TẠO QR THANH TOÁN
-                    </button>
-
-                    <button type="button" class="btn-paid" id="btnPaid" disabled>
-                        ✅ TÔI ĐÃ CHUYỂN KHOẢN
-                    </button>
-
-                    <div class="qr-divider">
-                        <span>HOẶC</span>
-                    </div>
-
-                    <button type="submit" class="submit-btn" id="submitBtn" form="checkoutForm">
-                        ⚡ ĐẶT HÀNG VÀ LIÊN HỆ ZALO
+                    <button type="button" class="submit-btn" id="btnPay">
+                        ⚡ THANH TOÁN
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Success Modal -->
-    <div class="modal" id="successModal">
-        <div class="modal-content">
-            <div class="success-icon">✓</div>
-            <h2 class="modal-title">Đặt Hàng Thành Công!</h2>
-            <div class="order-code-display">
-                <div class="order-code-label">Mã đơn hàng của bạn:</div>
-                <div class="order-code-value" id="displayOrderCode">-</div>
-            </div>
-            <p class="modal-message">
-                Vui lòng liên hệ Zalo để hoàn tất thanh toán.<br>
-                Chúng tôi sẽ xử lý đơn hàng của bạn ngay lập tức!
-            </p>
-            <p class="modal-redirect">Đang chuyển đến Zalo...</p>
-        </div>
-    </div>
-
     <script src="navbar.js"></script>
-    <script src="order-api.js"></script>
     <script>
-        // VietQR Payment Configuration
-        const BANK_CODE = "TCB";
-        const ACCOUNT_NO = "19037360970029";
-        const ACCOUNT_NAME = "VAN TIEN CONG";
-        const TRANSFER_CONTENT = "GOAIEDU";
-
         // Get order data from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const productName = urlParams.get('product') || 'Sản phẩm AI';
@@ -640,71 +608,22 @@
         document.getElementById('productPrice').textContent = productPrice;
         document.getElementById('totalPrice').textContent = productPrice;
 
-        // Form submission
-        const form = document.getElementById('checkoutForm');
-        const submitBtn = document.getElementById('submitBtn');
+        // Elements
+        const btnPay = document.getElementById('btnPay');
         const errorMessage = document.getElementById('errorMessage');
-        const successModal = document.getElementById('successModal');
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        // Generate Order Code
+        function generateOrderCode() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const timestamp = Date.now();
+            const last6 = String(timestamp).slice(-6);
+            return `GOAI-${year}${month}${day}-${last6}`;
+        }
 
-            // Get form data
-            const fullname = document.getElementById('fullname').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-
-            // Validation
-            if (!fullname || !phone) {
-                showError('Vui lòng điền đầy đủ thông tin!');
-                return;
-            }
-
-            if (phone.length < 10) {
-                showError('Số điện thoại không hợp lệ!');
-                return;
-            }
-
-            // Disable button and show loading
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="spinner"></span> Đang xử lý...';
-
-            try {
-                // Send order using order-api.js
-                const result = await sendOrder(productName, productPlan, productPrice, fullname, phone);
-
-                if (!result.success) {
-                    throw new Error(result.error || 'Failed to send order');
-                }
-
-                // Show success modal with order code
-                document.getElementById('displayOrderCode').textContent = result.orderCode;
-                successModal.classList.add('active');
-
-                // Create Zalo message
-                const zaloMessage = `🛒 Đơn hàng mới\n\n` +
-                    `📋 Mã đơn: ${result.orderCode}\n` +
-                    `👤 Khách hàng: ${fullname}\n` +
-                    `📱 SĐT: ${phone}\n` +
-                    `📦 Sản phẩm: ${productName}\n` +
-                    `⏰ Gói: ${productPlan}\n` +
-                    `💰 Giá: ${productPrice}`;
-                
-                const encodedMessage = encodeURIComponent(zaloMessage);
-                const zaloLink = `https://zalo.me/84966861089?text=${encodedMessage}`;
-
-                // Redirect to Zalo after 3 seconds
-                setTimeout(() => {
-                    window.location.href = zaloLink;
-                }, 3000);
-
-            } catch (error) {
-                console.error('Error:', error);
-                showError('Có lỗi xảy ra. Vui lòng thử lại!');
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '⚡ MUA NGAY';
-            }
-        });
-
+        // Show Error Message
         function showError(message) {
             errorMessage.textContent = message;
             errorMessage.classList.add('show');
@@ -713,53 +632,16 @@
             }, 5000);
         }
 
-        // Validate if product data exists
-        if (!urlParams.get('product') || !urlParams.get('price')) {
-            showError('Thông tin sản phẩm không hợp lệ. Vui lòng quay lại trang sản phẩm!');
-            submitBtn.disabled = true;
-        }
-
-        // QR Payment Functions
-        function createQR(amount) {
-            const qrUrl = "https://img.vietqr.io/image/" +
-                BANK_CODE + "-" + ACCOUNT_NO +
-                "-compact2.png?amount=" +
-                amount +
-                "&addInfo=" + encodeURIComponent(TRANSFER_CONTENT) +
-                "&accountName=" + encodeURIComponent(ACCOUNT_NAME);
-
-            document.getElementById("qrImg").src = qrUrl;
-            document.getElementById("qrImg").style.display = "block";
-            document.getElementById("qrNote").innerText =
-                "Chuyển khoản đúng số tiền và ghi nội dung: GOAIEDU";
-            document.getElementById("btnPaid").disabled = false;
-            document.getElementById("qrBox").style.display = "block";
-        }
-
-        // Create QR Button Click
-        document.getElementById("btnCreateQR").onclick = function() {
-            const price = document.getElementById("totalPrice").innerText;
-            const amount = price.replace(/\D/g, '');
-            
-            if (!amount || amount === '0') {
-                showError('Không thể tạo QR. Vui lòng kiểm tra lại giá sản phẩm!');
-                return;
-            }
-
-            createQR(amount);
-            this.disabled = true;
-            this.innerHTML = '✓ QR ĐÃ TẠO';
-        };
-
-        // I Have Paid Button Click
-        document.getElementById("btnPaid").onclick = async function() {
+        // Payment Button Click
+        btnPay.addEventListener('click', function() {
             // Get form data
             const fullname = document.getElementById('fullname').value.trim();
             const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('upgradeEmail').value.trim();
 
             // Validation
-            if (!fullname || !phone) {
-                showError('Vui lòng điền đầy đủ thông tin trước khi xác nhận!');
+            if (!phone || !email) {
+                showError('Vui lòng điền đầy đủ Số điện thoại và Email!');
                 return;
             }
 
@@ -768,47 +650,32 @@
                 return;
             }
 
-            // Disable button and show loading
-            this.disabled = true;
-            this.innerHTML = '<span class="spinner"></span> Đang xử lý...';
-
-            try {
-                // Send order using order-api.js
-                const result = await sendOrder(productName, productPlan, productPrice, fullname, phone);
-
-                if (!result.success) {
-                    throw new Error(result.error || 'Failed to send order');
-                }
-
-                // Show success modal with order code
-                document.getElementById('displayOrderCode').textContent = result.orderCode;
-                successModal.classList.add('active');
-
-                // Create Zalo message
-                const zaloMessage = `🛒 Đơn hàng đã thanh toán\n\n` +
-                    `📋 Mã đơn: ${result.orderCode}\n` +
-                    `👤 Khách hàng: ${fullname}\n` +
-                    `📱 SĐT: ${phone}\n` +
-                    `📦 Sản phẩm: ${productName}\n` +
-                    `⏰ Gói: ${productPlan}\n` +
-                    `💰 Giá: ${productPrice}\n` +
-                    `✅ Đã chuyển khoản qua VietQR`;
-                
-                const encodedMessage = encodeURIComponent(zaloMessage);
-                const zaloLink = `https://zalo.me/84966861089?text=${encodedMessage}`;
-
-                // Redirect to Zalo after 3 seconds
-                setTimeout(() => {
-                    window.location.href = zaloLink;
-                }, 3000);
-
-            } catch (error) {
-                console.error('Error:', error);
-                showError('Có lỗi xảy ra. Vui lòng thử lại!');
-                this.disabled = false;
-                this.innerHTML = '✅ TÔI ĐÃ CHUYỂN KHOẢN';
+            if (!email.includes('@')) {
+                showError('Email không hợp lệ!');
+                return;
             }
-        };
+
+            // Generate order code
+            const orderCode = generateOrderCode();
+
+            // Build pay.html URL with query params
+            const payUrl = new URL('pay.html', window.location.href);
+            payUrl.searchParams.set('product', productName);
+            payUrl.searchParams.set('plan', productPlan);
+            payUrl.searchParams.set('price', productPrice);
+            payUrl.searchParams.set('phone', phone);
+            payUrl.searchParams.set('email', email);
+            payUrl.searchParams.set('orderCode', orderCode);
+
+            // Redirect to payment page
+            window.location.href = payUrl.toString();
+        });
+
+        // Validate if product data exists
+        if (!urlParams.get('product') || !urlParams.get('price')) {
+            showError('Thông tin sản phẩm không hợp lệ. Vui lòng quay lại trang sản phẩm!');
+            btnPay.disabled = true;
+        }
     </script>
 </body>
 </html>
