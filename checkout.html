@@ -103,6 +103,41 @@
             gap: 1.5rem;
         }
 
+        .promo-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #1A1B23;
+            border: 1px solid #2A2B33;
+            border-radius: 12px;
+        }
+
+        .promo-input-group {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        .promo-btn {
+            padding: 0.9rem 1rem;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #F6C453 0%, #E5A800 100%);
+            color: #0B0B0F;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .promo-status {
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+
+        .promo-status.success {
+            color: #34D399;
+        }
+
         .order-item {
             padding: 1.5rem;
             background: #1A1B23;
@@ -454,6 +489,10 @@
                 font-size: 1.3rem;
             }
 
+            .promo-input-group {
+                grid-template-columns: 1fr;
+            }
+
             .modal-content {
                 padding: 2rem;
             }
@@ -504,6 +543,9 @@
                 </li>
                 <li class="navbar-item">
                     <a href="hoc-nghe-ai.html" class="navbar-link">Học Nghề AI</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="affiliate.html" class="navbar-link">Affiliate</a>
                 </li>
                 <li class="navbar-item has-dropdown">
                     <a href="#" class="navbar-link">
@@ -585,10 +627,28 @@
                                 <span class="detail-label">Giá:</span>
                                 <span class="detail-value" id="productPrice">-</span>
                             </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Giảm giá:</span>
+                                <span class="detail-value" id="discountAmount">0đ</span>
+                            </div>
                             <div class="detail-row total-row">
                                 <span class="total-label">Tổng cộng:</span>
                                 <span class="total-value" id="totalPrice">-</span>
                             </div>
+                        </div>
+
+                        <div class="promo-box">
+                            <label class="form-label" for="promoCode">Mã giảm giá</label>
+                            <div class="promo-input-group">
+                                <input
+                                    type="text"
+                                    id="promoCode"
+                                    class="form-input"
+                                    placeholder="Nhập mã GIAMGIAxxxxxx"
+                                >
+                                <button type="button" class="promo-btn" id="btnApplyPromo">ÁP DỤNG</button>
+                            </div>
+                            <p class="promo-status" id="promoStatus"></p>
                         </div>
                     </div>
 
@@ -608,15 +668,86 @@
         const productPlan = urlParams.get('plan') || '1 tháng';
         const productPrice = urlParams.get('price') || '0đ';
 
+        function parseVndToNumber(value) {
+            return Number(String(value || '').replace(/\D/g, '')) || 0;
+        }
+
+        function formatVnd(value) {
+            return Number(value || 0).toLocaleString('vi-VN') + 'đ';
+        }
+
+        const originalPriceNumber = parseVndToNumber(productPrice);
+        let currentPromoCode = '';
+        let discountedPriceNumber = originalPriceNumber;
+
         // Display order information
         document.getElementById('productName').textContent = productName;
         document.getElementById('productPlan').textContent = productPlan;
-        document.getElementById('productPrice').textContent = productPrice;
-        document.getElementById('totalPrice').textContent = productPrice;
+        document.getElementById('productPrice').textContent = formatVnd(originalPriceNumber);
+        document.getElementById('totalPrice').textContent = formatVnd(originalPriceNumber);
 
         // Elements
         const btnPay = document.getElementById('btnPay');
         const errorMessage = document.getElementById('errorMessage');
+        const promoCodeInput = document.getElementById('promoCode');
+        const btnApplyPromo = document.getElementById('btnApplyPromo');
+        const promoStatus = document.getElementById('promoStatus');
+        const discountAmountEl = document.getElementById('discountAmount');
+        const totalPriceEl = document.getElementById('totalPrice');
+
+        function isValidPromoCode(code) {
+            return /^GIAMGIA\d{6}$/.test(code);
+        }
+
+        function applyPromoCode(code, showMessage = true) {
+            const normalizedCode = String(code || '').trim().toUpperCase();
+
+            if (!isValidPromoCode(normalizedCode)) {
+                if (showMessage) {
+                    promoStatus.textContent = 'Mã không hợp lệ. Vui lòng nhập dạng GIAMGIAXXXXXX';
+                    promoStatus.classList.remove('success');
+                }
+                currentPromoCode = '';
+                discountedPriceNumber = originalPriceNumber;
+                discountAmountEl.textContent = '0đ';
+                totalPriceEl.textContent = formatVnd(originalPriceNumber);
+                return false;
+            }
+
+            currentPromoCode = normalizedCode;
+            discountedPriceNumber = Math.round(originalPriceNumber * 0.95);
+            const discountAmount = originalPriceNumber - discountedPriceNumber;
+            discountAmountEl.textContent = '-' + formatVnd(discountAmount);
+            totalPriceEl.textContent = formatVnd(discountedPriceNumber);
+            localStorage.setItem('affiliatePromoCode', normalizedCode);
+
+            if (showMessage) {
+                promoStatus.textContent = `Áp dụng mã thành công: ${normalizedCode}`;
+                promoStatus.classList.add('success');
+            }
+
+            return true;
+        }
+
+        const promoCodeFromUrl = (urlParams.get('code') || '').toUpperCase();
+        if (promoCodeFromUrl && isValidPromoCode(promoCodeFromUrl)) {
+            localStorage.setItem('affiliatePromoCode', promoCodeFromUrl);
+        }
+
+        const savedPromoCode = (localStorage.getItem('affiliatePromoCode') || '').toUpperCase();
+        if (savedPromoCode) {
+            promoCodeInput.value = savedPromoCode;
+            applyPromoCode(savedPromoCode, true);
+        }
+
+        btnApplyPromo.addEventListener('click', function () {
+            applyPromoCode(promoCodeInput.value, true);
+        });
+
+        promoCodeInput.addEventListener('input', function () {
+            promoStatus.textContent = '';
+            promoStatus.classList.remove('success');
+        });
 
         // Generate Order Code
         function generateOrderCode() {
@@ -668,7 +799,10 @@
             const payUrl = new URL('pay.html', window.location.href);
             payUrl.searchParams.set('product', productName);
             payUrl.searchParams.set('plan', productPlan);
-            payUrl.searchParams.set('price', productPrice);
+            payUrl.searchParams.set('price', formatVnd(discountedPriceNumber));
+            payUrl.searchParams.set('originalPrice', formatVnd(originalPriceNumber));
+            payUrl.searchParams.set('discountedPrice', formatVnd(discountedPriceNumber));
+            payUrl.searchParams.set('promoCode', currentPromoCode || savedPromoCode || '');
             payUrl.searchParams.set('fullname', fullname);
             payUrl.searchParams.set('phone', phone);
             payUrl.searchParams.set('email', email);

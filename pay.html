@@ -340,6 +340,9 @@
                 <li class="navbar-item">
                     <a href="hoc-nghe-ai.html" class="navbar-link">Học Nghề AI</a>
                 </li>
+                <li class="navbar-item">
+                    <a href="affiliate.html" class="navbar-link">Affiliate</a>
+                </li>
                 <li class="navbar-item has-dropdown">
                     <a href="#" class="navbar-link">
                         Liên Hệ
@@ -384,8 +387,16 @@
                         <span class="info-value" id="displayPlan">-</span>
                     </div>
                     <div class="info-row">
-                        <span class="info-label">Giá:</span>
-                        <span class="info-value highlight" id="displayPrice">-</span>
+                        <span class="info-label">Giá gốc:</span>
+                        <span class="info-value" id="displayOriginalPrice">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Giá sau giảm:</span>
+                        <span class="info-value highlight" id="displayDiscountedPrice">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Mã giảm giá:</span>
+                        <span class="info-value" id="displayPromoCode">-</span>
                     </div>
                     <div class="info-row">
                         <span class="info-label">Số điện thoại:</span>
@@ -442,11 +453,37 @@
         const phone = urlParams.get('phone') || '-';
         const email = urlParams.get('email') || '-';
         const orderCode = urlParams.get('orderCode') || '-';
+        const originalPrice = urlParams.get('originalPrice') || price;
+        const discountedPrice = urlParams.get('discountedPrice') || price;
+        const promoCode = (urlParams.get('promoCode') || localStorage.getItem('affiliatePromoCode') || '').toUpperCase();
+
+        function parseVndToNumber(value) {
+            return Number(String(value || '').replace(/\D/g, '')) || 0;
+        }
+
+        function formatVnd(value) {
+            return Number(value || 0).toLocaleString('vi-VN') + 'đ';
+        }
+
+        const originalPriceNumber = parseVndToNumber(originalPrice);
+        const discountedPriceNumber = parseVndToNumber(discountedPrice || price);
+        const commissionNumber = Math.round(discountedPriceNumber * 0.2);
+
+        const ownerMapRaw = localStorage.getItem('affiliateOwnerMap');
+        let ownerMap = {};
+        try {
+            ownerMap = ownerMapRaw ? JSON.parse(ownerMapRaw) : {};
+        } catch (e) {
+            ownerMap = {};
+        }
+        const affiliateOwnerName = promoCode && ownerMap[promoCode] ? ownerMap[promoCode] : 'Chưa xác định';
 
         // Display order information
         document.getElementById('displayProduct').textContent = product;
         document.getElementById('displayPlan').textContent = plan;
-        document.getElementById('displayPrice').textContent = price;
+        document.getElementById('displayOriginalPrice').textContent = formatVnd(originalPriceNumber);
+        document.getElementById('displayDiscountedPrice').textContent = formatVnd(discountedPriceNumber);
+        document.getElementById('displayPromoCode').textContent = promoCode || '-';
         document.getElementById('displayPhone').textContent = phone;
         document.getElementById('displayEmail').textContent = email;
         document.getElementById('displayOrderCode').textContent = orderCode;
@@ -491,10 +528,15 @@
                     orderCode: orderCode,
                     product: product,
                     plan: plan,
-                    price: price,
+                    price: formatVnd(discountedPriceNumber),
+                    originalPrice: formatVnd(originalPriceNumber),
+                    discountedPrice: formatVnd(discountedPriceNumber),
                     fullname: fullname,
                     phone: phone,
-                    emailUpgrade: email
+                    emailUpgrade: email,
+                    promoCode: promoCode || '-',
+                    affiliateOwnerName: affiliateOwnerName,
+                    commission: formatVnd(commissionNumber)
                 };
 
                 console.log('🔔 User clicked "TÔI ĐÃ CHUYỂN KHOẢN" button');
@@ -517,7 +559,11 @@
                         `Mã đơn: ${orderCode}\n` +
                         `Sản phẩm: ${product}\n` +
                         `Gói: ${plan}\n` +
-                        `Giá: ${price}\n` +
+                        `Giá gốc: ${formatVnd(originalPriceNumber)}\n` +
+                        `Giá sau giảm: ${formatVnd(discountedPriceNumber)}\n` +
+                        `Mã giảm giá: ${promoCode || '-'}\n` +
+                        `CTV: ${affiliateOwnerName}\n` +
+                        `Hoa hồng dự kiến: ${formatVnd(commissionNumber)}\n` +
                         `Email nâng cấp: ${email}\n` +
                         `SĐT: ${phone}`;
 

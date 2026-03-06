@@ -13,6 +13,20 @@ const API_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxvXGAtB3GtrExGBJq
  */
 async function confirmPaidAndNotify(order) {
     try {
+        const paidTelegramMessage =
+            `💰 ĐƠN HÀNG MỚI\n\n` +
+            `Mã đơn: ${order.orderCode || '-'}\n` +
+            `Sản phẩm: ${order.product || '-'}\n` +
+            `Gói: ${order.plan || '-'}\n` +
+            `Giá gốc: ${order.originalPrice || order.price || '-'}\n` +
+            `Giá sau giảm: ${order.discountedPrice || order.price || '-'}\n\n` +
+            `Khách: ${order.fullname || '-'}\n` +
+            `Email nâng cấp: ${order.emailUpgrade || '-'}\n` +
+            `SĐT: ${order.phone || '-'}\n\n` +
+            `Mã giảm giá: ${order.promoCode || '-'}\n` +
+            `CTV: ${order.affiliateOwnerName || 'Chưa xác định'}\n` +
+            `Hoa hồng dự kiến: ${order.commission || '-'}`;
+
         // Prepare form data (application/x-www-form-urlencoded)
         const formData = new URLSearchParams({
             action: 'PAID_CONFIRM',
@@ -20,9 +34,15 @@ async function confirmPaidAndNotify(order) {
             product: order.product || '',
             plan: order.plan || '',
             price: order.price || '',
+            originalPrice: order.originalPrice || '',
+            discountedPrice: order.discountedPrice || '',
             fullname: order.fullname || '',
             phone: order.phone || '',
-            emailUpgrade: order.emailUpgrade || ''
+            emailUpgrade: order.emailUpgrade || '',
+            promoCode: order.promoCode || '',
+            affiliateOwnerName: order.affiliateOwnerName || 'Chưa xác định',
+            commission: order.commission || '',
+            telegramMessage: paidTelegramMessage
         });
 
         console.log('==================== PAYMENT CONFIRMATION ====================');
@@ -35,9 +55,14 @@ async function confirmPaidAndNotify(order) {
             product: order.product,
             plan: order.plan,
             price: order.price,
+            originalPrice: order.originalPrice,
+            discountedPrice: order.discountedPrice,
             fullname: order.fullname,
             phone: order.phone,
-            emailUpgrade: order.emailUpgrade
+            emailUpgrade: order.emailUpgrade,
+            promoCode: order.promoCode,
+            affiliateOwnerName: order.affiliateOwnerName,
+            commission: order.commission
         });
 
         // Send POST request to Google Apps Script
@@ -90,6 +115,65 @@ async function confirmPaidAndNotify(order) {
         console.log('==============================================================');
         
         // Return structured error
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Register affiliate and notify Telegram via Apps Script endpoint
+ * @param {object} affiliate - Affiliate registration data
+ * @returns {Promise<object>} Response data
+ */
+async function registerAffiliateAndNotify(affiliate) {
+    try {
+        const formData = new URLSearchParams({
+            action: 'AFFILIATE_REGISTER',
+            fullname: affiliate.fullname || '',
+            email: affiliate.email || '',
+            phone: affiliate.phone || '',
+            bankAccount: affiliate.bankAccount || '',
+            affiliateCode: affiliate.affiliateCode || '',
+            affiliateLink: affiliate.affiliateLink || '',
+            telegramMessage:
+                `📢 ĐĂNG KÝ AFFILIATE MỚI\n\n` +
+                `Họ tên: ${affiliate.fullname || '-'}\n` +
+                `Email: ${affiliate.email || '-'}\n` +
+                `SĐT: ${affiliate.phone || '-'}\n` +
+                `STK nhận hoa hồng: ${affiliate.bankAccount || '-'}\n\n` +
+                `Mã giảm giá: ${affiliate.affiliateCode || '-'}\n` +
+                `Link affiliate:\n${affiliate.affiliateLink || '-'}`
+        });
+
+        const response = await fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData.toString()
+        });
+
+        const responseText = await response.text();
+
+        if (response.status !== 200) {
+            throw new Error(`HTTP ${response.status}: ${responseText}`);
+        }
+
+        let jsonData;
+        try {
+            jsonData = JSON.parse(responseText);
+        } catch (e) {
+            throw new Error('Server returned invalid JSON: ' + responseText);
+        }
+
+        if (jsonData.ok === true) {
+            return { success: true };
+        }
+
+        throw new Error(jsonData.error || 'Unknown server error');
+    } catch (error) {
         return {
             success: false,
             error: error.message
