@@ -8,7 +8,7 @@ const products = [
         tag: 'SALE',
         priceOriginal: 550000,
         priceCurrent: 220000,
-        sold: '4.1k+'
+        sold: '389+'
     },
     {
         id: 'youtube-premium',
@@ -18,7 +18,7 @@ const products = [
         tag: 'BEST',
         priceOriginal: 105000,
         priceCurrent: 70000,
-        sold: '6.4k+'
+        sold: '478+'
     },
     {
         id: 'capcut-pro',
@@ -28,7 +28,7 @@ const products = [
         tag: 'HOT',
         priceOriginal: 650000,
         priceCurrent: 70000,
-        sold: '3.2k+'
+        sold: '423+'
     },
     {
         id: 'chatgpt-plus-business',
@@ -38,7 +38,7 @@ const products = [
         tag: 'HOT',
         priceOriginal: 655000,
         priceCurrent: 129000,
-        sold: '2.8k+'
+        sold: '342+'
     },
     {
         id: 'chatgpt-go',
@@ -48,7 +48,7 @@ const products = [
         tag: 'NEW',
         priceOriginal: 1584000,
         priceCurrent: 80000,
-        sold: '1.6k+'
+        sold: '456+'
     },
     {
         id: 'google-ai-pro',
@@ -58,7 +58,7 @@ const products = [
         tag: 'HOT',
         priceOriginal: 499000,
         priceCurrent: 80000,
-        sold: '3.3k+'
+        sold: '378+'
     },
     {
         id: 'gemini-ultra',
@@ -68,7 +68,7 @@ const products = [
         tag: 'VIP',
         priceOriginal: 6000000,
         priceCurrent: 450000,
-        sold: '1.2k+'
+        sold: '234+'
     },
     {
         id: 'canva-pro',
@@ -78,7 +78,7 @@ const products = [
         tag: 'PRO',
         priceOriginal: 1300000,
         priceCurrent: 50000,
-        sold: '5.7k+'
+        sold: '467+'
     },
     {
         id: 'github-pro',
@@ -88,7 +88,7 @@ const products = [
         tag: 'DEV',
         priceOriginal: 800000,
         priceCurrent: 120000,
-        sold: '740+'
+        sold: '189+'
     },
     {
         id: 'supper-grok',
@@ -98,7 +98,7 @@ const products = [
         tag: 'NEW',
         priceOriginal: 790000,
         priceCurrent: 350000,
-        sold: '1.3k+'
+        sold: '267+'
     },
     {
         id: 'zoom-pro',
@@ -108,7 +108,7 @@ const products = [
         tag: 'HOT',
         priceOriginal: 199000,
         priceCurrent: 89000,
-        sold: '2.1k+'
+        sold: '412+'
     },
     {
         id: 'kling-ai',
@@ -118,7 +118,7 @@ const products = [
         tag: 'PRO',
         priceOriginal: 450000,
         priceCurrent: 220000,
-        sold: '980+'
+        sold: '156+'
     },
     {
         id: 'office-365',
@@ -128,7 +128,7 @@ const products = [
         tag: 'BEST',
         priceOriginal: 1200000,
         priceCurrent: 400000,
-        sold: '1.6k+'
+        sold: '445+'
     },
     {
         id: 'perplexity-pro',
@@ -138,7 +138,7 @@ const products = [
         tag: 'VIP',
         priceOriginal: 1500000,
         priceCurrent: 800000,
-        sold: '760+'
+        sold: '198+'
     },
     {
         id: 'claude-ai-pro',
@@ -148,7 +148,7 @@ const products = [
         tag: 'HOT',
         priceOriginal: 690000,
         priceCurrent: 390000,
-        sold: '1.4k+'
+        sold: '334+'
     }
 ];
 
