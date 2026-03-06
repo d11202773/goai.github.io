@@ -94,7 +94,7 @@ const products = [
         id: 'supper-grok',
         name: 'SUPPER GROK',
         icon: '🚀',
-        image: 'images/SUPPER GROK.png',
+        image: 'images/SUPPER-GROK.png',
         tag: 'NEW',
         priceOriginal: 790000,
         priceCurrent: 350000,
