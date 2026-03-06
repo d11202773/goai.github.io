@@ -5,7 +5,7 @@ const products = [
         name: 'CHATGPT PLUS',
         icon: '💬',
         image: 'images/CHATGPT PLUS CÁ NHÂN.JPG',
-        tag: 'SALE',
+        tag: 'HOT',
         priceOriginal: 550000,
         priceCurrent: 220000,
         sold: '389+'
@@ -25,7 +25,7 @@ const products = [
         name: 'Gemini Ultra 45.000 Credit',
         icon: '💎',
         image: 'images/ULTRA.jpg',
-        tag: 'VIP',
+        tag: 'HOT',
         priceOriginal: 6000000,
         priceCurrent: 450000,
         sold: '234+'
