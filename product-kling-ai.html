@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kling AI 1100 Credit - GO AI</title>
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0B0B0F; color: #ffffff; line-height: 1.6; min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .header { text-align: center; padding: 2rem 0; margin-bottom: 2rem; }
+        .logo { font-size: 2rem; font-weight: 900; color: #F6C453; text-decoration: none; display: inline-block; }
+        .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; background: #12131A; border-radius: 20px; padding: 2rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); }
+        .product-image { width: 100%; border-radius: 15px; overflow: hidden; }
+        .product-image img { width: 100%; height: auto; display: block; object-fit: cover; }
+        .product-details { display: flex; flex-direction: column; gap: 1.5rem; }
+        .product-title { font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+        .description { background: rgba(246, 196, 83, 0.1); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F6C453; }
+        .description ul { list-style: none; padding: 0; }
+        .description li { padding: 0.5rem 0; color: #ddd; display: flex; align-items: flex-start; }
+        .description li:before { content: "•"; color: #F6C453; font-weight: bold; display: inline-block; width: 1.5em; margin-left: 0; }
+        .duration-section { background: #1A1B23; padding: 1.5rem; border-radius: 12px; border: 2px solid #2A2B33; }
+        .section-title { color: #F6C453; font-size: 1.2rem; margin-bottom: 1rem; font-weight: 600; }
+        .duration-options { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+        .duration-btn { flex: 1; padding: 0.8rem 1rem; background: #12131A; border: 2px solid #2A2B33; border-radius: 10px; color: #fff; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .duration-btn:hover { border-color: #F6C453; background: rgba(246, 196, 83, 0.1); }
+        .duration-btn.active { border-color: #F6C453; background: linear-gradient(135deg, rgba(246, 196, 83, 0.2) 0%, rgba(246, 196, 83, 0.1) 100%); color: #F6C453; }
+        .price-display { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 1rem; background: #12131A; border-radius: 10px; }
+        .price-label { color: #888; font-size: 1rem; }
+        .current-price { color: #F6C453; font-size: 1.8rem; font-weight: 800; }
+        .buy-button { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, #F6C453 0%, #E5A800 100%); border: none; border-radius: 12px; color: #0B0B0F; font-size: 1.2rem; font-weight: 700; text-decoration: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(246, 196, 83, 0.3); }
+        .buy-button:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(246, 196, 83, 0.5); }
+        @media (max-width: 768px) { .product-layout { grid-template-columns: 1fr; gap: 2rem; } .duration-options { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo"><span class="logo-text">GO <span class="logo-highlight">AI</span></span></a>
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle menu"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item has-dropdown"><a href="#" class="navbar-link">Sản Phẩm <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a><ul class="dropdown-menu"><li><a href="product-chatgpt-plus.html" class="dropdown-link">ChatGPT Plus</a></li><li><a href="product-chatgpt-business.html" class="dropdown-link">ChatGPT Business</a></li><li><a href="product-chatgpt-go.html" class="dropdown-link">ChatGPT GO</a></li><li><a href="product-google-ai-pro.html" class="dropdown-link">Google AI Pro 2TB</a></li><li><a href="product-gemini-ultra.html" class="dropdown-link">Gemini Ultra 45.000 Credit</a></li><li><a href="product-canva-pro.html" class="dropdown-link">Canva Pro</a></li><li><a href="product-capcut-pro.html" class="dropdown-link">CapCut Pro</a></li><li><a href="product-github-pro.html" class="dropdown-link">GitHub Pro</a></li><li><a href="product-youtube.html" class="dropdown-link">YouTube Premium</a></li><li><a href="product-supper-grok.html" class="dropdown-link">Supper Grok</a></li><li><a href="product-zoom-pro.html" class="dropdown-link">Zoom Pro</a></li><li><a href="product-kling-ai.html" class="dropdown-link">Kling AI 1100 Credit</a></li><li><a href="product-office-365.html" class="dropdown-link">Office 365 + 1TB</a></li><li><a href="product-perplexity-pro.html" class="dropdown-link">Perplexity Pro</a></li><li><a href="product-claude-ai-pro.html" class="dropdown-link">Claude AI Pro</a></li></ul></li>
+                <li class="navbar-item"><a href="hoc-nghe-ai.html" class="navbar-link">Học Nghề AI</a></li>
+                <li class="navbar-item has-dropdown"><a href="#" class="navbar-link">Liên Hệ <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a><ul class="dropdown-menu"><li><a href="https://zalo.me/84966861089" class="dropdown-link" target="_blank">Zalo</a></li><li><a href="https://t.me/Victory68686" class="dropdown-link" target="_blank">Telegram</a></li></ul></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="header"><a href="index.html" class="logo">GO AI</a></div>
+        <div class="product-layout">
+            <div class="product-image"><img src="images/KLING AI 1100 CREDIT.png" alt="Kling AI 1100 Credit"></div>
+            <div class="product-details">
+                <div><h1 class="product-title">Kling AI 1100 Credit</h1></div>
+                <div class="description"><ul><li>AI tạo video chuyên nghiệp từ Trung Quốc</li><li>Tạo video từ text và hình ảnh</li><li>Chất lượng video HD, Full HD</li><li>1100 Credit = tạo 220 video 5s hoặc 55 video 10s</li><li>Hiệu ứng chuyển động tự nhiên</li><li>Hỗ trợ nhiều phong cách video</li><li>Xuất video không watermark</li><li>Sử dụng cho marketing, nội dung sáng tạo</li></ul></div>
+                <div class="duration-section">
+                    <h3 class="section-title">Gói Credit</h3>
+                    <div class="duration-options"><button class="duration-btn active" data-duration="1100-credit" data-price="220000">1100 Credit</button></div>
+                    <div class="price-display"><p class="price-label">Giá:</p><p class="current-price" id="currentPrice">220.000đ</p></div>
+                    <a href="#" class="buy-button" id="buyButton"><span>⚡</span><span>MUA NGAY</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const durationButtons = document.querySelectorAll('.duration-btn'); const currentPriceEl = document.getElementById('currentPrice'); const buyButton = document.getElementById('buyButton'); let selectedDuration = '1100 Credit'; let selectedPrice = '220.000đ';
+        function formatPrice(price) { return price.toLocaleString('vi-VN') + 'đ'; }
+        durationButtons.forEach(btn => { btn.addEventListener('click', function() { durationButtons.forEach(b => b.classList.remove('active')); this.classList.add('active'); const duration = this.dataset.duration; const price = parseInt(this.dataset.price); selectedDuration = this.textContent; selectedPrice = formatPrice(price); currentPriceEl.textContent = selectedPrice; updateBuyLink(); }); });
+        function updateBuyLink() { const productName = 'KLING AI 1100 CREDIT'; const checkoutUrl = `checkout.html?product=${encodeURIComponent(productName)}&plan=${encodeURIComponent(selectedDuration)}&price=${encodeURIComponent(selectedPrice)}`; buyButton.href = checkoutUrl; }
+        updateBuyLink();
+    </script>
+    <script src="navbar.js"></script>
+</body>
+</html>
