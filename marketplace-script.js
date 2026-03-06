@@ -11,16 +11,6 @@ const products = [
         sold: '389+'
     },
     {
-        id: 'youtube-premium',
-        name: 'YouTube Premium',
-        icon: '▶️',
-        image: 'images/YOUTOBE PREMIUM.jpg',
-        tag: 'BEST',
-        priceOriginal: 105000,
-        priceCurrent: 70000,
-        sold: '478+'
-    },
-    {
         id: 'capcut-pro',
         name: 'CAPCUT PRO',
         icon: '🎬',
@@ -29,6 +19,46 @@ const products = [
         priceOriginal: 650000,
         priceCurrent: 70000,
         sold: '423+'
+    },
+    {
+        id: 'gemini-ultra',
+        name: 'Gemini Ultra 45.000 Credit',
+        icon: '💎',
+        image: 'images/ULTRA.jpg',
+        tag: 'VIP',
+        priceOriginal: 6000000,
+        priceCurrent: 450000,
+        sold: '234+'
+    },
+    {
+        id: 'claude-ai-pro',
+        name: 'CLAUDE AI PRO',
+        icon: '🧠',
+        image: 'images/CLAUDE AI PRO.png',
+        tag: 'HOT',
+        priceOriginal: 690000,
+        priceCurrent: 390000,
+        sold: '334+'
+    },
+    {
+        id: 'kling-ai',
+        name: 'KLING AI 1100 CREDIT',
+        icon: '🎨',
+        image: 'images/KLING AI 1100 CREDIT.png',
+        tag: 'PRO',
+        priceOriginal: 450000,
+        priceCurrent: 220000,
+        sold: '156+'
+    },
+    {
+        id: 'youtube-premium',
+        name: 'YouTube Premium',
+        icon: '▶️',
+        image: 'images/YOUTOBE PREMIUM.jpg',
+        tag: 'BEST',
+        priceOriginal: 105000,
+        priceCurrent: 70000,
+        sold: '478+'
     },
     {
         id: 'chatgpt-plus-business',
@@ -59,16 +89,6 @@ const products = [
         priceOriginal: 499000,
         priceCurrent: 80000,
         sold: '378+'
-    },
-    {
-        id: 'gemini-ultra',
-        name: 'Gemini Ultra 45.000 Credit',
-        icon: '💎',
-        image: 'images/ULTRA.jpg',
-        tag: 'VIP',
-        priceOriginal: 6000000,
-        priceCurrent: 450000,
-        sold: '234+'
     },
     {
         id: 'canva-pro',
@@ -111,16 +131,6 @@ const products = [
         sold: '412+'
     },
     {
-        id: 'kling-ai',
-        name: 'KLING AI 1100 CREDIT',
-        icon: '🎨',
-        image: 'images/KLING AI 1100 CREDIT.png',
-        tag: 'PRO',
-        priceOriginal: 450000,
-        priceCurrent: 220000,
-        sold: '156+'
-    },
-    {
         id: 'office-365',
         name: 'OFFICE 365 + 1TB ONE DRIVE (1 NĂM)',
         icon: '📊',
@@ -140,15 +150,6 @@ const products = [
         priceCurrent: 800000,
         sold: '198+'
     },
-    {
-        id: 'claude-ai-pro',
-        name: 'CLAUDE AI PRO',
-        icon: '🧠',
-        image: 'images/CLAUDE AI PRO.png',
-        tag: 'HOT',
-        priceOriginal: 690000,
-        priceCurrent: 390000,
-        sold: '334+'
     }
 ];
 
