@@ -3,12 +3,15 @@
     const OWNER_MAP_KEY = 'affiliateOwnerMap';
 
     const registerBtn = document.getElementById('btnShowRegister');
+    const detailsSection = document.getElementById('affiliateDetails');
     const formCard = document.getElementById('affiliateFormCard');
     const form = document.getElementById('affiliateForm');
     const formError = document.getElementById('formError');
     const resultCard = document.getElementById('resultCard');
     const resultCode = document.getElementById('resultCode');
     const resultLink = document.getElementById('resultLink');
+    const btnCopyCode = document.getElementById('btnCopyCode');
+    const btnCopyLink = document.getElementById('btnCopyLink');
 
     function showError(message) {
         formError.textContent = message;
@@ -58,6 +61,25 @@
 
     function buildAffiliateLink(code) {
         return `https://goai.edu.vn/affiliate?code=${encodeURIComponent(code)}`;
+    }
+
+    async function copyText(value, buttonEl, successText) {
+        if (!value) {
+            return;
+        }
+
+        try {
+            await navigator.clipboard.writeText(value);
+            if (buttonEl) {
+                const original = buttonEl.textContent;
+                buttonEl.textContent = successText;
+                setTimeout(() => {
+                    buttonEl.textContent = original;
+                }, 1500);
+            }
+        } catch (e) {
+            console.error('Copy failed:', e);
+        }
     }
 
     function ensureUniqueCode(users) {
@@ -152,9 +174,22 @@
     }
 
     registerBtn.addEventListener('click', function () {
+        detailsSection.classList.add('show');
         formCard.classList.add('show');
-        formCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        detailsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+
+    if (btnCopyCode) {
+        btnCopyCode.addEventListener('click', function () {
+            copyText(resultCode.textContent.trim(), btnCopyCode, 'ĐÃ SAO CHÉP MÃ');
+        });
+    }
+
+    if (btnCopyLink) {
+        btnCopyLink.addEventListener('click', function () {
+            copyText(resultLink.textContent.trim(), btnCopyLink, 'ĐÃ SAO CHÉP LINK');
+        });
+    }
 
     form.addEventListener('submit', handleRegister);
     autoCaptureAffiliateCodeFromUrl();

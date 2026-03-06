@@ -77,72 +77,79 @@
             </ul>
         </section>
 
-        <div class="grid">
-            <section class="info-card">
-                <h2 class="card-title">Cơ Chế Hoạt Động</h2>
-                <ul class="steps">
-                    <li><strong>1. Đăng ký Affiliate</strong></li>
-                    <li>Sau khi đăng ký thành công, bạn sẽ được cấp:</li>
-                    <li>• Mã giới thiệu cá nhân<br>• Link Affiliate riêng</li>
-                    <li>Bạn có thể sử dụng mã hoặc link này để chia sẻ cho khách hàng.</li>
-                    <li><strong>2. Giới thiệu khách hàng</strong></li>
-                    <li>Khách hàng có thể mua dịch vụ thông qua:</li>
-                    <li>• Link Affiliate của bạn<br>• Mã giảm giá cá nhân của bạn</li>
-                    <li>Khi khách hàng sử dụng mã hoặc link này để mua dịch vụ trên GOAI, khách hàng cũng sẽ được ưu đãi giảm giá 5% đồng thời hệ thống sẽ tự động ghi nhận hoa hồng giao dịch đó thuộc về bạn.</li>
-                    <li><strong>3. Thu nhập lặp lại</strong></li>
-                    <li>Nhiều dịch vụ trên GOAI có chu kỳ gia hạn hàng tháng.</li>
-                    <li>Khi khách hàng tiếp tục sử dụng dịch vụ, các giao dịch phát sinh tiếp theo vẫn có thể được ghi nhận cho đối tác Affiliate, giúp bạn xây dựng nguồn thu nhập thụ động và lâu dài.</li>
-                </ul>
-            </section>
-
-            <section class="info-card">
-                <h2 class="card-title">💰 Thời Gian Thanh Toán</h2>
-                <div class="commission-box">
-                    <p>Hoa hồng được tổng hợp và thanh toán định kỳ mỗi tuần.</p>
-                    <p>Thời gian thanh toán:</p>
-                    <p class="commission-highlight">Hoa hồng sẽ được chuyển vào thứ Hai đầu tuần về tài khoản ngân hàng mà bạn đã đăng ký.</p>
-                    <br>
-                    <p><strong>Bắt Đầu</strong></p>
-                    <p>Sau khi đăng ký Affiliate, bạn có thể bắt đầu chia sẻ mã giới thiệu của mình và xây dựng tệp khách hàng.</p>
-                    <p>Mỗi khách hàng mới không chỉ mang lại giao dịch ban đầu mà còn có thể tạo ra nguồn thu nhập lặp lại trong thời gian dài khi họ tiếp tục sử dụng dịch vụ.</p>
-                    <p class="commission-highlight">👉 Nhấn Đăng ký Affiliate để bắt đầu.</p>
-                </div>
-            </section>
-        </div>
-
         <div class="cta-wrap">
             <button class="btn-gold" id="btnShowRegister">ĐĂNG KÝ AFFILIATE</button>
         </div>
 
-        <section class="form-card" id="affiliateFormCard">
-            <h2 class="card-title">Đăng ký Affiliate</h2>
-            <div class="form-error" id="formError"></div>
-            <form id="affiliateForm">
-                <div class="form-group">
-                    <label class="form-label" for="fullname">Họ và tên</label>
-                    <input class="form-input" id="fullname" name="fullname" type="text" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="email">Email</label>
-                    <input class="form-input" id="email" name="email" type="email" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="phone">Số điện thoại</label>
-                    <input class="form-input" id="phone" name="phone" type="tel" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="bankAccount">Số tài khoản nhận hoa hồng</label>
-                    <input class="form-input" id="bankAccount" name="bankAccount" type="text" required>
-                </div>
-                <button class="btn-gold" type="submit">ĐĂNG KÝ</button>
-            </form>
-        </section>
+        <div class="details-section" id="affiliateDetails">
+            <div class="grid">
+                <section class="info-card">
+                    <h2 class="card-title">Cơ Chế Hoa Hồng</h2>
+                    <ul class="steps">
+                        <li>• Mỗi đơn hàng phát sinh từ mã giới thiệu Affiliate sẽ được hệ thống ghi nhận tự động</li>
+                        <li>• Đối tác Affiliate nhận hoa hồng cố định 20% trên giá trị đơn hàng thực tế sau ưu đãi</li>
+                        <li>• Nhiều dịch vụ trên GOAI có chu kỳ gia hạn hàng tháng, vì vậy Affiliate có thể tạo ra nguồn thu nhập lặp lại theo thời gian khi khách hàng tiếp tục sử dụng dịch vụ</li>
+                        <li>• Hoa hồng được tổng hợp và thanh toán định kỳ vào thứ Hai đầu tuần</li>
+                    </ul>
+                </section>
 
-        <section class="result-card" id="resultCard">
-            <p class="success-title">🎉 Đăng ký thành công</p>
-            <p class="result-line">Mã giảm giá của bạn: <strong class="result-code" id="resultCode"></strong></p>
-            <p class="result-line">Link affiliate của bạn: <a class="result-link" id="resultLink" target="_blank" rel="noopener noreferrer"></a></p>
-        </section>
+                <section class="info-card">
+                    <h2 class="card-title">Quyền Lợi Của Khách Hàng</h2>
+                    <ul class="steps">
+                        <li>• Khi khách hàng sử dụng mã giảm giá của Affiliate, khách hàng sẽ được giảm 5% trên đơn hàng</li>
+                        <li>• Mã giảm giá có thể được lưu lại để áp dụng cho các lần mua tiếp theo</li>
+                        <li>• Điều này giúp khách hàng vừa được ưu đãi, vừa tiếp tục sử dụng dịch vụ với chi phí tốt hơn</li>
+                    </ul>
+                </section>
+            </div>
+
+            <section class="info-card example-card">
+                <h2 class="card-title">Ví Dụ Minh Họa</h2>
+                <div class="commission-box">
+                    <p>Giá dịch vụ: 220.000đ</p>
+                    <p>Khách hàng giảm 5%: còn 209.000đ</p>
+                    <p class="commission-highlight">Hoa hồng Affiliate nhận được (20%): 41.800đ</p>
+                </div>
+            </section>
+
+            <section class="form-card show" id="affiliateFormCard">
+                <h2 class="card-title">Đăng ký Affiliate</h2>
+                <div class="form-error" id="formError"></div>
+                <form id="affiliateForm">
+                    <div class="form-group">
+                        <label class="form-label" for="fullname">Họ và tên</label>
+                        <input class="form-input" id="fullname" name="fullname" type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email</label>
+                        <input class="form-input" id="email" name="email" type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Số điện thoại</label>
+                        <input class="form-input" id="phone" name="phone" type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="bankAccount">Số tài khoản nhận hoa hồng</label>
+                        <input class="form-input" id="bankAccount" name="bankAccount" type="text" required>
+                    </div>
+                    <button class="btn-gold" type="submit">XÁC NHẬN ĐĂNG KÝ</button>
+                </form>
+            </section>
+
+            <section class="result-card" id="resultCard">
+                <p class="success-title">🎉 Đăng ký Affiliate thành công</p>
+                <p class="result-line">Mã giảm giá của bạn:</p>
+                <p class="result-line"><strong class="result-code" id="resultCode"></strong></p>
+                <div class="result-actions">
+                    <button class="btn-copy" type="button" id="btnCopyCode">SAO CHÉP MÃ</button>
+                </div>
+                <p class="result-line">Link Affiliate của bạn:</p>
+                <p class="result-line"><a class="result-link" id="resultLink" target="_blank" rel="noopener noreferrer"></a></p>
+                <div class="result-actions">
+                    <button class="btn-copy" type="button" id="btnCopyLink">SAO CHÉP LINK</button>
+                </div>
+            </section>
+        </div>
     </div>
 
     <script src="navbar.js"></script>
