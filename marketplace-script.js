@@ -150,6 +150,15 @@ const products = [
         priceCurrent: 800000,
         sold: '198+'
     },
+    {
+        id: 'claude-ai-pro',
+        name: 'CLAUDE AI PRO',
+        icon: '🧠',
+        image: 'images/CLAUDE AI PRO.png',
+        tag: 'HOT',
+        priceOriginal: 690000,
+        priceCurrent: 390000,
+        sold: '334+'
     }
 ];
 
