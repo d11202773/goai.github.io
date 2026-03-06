@@ -159,21 +159,6 @@ body::after {
     margin-top: 0.3rem;
 }
 
-.hero-banner {
-    width: 100%;
-    max-width: 1400px;
-    margin: 30px auto;
-    padding: 0 20px;
-}
-
-.hero-banner img {
-    width: 100%;
-    height: auto;
-    border-radius: 16px;
-    display: block;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
 /* Hero Section */
 .hero-section {
     text-align: center;
@@ -588,11 +573,6 @@ body::after {
 }
 
 @media (max-width: 768px) {
-    .hero-banner {
-        margin: 20px auto;
-        padding: 0 12px;
-    }
-
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.2rem;
