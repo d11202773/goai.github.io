@@ -60,7 +60,7 @@
     }
 
     function buildAffiliateLink(code) {
-        return `https://goai.edu.vn/affiliate?code=${encodeURIComponent(code)}`;
+        return `https://goai.edu.vn/?code=${encodeURIComponent(code)}`;
     }
 
     async function copyText(value, buttonEl, successText) {
@@ -145,7 +145,7 @@
         resultLink.setAttribute('href', affiliateLink);
         resultCard.classList.add('show');
 
-        localStorage.setItem('affiliatePromoCode', affiliateCode);
+        localStorage.setItem('goai_affiliate', affiliateCode);
 
         try {
             if (typeof registerAffiliateAndNotify === 'function') {
@@ -169,7 +169,7 @@
         const params = new URLSearchParams(window.location.search);
         const code = (params.get('code') || '').trim().toUpperCase();
         if (/^GIAMGIA\d{6}$/.test(code)) {
-            localStorage.setItem('affiliatePromoCode', code);
+            localStorage.setItem('goai_affiliate', code);
         }
     }
 

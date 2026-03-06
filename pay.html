@@ -455,7 +455,12 @@
         const orderCode = urlParams.get('orderCode') || '-';
         const originalPrice = urlParams.get('originalPrice') || price;
         const discountedPrice = urlParams.get('discountedPrice') || price;
-        const promoCode = (urlParams.get('promoCode') || localStorage.getItem('affiliatePromoCode') || '').toUpperCase();
+        const promoCode = (
+            urlParams.get('promoCode') ||
+            localStorage.getItem('goai_affiliate') ||
+            localStorage.getItem('affiliatePromoCode') ||
+            ''
+        ).toUpperCase();
 
         function parseVndToNumber(value) {
             return Number(String(value || '').replace(/\D/g, '')) || 0;

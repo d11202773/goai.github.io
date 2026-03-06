@@ -719,7 +719,7 @@
             const discountAmount = originalPriceNumber - discountedPriceNumber;
             discountAmountEl.textContent = '-' + formatVnd(discountAmount);
             totalPriceEl.textContent = formatVnd(discountedPriceNumber);
-            localStorage.setItem('affiliatePromoCode', normalizedCode);
+            localStorage.setItem('goai_affiliate', normalizedCode);
 
             if (showMessage) {
                 promoStatus.textContent = `Áp dụng mã thành công: ${normalizedCode}`;
@@ -731,10 +731,14 @@
 
         const promoCodeFromUrl = (urlParams.get('code') || '').toUpperCase();
         if (promoCodeFromUrl && isValidPromoCode(promoCodeFromUrl)) {
-            localStorage.setItem('affiliatePromoCode', promoCodeFromUrl);
+            localStorage.setItem('goai_affiliate', promoCodeFromUrl);
         }
 
-        const savedPromoCode = (localStorage.getItem('affiliatePromoCode') || '').toUpperCase();
+        const savedPromoCode = (
+            localStorage.getItem('goai_affiliate') ||
+            localStorage.getItem('affiliatePromoCode') ||
+            ''
+        ).toUpperCase();
         if (savedPromoCode) {
             promoCodeInput.value = savedPromoCode;
             applyPromoCode(savedPromoCode, true);

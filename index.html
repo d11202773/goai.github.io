@@ -184,6 +184,15 @@
     </div>
 
     <script src="marketplace-script.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = (urlParams.get('code') || '').toUpperCase();
+
+        if (code && /^GIAMGIA\d{6}$/.test(code)) {
+            localStorage.setItem('goai_affiliate', code);
+            window.history.replaceState({}, document.title, '/');
+        }
+    </script>
     <script src="navbar.js"></script>
     <script src="js/social-proof.js"></script>
 </body>
