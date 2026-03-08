@@ -258,6 +258,52 @@
             white-space: pre-line;
         }
 
+        .business-modal-content {
+            background: #12131A;
+            border: 2px solid rgba(246, 196, 83, 0.35);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 760px;
+            width: 92%;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.85);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        .business-modal-title {
+            color: #F6C453;
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .business-modal-message {
+            color: #d1d5db;
+            line-height: 1.8;
+            font-size: 1rem;
+            white-space: pre-line;
+        }
+
+        .btn-close-business {
+            margin-top: 1.5rem;
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #F6C453 0%, #E5A800 100%);
+            color: #0B0B0F;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(246, 196, 83, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-close-business:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(246, 196, 83, 0.5);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             body {
@@ -295,6 +341,18 @@
 
             .modal-title {
                 font-size: 1.5rem;
+            }
+
+            .business-modal-content {
+                padding: 1.25rem;
+            }
+
+            .business-modal-title {
+                font-size: 1.4rem;
+            }
+
+            .business-modal-message {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -435,6 +493,14 @@
         </div>
     </div>
 
+    <div class="modal" id="businessSuccessModal">
+        <div class="business-modal-content">
+            <h2 class="business-modal-title">ĐĂNG KÝ THÀNH CÔNG</h2>
+            <div class="business-modal-message" id="businessModalMessage"></div>
+            <button class="btn-close-business" id="btnCloseBusinessModal">ĐÓNG</button>
+        </div>
+    </div>
+
     <script src="navbar.js"></script>
     <script src="order-api.js"></script>
     <script>
@@ -510,6 +576,18 @@
         const successModal = document.getElementById('successModal');
         const btnZalo = document.getElementById('btnZalo');
         const copyMessage = document.getElementById('copyMessage');
+        const businessSuccessModal = document.getElementById('businessSuccessModal');
+        const businessModalMessage = document.getElementById('businessModalMessage');
+        const btnCloseBusinessModal = document.getElementById('btnCloseBusinessModal');
+
+        function isChatgptPlusBusiness(targetProduct) {
+            const normalized = String(targetProduct || '').toUpperCase();
+            return normalized.includes('CHATGPT') && normalized.includes('BUSINESS');
+        }
+
+        btnCloseBusinessModal.addEventListener('click', function () {
+            businessSuccessModal.classList.remove('active');
+        });
 
         btnPaid.addEventListener('click', async function() {
             // Validate required fields
@@ -554,6 +632,24 @@
 
                 if (result.success === true) {
                     console.log('🎉 Success! Showing modal...');
+
+                    if (isChatgptPlusBusiness(product)) {
+                        const businessGuide =
+                            `Cảm ơn bạn đã đăng ký thành công CHATGPT PLUS BUSINESS.\n` +
+                            `Vui lòng chờ 5–10 phút để hệ thống gửi mail cho bạn.\n\n` +
+                            `Sau khi nhận mail, để bắt đầu sử dụng gói ChatGPT Plus (GPT-5.2), bạn làm mấy bước nhỏ này giúp mình:\n\n` +
+                            `🔹 Bước 1: Kiểm tra email và ấn “Tham Gia”\n\n` +
+                            `🔹 Bước 2: Sau đó ấn ĐĂNG NHẬP vào tài khoản CHATGPT của bạn.\n\n` +
+                            `🔹 Bước 3: Khi đăng nhập thành công bạn chọn “CHATGPT PLUS” bạn nhé.\n\n` +
+                            `✨ Sau khi vào, bạn sẽ thấy mục GPT-Auto và các mô hình cao cấp nhất trên khung chat.\n` +
+                            `Vậy là thành công bạn ạ.\n\n` +
+                            `Mọi thắc mắc trong quá trình sử dụng vui lòng liên hệ để được hỗ trợ nhanh nhất:\n` +
+                            `zalo.me/84966861089`;
+
+                        businessModalMessage.textContent = businessGuide;
+                        businessSuccessModal.classList.add('active');
+                        return;
+                    }
                     
                     // Show success modal
                     successModal.classList.add('active');
