@@ -37,7 +37,7 @@ const products = [
         image: 'images/CLAUDE AI PRO.png',
         tag: 'HOT',
         priceOriginal: 690000,
-        priceCurrent: 390000,
+        priceCurrent: 450000,
         sold: '334+'
     },
     {
@@ -157,7 +157,7 @@ const products = [
         image: 'images/CLAUDE AI PRO.png',
         tag: 'HOT',
         priceOriginal: 690000,
-        priceCurrent: 390000,
+        priceCurrent: 450000,
         sold: '334+'
     }
 ];

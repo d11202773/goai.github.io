@@ -58,15 +58,15 @@
                 <div class="description"><ul><li>Phát triển bởi Anthropic - Công nghệ AI hàng đầu</li><li>Claude 3 Opus - Model thông minh nhất</li><li>Xử lý văn bản dài lên đến 200K tokens</li><li>Lý luận logic và suy nghĩ phức tạp</li><li>Viết code chất lượng cao, debug hiệu quả</li><li>Phân tích dữ liệu chính xác</li><li>Hỗ trợ nhiều ngôn ngữ</li><li>Sử dụng ưu tiên 5x so với bản Free</li></ul></div>
                 <div class="duration-section">
                     <h3 class="section-title">Thời hạn</h3>
-                    <div class="duration-options"><button class="duration-btn active" data-duration="1-thang" data-price="390000">1 tháng</button></div>
-                    <div class="price-display"><p class="price-label">Giá:</p><p class="current-price" id="currentPrice">390.000đ</p></div>
+                    <div class="duration-options"><button class="duration-btn active" data-duration="1-thang" data-price="450000">1 tháng</button></div>
+                    <div class="price-display"><p class="price-label">Giá:</p><p class="current-price" id="currentPrice">450.000đ</p></div>
                     <a href="#" class="buy-button" id="buyButton"><span>⚡</span><span>MUA NGAY</span></a>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        const durationButtons = document.querySelectorAll('.duration-btn'); const currentPriceEl = document.getElementById('currentPrice'); const buyButton = document.getElementById('buyButton'); let selectedDuration = '1 tháng'; let selectedPrice = '390.000đ';
+        const durationButtons = document.querySelectorAll('.duration-btn'); const currentPriceEl = document.getElementById('currentPrice'); const buyButton = document.getElementById('buyButton'); let selectedDuration = '1 tháng'; let selectedPrice = '450.000đ';
         function formatPrice(price) { return price.toLocaleString('vi-VN') + 'đ'; }
         durationButtons.forEach(btn => { btn.addEventListener('click', function() { durationButtons.forEach(b => b.classList.remove('active')); this.classList.add('active'); const duration = this.dataset.duration; const price = parseInt(this.dataset.price); selectedDuration = this.textContent; selectedPrice = formatPrice(price); currentPriceEl.textContent = selectedPrice; updateBuyLink(); }); });
         function updateBuyLink() { const productName = 'CLAUDE AI PRO'; const checkoutUrl = `checkout.html?product=${encodeURIComponent(productName)}&plan=${encodeURIComponent(selectedDuration)}&price=${encodeURIComponent(selectedPrice)}`; buyButton.href = checkoutUrl; }
