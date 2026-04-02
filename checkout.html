@@ -627,6 +627,7 @@
                                 <span class="detail-label">Giá:</span>
                                 <span class="detail-value" id="productPrice">-</span>
                             </div>
+                            <div id="orderItemsList"></div>
                             <div class="detail-row">
                                 <span class="detail-label">Giảm giá:</span>
                                 <span class="detail-value" id="discountAmount">0đ</span>
@@ -660,7 +661,7 @@
         </div>
     </div>
 
-    <script src="navbar.js?v=20260402-3"></script>
+    <script src="navbar.js?v=20260402-4"></script>
     <script>
         // Get order data from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
@@ -676,15 +677,37 @@
             return Number(value || 0).toLocaleString('vi-VN') + 'đ';
         }
 
+        function normalizeText(value) {
+            return String(value || '')
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9]+/g, ' ')
+                .trim();
+        }
+
+        function buildItemKey(name, plan) {
+            return normalizeText(name) + '|' + normalizeText(plan);
+        }
+
         const originalPriceNumber = parseVndToNumber(productPrice);
+        const primaryItem = {
+            id: 'primary',
+            key: buildItemKey(productName, productPlan),
+            name: productName,
+            plan: productPlan,
+            unitPrice: originalPriceNumber,
+            quantity: 1,
+            isPrimary: true
+        };
+
+        const orderState = {
+            items: [primaryItem]
+        };
+
         let currentPromoCode = '';
         let discountedPriceNumber = originalPriceNumber;
-
-        // Display order information
-        document.getElementById('productName').textContent = productName;
-        document.getElementById('productPlan').textContent = productPlan;
-        document.getElementById('productPrice').textContent = formatVnd(originalPriceNumber);
-        document.getElementById('totalPrice').textContent = formatVnd(originalPriceNumber);
+        let subtotalPriceNumber = originalPriceNumber;
 
         // Elements
         const btnPay = document.getElementById('btnPay');
@@ -694,10 +717,87 @@
         const promoStatus = document.getElementById('promoStatus');
         const discountAmountEl = document.getElementById('discountAmount');
         const totalPriceEl = document.getElementById('totalPrice');
+        const productNameEl = document.getElementById('productName');
+        const productPlanEl = document.getElementById('productPlan');
+        const productPriceEl = document.getElementById('productPrice');
+        const orderItemsListEl = document.getElementById('orderItemsList');
 
         function isValidPromoCode(code) {
             return /^GIAMGIA\d{6}$/.test(code);
         }
+
+        function recalculateTotals() {
+            subtotalPriceNumber = orderState.items.reduce((sum, item) => {
+                return sum + (item.unitPrice * item.quantity);
+            }, 0);
+
+            if (isValidPromoCode(currentPromoCode)) {
+                discountedPriceNumber = Math.round(subtotalPriceNumber * 0.95);
+                const discountAmount = subtotalPriceNumber - discountedPriceNumber;
+                discountAmountEl.textContent = '-' + formatVnd(discountAmount);
+            } else {
+                discountedPriceNumber = subtotalPriceNumber;
+                discountAmountEl.textContent = '0đ';
+            }
+
+            totalPriceEl.textContent = formatVnd(discountedPriceNumber);
+        }
+
+        function renderOrderSummary() {
+            const primary = orderState.items.find(item => item.isPrimary) || primaryItem;
+            productNameEl.textContent = primary.name;
+            productPlanEl.textContent = primary.plan;
+            productPriceEl.textContent = formatVnd(primary.unitPrice);
+
+            const addOnItems = orderState.items.filter(item => !item.isPrimary);
+            if (!addOnItems.length) {
+                orderItemsListEl.innerHTML = '';
+            } else {
+                orderItemsListEl.innerHTML = addOnItems.map(item => `
+                    <div class="detail-row">
+                        <span class="detail-label">${item.name} x${item.quantity}</span>
+                        <span class="detail-value">${formatVnd(item.unitPrice * item.quantity)}</span>
+                    </div>
+                `).join('');
+            }
+
+            recalculateTotals();
+        }
+
+        function addRelatedProduct(productId, productData) {
+            const data = productData || {};
+            const relatedName = data.name || '';
+            const relatedPlan = data.checkoutPlan || '1 tháng';
+            const relatedPrice = parseVndToNumber(data.currentPrice);
+
+            if (!relatedName || !relatedPrice) {
+                return false;
+            }
+
+            const itemKey = buildItemKey(relatedName, relatedPlan);
+            const existingItem = orderState.items.find(item => item.key === itemKey);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                orderState.items.push({
+                    id: productId || itemKey,
+                    key: itemKey,
+                    name: relatedName,
+                    plan: relatedPlan,
+                    unitPrice: relatedPrice,
+                    quantity: 1,
+                    isPrimary: false
+                });
+            }
+
+            renderOrderSummary();
+            return true;
+        }
+
+        window.GoAIOrderAPI = {
+            addRelatedProduct: addRelatedProduct
+        };
 
         function applyPromoCode(code, showMessage = true) {
             const normalizedCode = String(code || '').trim().toUpperCase();
@@ -708,17 +808,12 @@
                     promoStatus.classList.remove('success');
                 }
                 currentPromoCode = '';
-                discountedPriceNumber = originalPriceNumber;
-                discountAmountEl.textContent = '0đ';
-                totalPriceEl.textContent = formatVnd(originalPriceNumber);
+                renderOrderSummary();
                 return false;
             }
 
             currentPromoCode = normalizedCode;
-            discountedPriceNumber = Math.round(originalPriceNumber * 0.95);
-            const discountAmount = originalPriceNumber - discountedPriceNumber;
-            discountAmountEl.textContent = '-' + formatVnd(discountAmount);
-            totalPriceEl.textContent = formatVnd(discountedPriceNumber);
+            recalculateTotals();
             localStorage.setItem('goai_affiliate', normalizedCode);
 
             if (showMessage) {
@@ -743,6 +838,8 @@
             promoCodeInput.value = savedPromoCode;
             applyPromoCode(savedPromoCode, true);
         }
+
+        renderOrderSummary();
 
         btnApplyPromo.addEventListener('click', function () {
             applyPromoCode(promoCodeInput.value, true);
@@ -800,13 +897,18 @@
             const orderCode = generateOrderCode();
 
             // Build pay.html URL with query params
+            const orderSummaryText = orderState.items.map(item => {
+                return item.name + (item.quantity > 1 ? ` x${item.quantity}` : '');
+            }).join(', ');
+
             const payUrl = new URL('pay.html', window.location.href);
-            payUrl.searchParams.set('product', productName);
+            payUrl.searchParams.set('product', orderSummaryText);
             payUrl.searchParams.set('plan', productPlan);
             payUrl.searchParams.set('price', formatVnd(discountedPriceNumber));
-            payUrl.searchParams.set('originalPrice', formatVnd(originalPriceNumber));
+            payUrl.searchParams.set('originalPrice', formatVnd(subtotalPriceNumber));
             payUrl.searchParams.set('discountedPrice', formatVnd(discountedPriceNumber));
             payUrl.searchParams.set('promoCode', currentPromoCode || savedPromoCode || '');
+            payUrl.searchParams.set('orderItems', JSON.stringify(orderState.items));
             payUrl.searchParams.set('fullname', fullname);
             payUrl.searchParams.set('phone', phone);
             payUrl.searchParams.set('email', email);

@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="related-product-card__new-price">${formatVnd(product.currentPrice)}</span>
                         <span class="related-product-card__old-price">${formatVnd(product.oldPrice)}</span>
                     </div>
-                    <a class="related-product-card__cta" href="${buildCheckoutUrl(product.id)}">MUA NGAY</a>
+                    <a class="related-product-card__cta" data-related-product-id="${product.id}" href="${buildCheckoutUrl(product.id)}">MUA NGAY</a>
                 </div>
             </article>
         `).join('');
@@ -511,6 +511,46 @@ document.addEventListener('DOMContentLoaded', function() {
             checkoutLayout.classList.add('has-related-sidebar');
             checkoutLayout.insertAdjacentHTML('beforeend', sidebarHtml);
         }
+    }
+
+    function bindRelatedCtaActions() {
+        document.addEventListener('click', function(event) {
+            const cta = event.target.closest('.related-product-card__cta');
+            if (!cta) {
+                return;
+            }
+
+            const productId = cta.dataset.relatedProductId;
+            if (!productId) {
+                return;
+            }
+
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const orderApi = window.GoAIOrderAPI;
+            if (currentPage !== 'checkout.html' || !orderApi || typeof orderApi.addRelatedProduct !== 'function') {
+                return;
+            }
+
+            event.preventDefault();
+            const product = relatedCatalog[productId];
+            if (!product) {
+                return;
+            }
+
+            const addResult = orderApi.addRelatedProduct(productId, product);
+            if (!addResult) {
+                return;
+            }
+
+            const originalText = cta.textContent;
+            cta.textContent = 'Đã thêm vào đơn hàng';
+            cta.style.filter = 'brightness(1.08)';
+
+            window.setTimeout(function() {
+                cta.textContent = originalText;
+                cta.style.filter = '';
+            }, 1200);
+        });
     }
 
     // Mobile menu toggle
@@ -604,4 +644,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     injectRelatedSidebar();
+    bindRelatedCtaActions();
 });
