@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Nghề AI - GO AI</title>
+    <meta name="description" content="Khám phá các bài viết Học Nghề AI thực chiến: prompt ChatGPT, kiếm tiền online với AI, content marketing và tối ưu hiệu suất công việc.">
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0B0B0F;
+            color: #fff;
+            min-height: 100vh;
+        }
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.2rem 1rem 3rem;
+        }
+        .hero {
+            margin: 1.2rem 0 2rem;
+            padding: 1.6rem;
+            border-radius: 20px;
+            border: 1px solid rgba(246, 196, 83, 0.2);
+            background: radial-gradient(circle at 15% 15%, rgba(246, 196, 83, 0.18), transparent 55%), #12131A;
+        }
+        .hero h1 {
+            color: #F6C453;
+            font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+            line-height: 1.2;
+            margin-bottom: 0.8rem;
+        }
+        .hero p {
+            color: #d5d7df;
+            max-width: 760px;
+            line-height: 1.7;
+        }
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.2rem;
+        }
+        .article-card {
+            border-radius: 18px;
+            border: 1px solid rgba(246, 196, 83, 0.17);
+            background: #12131A;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .article-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+        }
+        .article-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+        }
+        .article-content {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            flex: 1;
+        }
+        .article-title {
+            font-size: 1.05rem;
+            line-height: 1.4;
+            color: #fff;
+            font-weight: 800;
+        }
+        .article-desc {
+            color: #b9bcc8;
+            line-height: 1.65;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+        .article-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            padding: 0.82rem 1rem;
+            text-decoration: none;
+            color: #0B0B0F;
+            font-weight: 800;
+            background: linear-gradient(135deg, #F6C453 0%, #FFD77A 100%);
+        }
+        @media (max-width: 980px) {
+            .articles-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 640px) {
+            .page { padding: 1.3rem 0.85rem 2rem; }
+            .articles-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo"><span class="logo-text">GO <span class="logo-highlight">AI</span></span></a>
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle menu">
+                <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+            </button>
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item has-dropdown">
+                    <a href="#" class="navbar-link">Sản Phẩm
+                        <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="product-chatgpt-plus.html" class="dropdown-link">ChatGPT Plus</a></li>
+                        <li><a href="product-chatgpt-business.html" class="dropdown-link">ChatGPT Business</a></li>
+                        <li><a href="product-chatgpt-go.html" class="dropdown-link">ChatGPT GO</a></li>
+                        <li><a href="product-google-ai-pro.html" class="dropdown-link">Google AI Pro 2TB</a></li>
+                        <li><a href="product-gemini-ultra.html" class="dropdown-link">Gemini Ultra 25.000 Credit</a></li>
+                        <li><a href="product-canva-pro.html" class="dropdown-link">Canva Pro</a></li>
+                        <li><a href="product-capcut-pro.html" class="dropdown-link">CapCut Pro</a></li>
+                        <li><a href="product-github-pro.html" class="dropdown-link">GitHub Pro</a></li>
+                        <li><a href="product-youtube.html" class="dropdown-link">YouTube Premium</a></li>
+                        <li><a href="product-supper-grok.html" class="dropdown-link">Supper Grok</a></li>
+                        <li><a href="product-zoom-pro.html" class="dropdown-link">Zoom Pro</a></li>
+                        <li><a href="product-kling-ai.html" class="dropdown-link">Kling AI 1100 Credit</a></li>
+                        <li><a href="product-office-365.html" class="dropdown-link">Office 365 + 1TB</a></li>
+                        <li><a href="product-perplexity-pro.html" class="dropdown-link">Perplexity Pro</a></li>
+                        <li><a href="product-claude-ai-pro.html" class="dropdown-link">Claude AI Pro</a></li>
+                    </ul>
+                </li>
+                <li class="navbar-item"><a href="hoc-nghe-ai.html" class="navbar-link">Học Nghề AI</a></li>
+                <li class="navbar-item"><a href="affiliate.html" class="navbar-link">Affiliate</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="page">
+        <section class="hero">
+            <h1>Học Nghề AI: Tài nguyên thực chiến cho người mới & người làm kinh doanh</h1>
+            <p>Tổng hợp bài viết hướng dẫn áp dụng AI vào content, marketing, bán hàng và tự động hóa công việc. Kiến thức cô đọng, dễ làm theo, cập nhật xu hướng 2026.</p>
+        </section>
+
+        <section class="articles-grid" aria-label="Danh sách bài viết">
+            <article class="article-card">
+                <img src="images/BANNER.PNG" alt="100+ Prompt ChatGPT Hay Nhất Giúp Kiếm Tiền & Tăng Hiệu Suất 10X (2026)" class="article-thumb">
+                <div class="article-content">
+                    <h2 class="article-title">100+ Prompt ChatGPT Hay Nhất Giúp Kiếm Tiền & Tăng Hiệu Suất 10X (2026)</h2>
+                    <p class="article-desc">Tổng hợp hệ thống prompt thực chiến giúp viết content nhanh hơn, làm video AI dễ hơn, nâng hiệu suất công việc và mở ra cơ hội kiếm tiền online bền vững.</p>
+                    <a href="hoc-nghe-ai/100-prompt-chatgpt-hay-nhat-kiem-tien-2026.html" class="article-btn">Xem chi tiết</a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <script src="navbar.js?v=20260402-4"></script>
+    <script src="js/social-proof.js"></script>
+</body>
+</html>
