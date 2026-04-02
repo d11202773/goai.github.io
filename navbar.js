@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="related-product-card__new-price">${formatVnd(product.currentPrice)}</span>
                         <span class="related-product-card__old-price">${formatVnd(product.oldPrice)}</span>
                     </div>
-                    <a class="related-product-card__cta" data-related-product-id="${product.id}" href="${buildCheckoutUrl(product.id)}">MUA NGAY</a>
+                    <a class="related-product-card__cta" data-related-product-id="${product.id}" href="${buildCheckoutUrl(product.id)}">THÊM VÀO ĐƠN HÀNG</a>
                 </div>
             </article>
         `).join('');
