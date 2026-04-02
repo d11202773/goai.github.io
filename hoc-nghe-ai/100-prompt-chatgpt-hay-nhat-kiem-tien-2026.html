@@ -86,6 +86,45 @@
             background: rgba(246, 196, 83, 0.09);
             border: 1px solid rgba(246, 196, 83, 0.2);
         }
+        .doc-box {
+            margin: 1rem 0 1.2rem;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(246, 196, 83, 0.28);
+            background: rgba(246, 196, 83, 0.07);
+        }
+        .doc-title {
+            color: #FFD77A;
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+        }
+        .doc-note {
+            color: #d8dbe7;
+            margin-bottom: 0.75rem;
+        }
+        .doc-actions {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .doc-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.72rem 1rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid rgba(246, 196, 83, 0.45);
+        }
+        .doc-btn--view {
+            color: #0B0B0F;
+            background: linear-gradient(135deg, #F6C453 0%, #FFD77A 100%);
+        }
+        .doc-btn--download {
+            color: #F6C453;
+            background: transparent;
+        }
         .cta {
             margin-top: 1.4rem;
             padding: 1.2rem;
@@ -144,6 +183,15 @@
         <article class="content">
             <p>Trong thời đại AI bùng nổ, biết dùng ChatGPT chưa đủ. Quan trọng là biết dùng prompt đúng cách.</p>
             <p>Prompt đơn giản là câu lệnh bạn đưa cho ChatGPT. Nó có thể là câu hỏi, yêu cầu, mệnh lệnh hoặc chủ đề.</p>
+
+            <div class="doc-box">
+                <div class="doc-title">Tài liệu đính kèm: 1000 Prompts ChatGPT (PDF)</div>
+                <p class="doc-note">Bạn có thể mở xem trực tiếp hoặc tải file về máy để sử dụng ngay.</p>
+                <div class="doc-actions">
+                    <a class="doc-btn doc-btn--view" href="../tai-lieu/1000-prompts-chatgpt.pdf" target="_blank" rel="noopener noreferrer">Xem tài liệu</a>
+                    <a class="doc-btn doc-btn--download" href="../tai-lieu/1000-prompts-chatgpt.pdf" download="1000-prompts-chatgpt.pdf">Tải xuống PDF</a>
+                </div>
+            </div>
 
             <h2>10 công thức prompt quan trọng nhất</h2>
             <ul>
