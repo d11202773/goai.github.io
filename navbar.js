@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="related-product-card__new-price">${formatVnd(product.currentPrice)}</span>
                         <span class="related-product-card__old-price">${formatVnd(product.oldPrice)}</span>
                     </div>
-                    <a class="related-product-card__cta" href="${buildCheckoutUrl(product.id)}">Mua thêm</a>
+                    <a class="related-product-card__cta" href="${buildCheckoutUrl(product.id)}">MUA NGAY</a>
                 </div>
             </article>
         `).join('');
@@ -479,7 +479,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="related-products-sidebar__inner">
                     <div>
                         <p class="related-products-sidebar__eyebrow">Gợi ý thêm</p>
-                        <h3 class="related-products-sidebar__title">Khách hay mua kèm</h3>
+                        <h3 class="related-products-sidebar__title">Sản phẩm liên quan</h3>
                         <p class="related-products-sidebar__subtitle">Chọn nhanh các sản phẩm phù hợp để thêm vào đơn hàng.</p>
                     </div>
                     <div class="related-products-sidebar__track" aria-label="Sản phẩm liên quan">
