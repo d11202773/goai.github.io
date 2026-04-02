@@ -24,7 +24,7 @@ const products = [
         id: 'gemini-ultra',
         name: 'Gemini Ultra 45.000 Credit',
         icon: '💎',
-        image: 'images/ULTRA.jpg',
+        image: 'images/ULTRA-20260402.jpg',
         tag: 'HOT',
         priceOriginal: 6000000,
         priceCurrent: 450000,
