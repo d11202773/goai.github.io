@@ -1,3 +1,11 @@
+(function enforceMaintenanceMode() {
+    if (window.location.pathname.endsWith('maintenance.html')) {
+        return;
+    }
+
+    window.location.replace('/maintenance.html');
+})();
+
 (function () {
     const AFFILIATE_USERS_KEY = 'affiliateUsers';
     const OWNER_MAP_KEY = 'affiliateOwnerMap';

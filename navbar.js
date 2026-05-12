@@ -1,4 +1,12 @@
 // Navbar JavaScript
+(function enforceMaintenanceMode() {
+    if (window.location.pathname.endsWith('maintenance.html')) {
+        return;
+    }
+
+    window.location.replace('/maintenance.html');
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.getElementById('navbar');
     const navbarToggle = document.getElementById('navbarToggle');

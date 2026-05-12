@@ -1,4 +1,12 @@
 // Dữ liệu 9 sản phẩm AI
+(function enforceMaintenanceMode() {
+    if (window.location.pathname.endsWith('maintenance.html')) {
+        return;
+    }
+
+    window.location.replace('/maintenance.html');
+})();
+
 const products = [
     {
         id: 'chatgpt-plus-personal',

@@ -1,3 +1,11 @@
+(function enforceMaintenanceMode() {
+  if (window.location.pathname.endsWith('maintenance.html')) {
+    return;
+  }
+
+  window.location.replace('/maintenance.html');
+})();
+
 (function () {
   const customerNames = [
     'Nguyễn Minh',

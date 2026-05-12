@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GO AI - Website Đang Bảo Trì</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .maintenance-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            padding: 60px 40px;
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo .highlight {
+            color: #667eea;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .maintenance-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .message strong {
+            color: #333;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .contact-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .countdown {
+            background: #fff3cd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #856404;
+            font-weight: 600;
+        }
+
+        @media (max-width: 480px) {
+            .maintenance-container {
+                padding: 40px 25px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .logo {
+                font-size: 36px;
+            }
+
+            .maintenance-icon {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="maintenance-container">
+        <div class="maintenance-icon">🔧</div>
+        <div class="logo">GO <span class="highlight">AI</span></div>
+        <h1>Website Đang Bảo Trì</h1>
+        
+        <p>Hiện tại, Website GO AI đang được bảo trì và cập nhật để mang lại trải nghiệm tốt hơn cho bạn.</p>
+        
+        <div class="message">
+            <strong>ℹ️ Thông báo:</strong> Chúng tôi sẽ quay lại sớm. Cảm ơn bạn đã chờ đợi!
+        </div>
+
+        <div class="countdown">
+            ⏱️ Dự kiến quay lại trong: <span id="eta">Sắp sửa...</span>
+        </div>
+
+        <div class="contact-info">
+            <p>Nếu bạn có bất kỳ câu hỏi, vui lòng liên hệ với chúng tôi:</p>
+            <p>📧 <strong>Email:</strong> support@goai.edu.vn</p>
+            <a href="mailto:support@goai.edu.vn" class="contact-link">Gửi Email</a>
+        </div>
+    </div>
+
+    <script>
+        // Tùy chỉnh thời gian quay lại (dự kiến)
+        function updateCountdown() {
+            const eta = document.getElementById('eta');
+            eta.textContent = 'Vài giờ tới...';
+        }
+        updateCountdown();
+    </script>
+</body>
+</html>

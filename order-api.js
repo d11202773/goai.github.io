@@ -3,6 +3,14 @@
  * Sends order data to Google Apps Script
  */
 
+(function enforceMaintenanceMode() {
+    if (window.location.pathname.endsWith('maintenance.html')) {
+        return;
+    }
+
+    window.location.replace('/maintenance.html');
+})();
+
 const API_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxvXGAtB3GtrExGBJqyYqS3tMYmmc-7mygdXfM3ViOZ40kKda2adAXN4C1hDgO09Xp-/exec';
 
 /**
